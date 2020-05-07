@@ -32,9 +32,12 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabSanPham = new System.Windows.Forms.TabPage();
+            this.tabComment = new System.Windows.Forms.TabPage();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.tabQuangCao = new System.Windows.Forms.TabPage();
+            this.tabDatHang = new System.Windows.Forms.TabPage();
+            this.tabThanhToan = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,33 +72,36 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabSanPham);
+            this.tabControl1.Controls.Add(this.tabComment);
+            this.tabControl1.Controls.Add(this.tabQuangCao);
+            this.tabControl1.Controls.Add(this.tabDatHang);
+            this.tabControl1.Controls.Add(this.tabThanhToan);
             this.tabControl1.Location = new System.Drawing.Point(12, 39);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1126, 583);
             this.tabControl1.TabIndex = 3;
             // 
-            // tabPage1
+            // tabSanPham
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1118, 557);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabSanPham.Location = new System.Drawing.Point(4, 22);
+            this.tabSanPham.Name = "tabSanPham";
+            this.tabSanPham.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSanPham.Size = new System.Drawing.Size(1118, 557);
+            this.tabSanPham.TabIndex = 0;
+            this.tabSanPham.Text = "SAN PHAM";
+            this.tabSanPham.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabComment
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1118, 557);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabComment.Location = new System.Drawing.Point(4, 22);
+            this.tabComment.Name = "tabComment";
+            this.tabComment.Padding = new System.Windows.Forms.Padding(3);
+            this.tabComment.Size = new System.Drawing.Size(1118, 557);
+            this.tabComment.TabIndex = 1;
+            this.tabComment.Text = "COMMENT";
+            this.tabComment.UseVisualStyleBackColor = true;
             // 
             // btnLogin
             // 
@@ -105,6 +111,34 @@
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
+            // 
+            // tabQuangCao
+            // 
+            this.tabQuangCao.Location = new System.Drawing.Point(4, 22);
+            this.tabQuangCao.Name = "tabQuangCao";
+            this.tabQuangCao.Size = new System.Drawing.Size(1118, 557);
+            this.tabQuangCao.TabIndex = 2;
+            this.tabQuangCao.Text = "QUANG CAO";
+            this.tabQuangCao.UseVisualStyleBackColor = true;
+            // 
+            // tabDatHang
+            // 
+            this.tabDatHang.Location = new System.Drawing.Point(4, 22);
+            this.tabDatHang.Name = "tabDatHang";
+            this.tabDatHang.Size = new System.Drawing.Size(1118, 557);
+            this.tabDatHang.TabIndex = 3;
+            this.tabDatHang.Text = "DAT HANG";
+            this.tabDatHang.UseVisualStyleBackColor = true;
+            // 
+            // tabThanhToan
+            // 
+            this.tabThanhToan.Location = new System.Drawing.Point(4, 22);
+            this.tabThanhToan.Name = "tabThanhToan";
+            this.tabThanhToan.Size = new System.Drawing.Size(1118, 557);
+            this.tabThanhToan.TabIndex = 4;
+            this.tabThanhToan.Text = "THANH TOAN";
+            this.tabThanhToan.UseVisualStyleBackColor = true;
             // 
             // InitPage
             // 
@@ -131,9 +165,12 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabSanPham;
+        private System.Windows.Forms.TabPage tabComment;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.TabPage tabQuangCao;
+        private System.Windows.Forms.TabPage tabDatHang;
+        private System.Windows.Forms.TabPage tabThanhToan;
     }
 }
 
