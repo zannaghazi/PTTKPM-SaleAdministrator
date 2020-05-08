@@ -12,13 +12,17 @@ namespace QuanLyBanHang.Views
 {
     public partial class LoginForm : Form
     {
+        public Models.User currentUser = new Models.User();
+        private InitPage parent;
+
         /// <summary>
         /// Constructor of Login Form
         /// </summary>
-        public LoginForm()
+        public LoginForm(InitPage parent)
         {
             this.InitializeComponent();
             this.InitSetting();
+            this.parent = parent;
         }
 
         /// <summary>
@@ -50,6 +54,32 @@ namespace QuanLyBanHang.Views
                 || String.IsNullOrWhiteSpace(this.txtPassword.Text))
             {
                 this.lbMessage.Text = "Tên đăng nhập hoặc mật khẩu đang bị bỏ trống";
+                return;
+            }
+
+            this.currentUser = this.currentUser.checkLogin(
+                this.txtUserName.Text.Trim(),
+                this.txtPassword.Text.Trim());
+            if (this.currentUser.name != null) {
+                this.parent.LoginCallback(this.currentUser);
+                this.Close();
+            }else
+            {
+                this.lbMessage.Text = "Tên đăng nhập hoặc mật khẩu không chính xác";
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Handle user press Enter after input password
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.btnLogin.PerformClick();
             }
         }
     }

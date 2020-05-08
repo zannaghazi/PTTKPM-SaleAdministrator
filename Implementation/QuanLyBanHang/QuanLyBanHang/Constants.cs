@@ -14,5 +14,9 @@ namespace QuanLyBanHang
         public static int USERTYPE_SHIPPER = 2; // Người giao hàng
         public static int USERTYPE_ADVERTISER = 3; // Người đăng tin
         public static int USERTYPE_TREASURER = 4; // Thủ quỹ
+
+        // LOGIN STATUS
+        public static int LOGINSTAT_NONE = 0;
+        public static int LOGINSTAT_LOGGED = 1;
     }
 }
