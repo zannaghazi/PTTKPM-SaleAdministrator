@@ -31,19 +31,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnConfirm = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.txtType = new System.Windows.Forms.TextBox();
-            this.txtAmount = new System.Windows.Forms.TextBox();
             this.txtMinimum = new System.Windows.Forms.TextBox();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.txtType = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnConfirm = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -84,6 +84,86 @@
             this.panel1.Size = new System.Drawing.Size(430, 233);
             this.panel1.TabIndex = 2;
             // 
+            // txtMinimum
+            // 
+            this.txtMinimum.Location = new System.Drawing.Point(149, 180);
+            this.txtMinimum.Name = "txtMinimum";
+            this.txtMinimum.Size = new System.Drawing.Size(276, 20);
+            this.txtMinimum.TabIndex = 9;
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.Location = new System.Drawing.Point(149, 140);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(276, 20);
+            this.txtAmount.TabIndex = 8;
+            // 
+            // txtType
+            // 
+            this.txtType.Location = new System.Drawing.Point(149, 100);
+            this.txtType.Name = "txtType";
+            this.txtType.Size = new System.Drawing.Size(276, 20);
+            this.txtType.TabIndex = 7;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(149, 60);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(276, 20);
+            this.txtName.TabIndex = 6;
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(149, 20);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(276, 20);
+            this.txtID.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(25, 100);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Loại sản phẩm";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(25, 180);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Số lượng quy định";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 140);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Số lượng sản phẩm";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Tên sản phẩm";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(25, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(18, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "ID";
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -93,15 +173,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(430, 70);
             this.panel2.TabIndex = 3;
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.Location = new System.Drawing.Point(4, 4);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(177, 59);
-            this.btnConfirm.TabIndex = 0;
-            this.btnConfirm.Text = "Confirm";
-            this.btnConfirm.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
@@ -113,85 +184,15 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // label2
+            // btnConfirm
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(18, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "ID";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Tên sản phẩm";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 140);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Số lượng sản phẩm";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 180);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Số lượng quy định";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 100);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 13);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Loại sản phẩm";
-            // 
-            // txtID
-            // 
-            this.txtID.Location = new System.Drawing.Point(149, 20);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(276, 20);
-            this.txtID.TabIndex = 5;
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(149, 60);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(276, 20);
-            this.txtName.TabIndex = 6;
-            // 
-            // txtType
-            // 
-            this.txtType.Location = new System.Drawing.Point(149, 100);
-            this.txtType.Name = "txtType";
-            this.txtType.Size = new System.Drawing.Size(276, 20);
-            this.txtType.TabIndex = 7;
-            // 
-            // txtAmount
-            // 
-            this.txtAmount.Location = new System.Drawing.Point(149, 140);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(276, 20);
-            this.txtAmount.TabIndex = 8;
-            // 
-            // txtMinimum
-            // 
-            this.txtMinimum.Location = new System.Drawing.Point(149, 180);
-            this.txtMinimum.Name = "txtMinimum";
-            this.txtMinimum.Size = new System.Drawing.Size(276, 20);
-            this.txtMinimum.TabIndex = 9;
+            this.btnConfirm.Location = new System.Drawing.Point(4, 4);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(177, 59);
+            this.btnConfirm.TabIndex = 0;
+            this.btnConfirm.Text = "Confirm";
+            this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
             // 
             // SanPhamDetail
             // 

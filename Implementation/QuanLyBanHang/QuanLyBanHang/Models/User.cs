@@ -58,13 +58,17 @@ namespace QuanLyBanHang.Models
             // Using username to query from DB
 
             // DUMMY DATA:
-            User check = new User(1, "admin", "admin", "Quan Ly", 0);
+            User quanly = new User(1, "admin", "admin", "Quan Ly", 0);
+            User banhang = new User(2, "banhang", "banhang", "Nhan Vien Ban Hang", 1);
 
             // Check username and password is correct or not
 
-            if (username == check.userName && password == check.password)
+            if (username == quanly.userName && password == quanly.password)
             {
-                return check;
+                return quanly;
+            }else if (username == banhang.userName && password == banhang.password)
+            {
+                return banhang;
             }
             return new User();
         }

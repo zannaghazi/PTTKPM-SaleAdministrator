@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "08/05/2020",
             "Tổng giám đốc"}, -1);
             this.label1 = new System.Windows.Forms.Label();
@@ -63,8 +63,17 @@
             this.tabDatHang = new System.Windows.Forms.TabPage();
             this.tabThanhToan = new System.Windows.Forms.TabPage();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.listSPBill = new System.Windows.Forms.ListView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.colSPBillDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colSPBillOwner = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnSPCreateBill = new System.Windows.Forms.Button();
+            this.btnSPBillBack = new System.Windows.Forms.Button();
+            this.btnSPAdd = new System.Windows.Forms.Button();
+            this.btnSPDelete = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabSanPham.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tabComment.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -113,7 +122,9 @@
             // 
             // tabSanPham
             // 
+            this.tabSanPham.Controls.Add(this.label3);
             this.tabSanPham.Controls.Add(this.panel1);
+            this.tabSanPham.Controls.Add(this.listSPBill);
             this.tabSanPham.Controls.Add(this.listSanPham);
             this.tabSanPham.Location = new System.Drawing.Point(4, 22);
             this.tabSanPham.Name = "tabSanPham";
@@ -126,9 +137,13 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(860, 7);
+            this.panel1.Controls.Add(this.btnSPDelete);
+            this.panel1.Controls.Add(this.btnSPAdd);
+            this.panel1.Controls.Add(this.btnSPBillBack);
+            this.panel1.Controls.Add(this.btnSPCreateBill);
+            this.panel1.Location = new System.Drawing.Point(860, 273);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(255, 544);
+            this.panel1.Size = new System.Drawing.Size(255, 278);
             this.panel1.TabIndex = 1;
             // 
             // listSanPham
@@ -201,7 +216,7 @@
             this.listCommentRep.FullRowSelect = true;
             this.listCommentRep.HideSelection = false;
             this.listCommentRep.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem4});
             this.listCommentRep.Location = new System.Drawing.Point(900, 30);
             this.listCommentRep.Name = "listCommentRep";
             this.listCommentRep.Size = new System.Drawing.Size(208, 249);
@@ -340,6 +355,75 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
+            // listSPBill
+            // 
+            this.listSPBill.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colSPBillDate,
+            this.colSPBillOwner});
+            this.listSPBill.HideSelection = false;
+            this.listSPBill.Location = new System.Drawing.Point(860, 22);
+            this.listSPBill.Name = "listSPBill";
+            this.listSPBill.Size = new System.Drawing.Size(252, 245);
+            this.listSPBill.TabIndex = 0;
+            this.listSPBill.UseCompatibleStateImageBehavior = false;
+            this.listSPBill.View = System.Windows.Forms.View.Details;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(860, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Đơn nhập/trả hàng";
+            // 
+            // colSPBillDate
+            // 
+            this.colSPBillDate.Text = "Ngày";
+            // 
+            // colSPBillOwner
+            // 
+            this.colSPBillOwner.Text = "Người lập đơn";
+            // 
+            // btnSPCreateBill
+            // 
+            this.btnSPCreateBill.Location = new System.Drawing.Point(2, 210);
+            this.btnSPCreateBill.Name = "btnSPCreateBill";
+            this.btnSPCreateBill.Size = new System.Drawing.Size(246, 63);
+            this.btnSPCreateBill.TabIndex = 0;
+            this.btnSPCreateBill.Text = "Lập đơn nhập hàng";
+            this.btnSPCreateBill.UseVisualStyleBackColor = true;
+            this.btnSPCreateBill.Click += new System.EventHandler(this.BtnSPCreateBill_Click);
+            // 
+            // btnSPBillBack
+            // 
+            this.btnSPBillBack.Location = new System.Drawing.Point(2, 141);
+            this.btnSPBillBack.Name = "btnSPBillBack";
+            this.btnSPBillBack.Size = new System.Drawing.Size(246, 63);
+            this.btnSPBillBack.TabIndex = 1;
+            this.btnSPBillBack.Text = "Lập đơn trả hàng";
+            this.btnSPBillBack.UseVisualStyleBackColor = true;
+            // 
+            // btnSPAdd
+            // 
+            this.btnSPAdd.Location = new System.Drawing.Point(2, 3);
+            this.btnSPAdd.Name = "btnSPAdd";
+            this.btnSPAdd.Size = new System.Drawing.Size(246, 63);
+            this.btnSPAdd.TabIndex = 2;
+            this.btnSPAdd.Text = "Thêm mặt hàng mới";
+            this.btnSPAdd.UseVisualStyleBackColor = true;
+            this.btnSPAdd.Click += new System.EventHandler(this.BtnSPAdd_Click);
+            // 
+            // btnSPDelete
+            // 
+            this.btnSPDelete.Location = new System.Drawing.Point(2, 72);
+            this.btnSPDelete.Name = "btnSPDelete";
+            this.btnSPDelete.Size = new System.Drawing.Size(246, 63);
+            this.btnSPDelete.TabIndex = 3;
+            this.btnSPDelete.Text = "Xoá mặt hàng đang chọn";
+            this.btnSPDelete.UseVisualStyleBackColor = true;
+            this.btnSPDelete.Click += new System.EventHandler(this.BtnSPDelete_Click);
+            // 
             // InitPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,6 +439,8 @@
             this.Text = "Form1";
             this.tabControl.ResumeLayout(false);
             this.tabSanPham.ResumeLayout(false);
+            this.tabSanPham.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.tabComment.ResumeLayout(false);
             this.tabComment.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -397,6 +483,14 @@
         private System.Windows.Forms.ColumnHeader colCommentRepOwner;
         private System.Windows.Forms.Button btnCommentViewStatistic;
         private System.Windows.Forms.Button btnCommentViewClassify;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListView listSPBill;
+        private System.Windows.Forms.ColumnHeader colSPBillDate;
+        private System.Windows.Forms.ColumnHeader colSPBillOwner;
+        private System.Windows.Forms.Button btnSPDelete;
+        private System.Windows.Forms.Button btnSPAdd;
+        private System.Windows.Forms.Button btnSPBillBack;
+        private System.Windows.Forms.Button btnSPCreateBill;
     }
 }
 

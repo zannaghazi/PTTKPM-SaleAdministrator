@@ -22,9 +22,11 @@ namespace QuanLyBanHang
         private TabPage tabPageDatHang = null;
         private TabPage tabPageThanhToan = null;
         // Storage core data
-        private List<Models.Item> dataSanPham = new List<Models.Item>();
+        public List<Models.Item> dataSanPham = new List<Models.Item>();
         // Temporary variable
         private int selectedIndex = -1;
+        // Initial Domains
+        public Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
 
 
 
@@ -49,6 +51,9 @@ namespace QuanLyBanHang
             this.listSanPham.Columns[2].Width = listSPSize * 3 / 11;
             this.listSanPham.Columns[3].Width = listSPSize * 2 / 11;
             this.listSanPham.Columns[4].Width = listSPSize * 2 / 11;
+            listSPSize = this.listSPBill.Width;
+            this.listSPBill.Columns[0].Width = listSPSize / 3;
+            this.listSPBill.Columns[1].Width = listSPSize * 2 / 3;
 
             //Fix column size for table of Comment
             int listCMTSize = this.listComment.Width;
@@ -95,21 +100,34 @@ namespace QuanLyBanHang
                 /* QUAN LY SAN PHAM */
                 // Load available TabPage
                 this.tabControl.TabPages.Insert(0, this.tabPageSanPham);
-                this.tabControl.TabPages.Insert(1, this.tabPageComment);
-
-                // Init domain
-                Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
-                //Load data
-                quanLySanPhamDomain.LoadSanPham();
-                this.LoadSanPhamCallback(quanLySanPhamDomain);
+                // Change UI
+                this.listSPBill.Enabled = true;
+                this.btnSPAdd.Enabled = true;
+                this.btnSPDelete.Enabled = true;
+                // Load data
+                this.quanLySanPhamDomain.LoadSanPham();
+                this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
+                this.LoadSanPhamCallback();
 
                 /* QUAN LY COMMENT */
+                this.tabControl.TabPages.Insert(1, this.tabPageComment);
                 this.listCommentRep.Enabled = true;
 
             }else if (temp.role == Constants.USERTYPE_SALE)
             {
-
-            }else if (temp.role == Constants.USERTYPE_ADVERTISER)
+                /* QUAN LY SAN PHAM */
+                // Load available TabPage
+                this.tabControl.TabPages.Insert(0, this.tabPageSanPham);
+                // Change UI
+                this.listSPBill.Enabled = false;
+                this.btnSPAdd.Enabled = false;
+                this.btnSPDelete.Enabled = false;
+                //Load data
+                this.quanLySanPhamDomain.LoadSanPham();
+                this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
+                this.LoadSanPhamCallback();
+            }
+            else if (temp.role == Constants.USERTYPE_ADVERTISER)
             {
 
             }else if (temp.role == Constants.USERTYPE_SHIPPER)
@@ -138,28 +156,40 @@ namespace QuanLyBanHang
             this.btnLogin.Text = "Login";
             this.LoginStatus = Constants.LOGINSTAT_NONE;
             this.currentUser = null;
+
+            // Clear tab
+            this.InitFormSetting();
+
+            // Remove all session data
+            this.selectedIndex = -1;
+
+            /* QUAN LY SAN PHAM */
+            this.dataSanPham = new List<Models.Item>();
+            this.listSanPham.Items.Clear();
         }
 
-        private void LoadSanPhamCallback(Domains.QuanLySanPhamDomain quanLySanPhamDomain)
+        public void LoadSanPhamCallback()
         {
-            // Add data to list
-            for (int i = 0; i < quanLySanPhamDomain.listSanPham.Count; i++)
-            {
-                ListViewItem tempItem = new ListViewItem(quanLySanPhamDomain.listSanPham[i].ID.ToString());
+            // Remove all current data
+            this.listSanPham.Items.Clear();
 
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].name));
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].type));
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].amount.ToString()));
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].minimum.ToString()));
+            // Add data to list
+            for (int i = 0; i < this.dataSanPham.Count; i++)
+            {
+                ListViewItem tempItem = new ListViewItem(this.dataSanPham[i].ID.ToString());
+
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataSanPham[i].name));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataSanPham[i].type));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataSanPham[i].amount.ToString()));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataSanPham[i].minimum.ToString()));
                 
-                if (quanLySanPhamDomain.listSanPham[i].amount < quanLySanPhamDomain.listSanPham[i].minimum)
+                if (this.dataSanPham[i].amount < this.dataSanPham[i].minimum)
                 {
                     tempItem.BackColor = Color.Red;
                 }
 
                 this.listSanPham.Items.Add(tempItem);
             }
-            this.dataSanPham = quanLySanPhamDomain.listSanPham;
         }
 
         /// <summary>
@@ -254,10 +284,52 @@ namespace QuanLyBanHang
                 return;
             }
             this.selectedIndex = index;
-            Console.WriteLine(this.dataSanPham[index].name);
-            Views.SanPhamDetail detailForm = new Views.SanPhamDetail(this.dataSanPham[index]);
-            detailForm.StartPosition = FormStartPosition.CenterParent;
+            Views.SanPhamDetail detailForm = new Views.SanPhamDetail(index, this.dataSanPham[index], this.currentUser, this)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
             detailForm.ShowDialog();
+        }
+
+        private void BtnSPCreateBill_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnSPAdd_Click(object sender, EventArgs e)
+        {
+            Views.SanPhamDetail detailForm = new Views.SanPhamDetail(this)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            detailForm.ShowDialog();
+        }
+
+        private void BtnSPDelete_Click(object sender, EventArgs e)
+        {
+            if (this.selectedIndex < 0)
+            {
+                MessageBox.Show(
+                        "Bạn chưa chọn sản phẩm nào cả",
+                        "Lỗi",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                return;
+            }
+            if (MessageBox.Show(
+                "Bạn có chắc muốn xoá sản phẩm này?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.quanLySanPhamDomain.DeleteSanPham(this.dataSanPham[this.selectedIndex]);
+                this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
+                this.LoadSanPhamCallback();
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }
