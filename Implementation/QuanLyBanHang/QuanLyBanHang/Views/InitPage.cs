@@ -21,6 +21,11 @@ namespace QuanLyBanHang
         private TabPage tabPageQuangCao = null;
         private TabPage tabPageDatHang = null;
         private TabPage tabPageThanhToan = null;
+        // Storage core data
+        private List<Models.Item> dataSanPham = new List<Models.Item>();
+        // Temporary variable
+        private int selectedIndex = -1;
+
 
 
         /// <summary>
@@ -96,18 +101,7 @@ namespace QuanLyBanHang
                 Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
                 //Load data
                 quanLySanPhamDomain.LoadSanPham();
-                // Add data to list
-                for (int i = 0; i < quanLySanPhamDomain.listSanPham.Count; i++)
-                {
-                    ListViewItem tempItem = new ListViewItem(quanLySanPhamDomain.listSanPham[i].ID.ToString());
-
-                    tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].name));
-                    tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].type));
-                    tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].amount.ToString()));
-                    tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].minimum.ToString()));
-
-                    this.listSanPham.Items.Add(tempItem);
-                }
+                this.LoadSanPhamCallback(quanLySanPhamDomain);
 
                 /* QUAN LY COMMENT */
                 this.listCommentRep.Enabled = true;
@@ -146,7 +140,27 @@ namespace QuanLyBanHang
             this.currentUser = null;
         }
 
+        private void LoadSanPhamCallback(Domains.QuanLySanPhamDomain quanLySanPhamDomain)
+        {
+            // Add data to list
+            for (int i = 0; i < quanLySanPhamDomain.listSanPham.Count; i++)
+            {
+                ListViewItem tempItem = new ListViewItem(quanLySanPhamDomain.listSanPham[i].ID.ToString());
 
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].name));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].type));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].amount.ToString()));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, quanLySanPhamDomain.listSanPham[i].minimum.ToString()));
+                
+                if (quanLySanPhamDomain.listSanPham[i].amount < quanLySanPhamDomain.listSanPham[i].minimum)
+                {
+                    tempItem.BackColor = Color.Red;
+                }
+
+                this.listSanPham.Items.Add(tempItem);
+            }
+            this.dataSanPham = quanLySanPhamDomain.listSanPham;
+        }
 
         /// <summary>
         /// Handle event click Exit button
@@ -220,9 +234,30 @@ namespace QuanLyBanHang
         {
             int selectedIndex = this.listCommentRep.FocusedItem.Index;
             // Monitor to list data and get Report ID
-            Views.CommentReportDetail dialog = new Views.CommentReportDetail();
-            dialog.StartPosition = FormStartPosition.CenterParent;
+            Views.CommentReportDetail dialog = new Views.CommentReportDetail
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
             dialog.ShowDialog();
+        }
+
+        /// <summary>
+        /// Handle event select SanPham from list Sanpham
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ListSanPham_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.listSanPham.FocusedItem.Index;
+            if (index == this.selectedIndex)
+            {
+                return;
+            }
+            this.selectedIndex = index;
+            Console.WriteLine(this.dataSanPham[index].name);
+            Views.SanPhamDetail detailForm = new Views.SanPhamDetail(this.dataSanPham[index]);
+            detailForm.StartPosition = FormStartPosition.CenterParent;
+            detailForm.ShowDialog();
         }
     }
 }

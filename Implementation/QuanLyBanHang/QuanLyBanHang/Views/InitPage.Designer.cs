@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "1",
-            "Bo mạch chủ",
-            "Linh kiện điện tử",
-            "15",
-            "10"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "08/05/2020",
             "Tổng giám đốc"}, -1);
             this.label1 = new System.Windows.Forms.Label();
@@ -42,33 +36,33 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabSanPham = new System.Windows.Forms.TabPage();
-            this.tabComment = new System.Windows.Forms.TabPage();
-            this.tabQuangCao = new System.Windows.Forms.TabPage();
-            this.tabDatHang = new System.Windows.Forms.TabPage();
-            this.tabThanhToan = new System.Windows.Forms.TabPage();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.listSanPham = new System.Windows.Forms.ListView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.listSanPham = new System.Windows.Forms.ListView();
             this.colID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colMinNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listComment = new System.Windows.Forms.ListView();
+            this.tabComment = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.listCommentRep = new System.Windows.Forms.ListView();
+            this.colCommentRepDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCommentRepOwner = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCommentViewStatistic = new System.Windows.Forms.Button();
+            this.btnCommentViewClassify = new System.Windows.Forms.Button();
+            this.btnCommentSave = new System.Windows.Forms.Button();
+            this.btnCommentSubmit = new System.Windows.Forms.Button();
+            this.listComment = new System.Windows.Forms.ListView();
             this.colCommentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentSP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentOwner = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentStat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentDetail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnCommentSubmit = new System.Windows.Forms.Button();
-            this.btnCommentSave = new System.Windows.Forms.Button();
-            this.btnCommentViewClassify = new System.Windows.Forms.Button();
-            this.btnCommentViewStatistic = new System.Windows.Forms.Button();
-            this.listCommentRep = new System.Windows.Forms.ListView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.colCommentRepDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colCommentRepOwner = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabQuangCao = new System.Windows.Forms.TabPage();
+            this.tabDatHang = new System.Windows.Forms.TabPage();
+            this.tabThanhToan = new System.Windows.Forms.TabPage();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabSanPham.SuspendLayout();
             this.tabComment.SuspendLayout();
@@ -129,6 +123,53 @@
             this.tabSanPham.Text = "SAN PHAM";
             this.tabSanPham.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(860, 7);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(255, 544);
+            this.panel1.TabIndex = 1;
+            // 
+            // listSanPham
+            // 
+            this.listSanPham.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colID,
+            this.colName,
+            this.colType,
+            this.colNum,
+            this.colMinNum});
+            this.listSanPham.FullRowSelect = true;
+            this.listSanPham.HideSelection = false;
+            this.listSanPham.Location = new System.Drawing.Point(6, 6);
+            this.listSanPham.Name = "listSanPham";
+            this.listSanPham.Size = new System.Drawing.Size(848, 545);
+            this.listSanPham.TabIndex = 0;
+            this.listSanPham.UseCompatibleStateImageBehavior = false;
+            this.listSanPham.View = System.Windows.Forms.View.Details;
+            this.listSanPham.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.ListSanPham_ColumnWidthChanging);
+            this.listSanPham.SelectedIndexChanged += new System.EventHandler(this.ListSanPham_SelectedIndexChanged);
+            // 
+            // colID
+            // 
+            this.colID.Text = "ID";
+            // 
+            // colName
+            // 
+            this.colName.Text = "Tên mặt hàng";
+            // 
+            // colType
+            // 
+            this.colType.Text = "Loại hàng";
+            // 
+            // colNum
+            // 
+            this.colNum.Text = "Số lượng còn lại";
+            // 
+            // colMinNum
+            // 
+            this.colMinNum.Text = "Số lượng quy định";
+            // 
             // tabComment
             // 
             this.tabComment.Controls.Add(this.label2);
@@ -142,6 +183,125 @@
             this.tabComment.TabIndex = 1;
             this.tabComment.Text = "COMMENT";
             this.tabComment.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(900, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Báo cáo phân loại";
+            // 
+            // listCommentRep
+            // 
+            this.listCommentRep.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colCommentRepDate,
+            this.colCommentRepOwner});
+            this.listCommentRep.FullRowSelect = true;
+            this.listCommentRep.HideSelection = false;
+            this.listCommentRep.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listCommentRep.Location = new System.Drawing.Point(900, 30);
+            this.listCommentRep.Name = "listCommentRep";
+            this.listCommentRep.Size = new System.Drawing.Size(208, 249);
+            this.listCommentRep.TabIndex = 2;
+            this.listCommentRep.UseCompatibleStateImageBehavior = false;
+            this.listCommentRep.View = System.Windows.Forms.View.Details;
+            this.listCommentRep.SelectedIndexChanged += new System.EventHandler(this.ListCommentRep_SelectedIndexChanged);
+            // 
+            // colCommentRepDate
+            // 
+            this.colCommentRepDate.Text = "Ngày";
+            // 
+            // colCommentRepOwner
+            // 
+            this.colCommentRepOwner.Text = "Người gửi";
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnCommentViewStatistic);
+            this.panel2.Controls.Add(this.btnCommentViewClassify);
+            this.panel2.Controls.Add(this.btnCommentSave);
+            this.panel2.Controls.Add(this.btnCommentSubmit);
+            this.panel2.Location = new System.Drawing.Point(900, 285);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(212, 269);
+            this.panel2.TabIndex = 1;
+            // 
+            // btnCommentViewStatistic
+            // 
+            this.btnCommentViewStatistic.Location = new System.Drawing.Point(3, 3);
+            this.btnCommentViewStatistic.Name = "btnCommentViewStatistic";
+            this.btnCommentViewStatistic.Size = new System.Drawing.Size(204, 60);
+            this.btnCommentViewStatistic.TabIndex = 3;
+            this.btnCommentViewStatistic.Text = "Xem thống kê đã lưu";
+            this.btnCommentViewStatistic.UseVisualStyleBackColor = true;
+            // 
+            // btnCommentViewClassify
+            // 
+            this.btnCommentViewClassify.Location = new System.Drawing.Point(3, 69);
+            this.btnCommentViewClassify.Name = "btnCommentViewClassify";
+            this.btnCommentViewClassify.Size = new System.Drawing.Size(204, 60);
+            this.btnCommentViewClassify.TabIndex = 2;
+            this.btnCommentViewClassify.Text = "Xem phân loại đã lưu";
+            this.btnCommentViewClassify.UseVisualStyleBackColor = true;
+            // 
+            // btnCommentSave
+            // 
+            this.btnCommentSave.Location = new System.Drawing.Point(3, 135);
+            this.btnCommentSave.Name = "btnCommentSave";
+            this.btnCommentSave.Size = new System.Drawing.Size(204, 60);
+            this.btnCommentSave.TabIndex = 1;
+            this.btnCommentSave.Text = "Xác nhận lưu phân loại";
+            this.btnCommentSave.UseVisualStyleBackColor = true;
+            // 
+            // btnCommentSubmit
+            // 
+            this.btnCommentSubmit.Location = new System.Drawing.Point(3, 201);
+            this.btnCommentSubmit.Name = "btnCommentSubmit";
+            this.btnCommentSubmit.Size = new System.Drawing.Size(204, 60);
+            this.btnCommentSubmit.TabIndex = 0;
+            this.btnCommentSubmit.Text = "Lập bản thống kê";
+            this.btnCommentSubmit.UseVisualStyleBackColor = true;
+            // 
+            // listComment
+            // 
+            this.listComment.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colCommentID,
+            this.colCommentSP,
+            this.colCommentOwner,
+            this.colCommentStat,
+            this.colCommentDetail});
+            this.listComment.FullRowSelect = true;
+            this.listComment.HideSelection = false;
+            this.listComment.Location = new System.Drawing.Point(7, 7);
+            this.listComment.Name = "listComment";
+            this.listComment.Size = new System.Drawing.Size(886, 550);
+            this.listComment.TabIndex = 0;
+            this.listComment.UseCompatibleStateImageBehavior = false;
+            this.listComment.View = System.Windows.Forms.View.Details;
+            // 
+            // colCommentID
+            // 
+            this.colCommentID.Text = "ID";
+            // 
+            // colCommentSP
+            // 
+            this.colCommentSP.Text = "Sản phẩm";
+            // 
+            // colCommentOwner
+            // 
+            this.colCommentOwner.Text = "Tên khách hàng";
+            // 
+            // colCommentStat
+            // 
+            this.colCommentStat.Text = "Trạng thái";
+            // 
+            // colCommentDetail
+            // 
+            this.colCommentDetail.Text = "Chi tiết";
             // 
             // tabQuangCao
             // 
@@ -179,173 +339,6 @@
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
-            // 
-            // listSanPham
-            // 
-            this.listSanPham.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colID,
-            this.colName,
-            this.colType,
-            this.colNum,
-            this.colMinNum});
-            this.listSanPham.FullRowSelect = true;
-            this.listSanPham.HideSelection = false;
-            this.listSanPham.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.listSanPham.Location = new System.Drawing.Point(6, 6);
-            this.listSanPham.Name = "listSanPham";
-            this.listSanPham.Size = new System.Drawing.Size(836, 545);
-            this.listSanPham.TabIndex = 0;
-            this.listSanPham.UseCompatibleStateImageBehavior = false;
-            this.listSanPham.View = System.Windows.Forms.View.Details;
-            this.listSanPham.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.ListSanPham_ColumnWidthChanging);
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(849, 7);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(266, 544);
-            this.panel1.TabIndex = 1;
-            // 
-            // colID
-            // 
-            this.colID.Text = "ID";
-            // 
-            // colName
-            // 
-            this.colName.Text = "Tên mặt hàng";
-            // 
-            // colType
-            // 
-            this.colType.Text = "Loại hàng";
-            // 
-            // colNum
-            // 
-            this.colNum.Text = "Số lượng còn lại";
-            // 
-            // colMinNum
-            // 
-            this.colMinNum.Text = "Số lượng quy định";
-            // 
-            // listComment
-            // 
-            this.listComment.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colCommentID,
-            this.colCommentSP,
-            this.colCommentOwner,
-            this.colCommentStat,
-            this.colCommentDetail});
-            this.listComment.FullRowSelect = true;
-            this.listComment.HideSelection = false;
-            this.listComment.Location = new System.Drawing.Point(7, 7);
-            this.listComment.Name = "listComment";
-            this.listComment.Size = new System.Drawing.Size(886, 550);
-            this.listComment.TabIndex = 0;
-            this.listComment.UseCompatibleStateImageBehavior = false;
-            this.listComment.View = System.Windows.Forms.View.Details;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.btnCommentViewStatistic);
-            this.panel2.Controls.Add(this.btnCommentViewClassify);
-            this.panel2.Controls.Add(this.btnCommentSave);
-            this.panel2.Controls.Add(this.btnCommentSubmit);
-            this.panel2.Location = new System.Drawing.Point(900, 285);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(212, 269);
-            this.panel2.TabIndex = 1;
-            // 
-            // colCommentID
-            // 
-            this.colCommentID.Text = "ID";
-            // 
-            // colCommentSP
-            // 
-            this.colCommentSP.Text = "Sản phẩm";
-            // 
-            // colCommentOwner
-            // 
-            this.colCommentOwner.Text = "Tên khách hàng";
-            // 
-            // colCommentStat
-            // 
-            this.colCommentStat.Text = "Trạng thái";
-            // 
-            // colCommentDetail
-            // 
-            this.colCommentDetail.Text = "Chi tiết";
-            // 
-            // btnCommentSubmit
-            // 
-            this.btnCommentSubmit.Location = new System.Drawing.Point(3, 201);
-            this.btnCommentSubmit.Name = "btnCommentSubmit";
-            this.btnCommentSubmit.Size = new System.Drawing.Size(204, 60);
-            this.btnCommentSubmit.TabIndex = 0;
-            this.btnCommentSubmit.Text = "Lập bản thống kê";
-            this.btnCommentSubmit.UseVisualStyleBackColor = true;
-            // 
-            // btnCommentSave
-            // 
-            this.btnCommentSave.Location = new System.Drawing.Point(3, 135);
-            this.btnCommentSave.Name = "btnCommentSave";
-            this.btnCommentSave.Size = new System.Drawing.Size(204, 60);
-            this.btnCommentSave.TabIndex = 1;
-            this.btnCommentSave.Text = "Xác nhận lưu phân loại";
-            this.btnCommentSave.UseVisualStyleBackColor = true;
-            // 
-            // btnCommentViewClassify
-            // 
-            this.btnCommentViewClassify.Location = new System.Drawing.Point(3, 69);
-            this.btnCommentViewClassify.Name = "btnCommentViewClassify";
-            this.btnCommentViewClassify.Size = new System.Drawing.Size(204, 60);
-            this.btnCommentViewClassify.TabIndex = 2;
-            this.btnCommentViewClassify.Text = "Xem phân loại đã lưu";
-            this.btnCommentViewClassify.UseVisualStyleBackColor = true;
-            // 
-            // btnCommentViewStatistic
-            // 
-            this.btnCommentViewStatistic.Location = new System.Drawing.Point(3, 3);
-            this.btnCommentViewStatistic.Name = "btnCommentViewStatistic";
-            this.btnCommentViewStatistic.Size = new System.Drawing.Size(204, 60);
-            this.btnCommentViewStatistic.TabIndex = 3;
-            this.btnCommentViewStatistic.Text = "Xem thống kê đã lưu";
-            this.btnCommentViewStatistic.UseVisualStyleBackColor = true;
-            // 
-            // listCommentRep
-            // 
-            this.listCommentRep.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colCommentRepDate,
-            this.colCommentRepOwner});
-            this.listCommentRep.FullRowSelect = true;
-            this.listCommentRep.HideSelection = false;
-            this.listCommentRep.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
-            this.listCommentRep.Location = new System.Drawing.Point(900, 30);
-            this.listCommentRep.Name = "listCommentRep";
-            this.listCommentRep.Size = new System.Drawing.Size(208, 249);
-            this.listCommentRep.TabIndex = 2;
-            this.listCommentRep.UseCompatibleStateImageBehavior = false;
-            this.listCommentRep.View = System.Windows.Forms.View.Details;
-            this.listCommentRep.SelectedIndexChanged += new System.EventHandler(this.ListCommentRep_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(900, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Báo cáo phân loại";
-            // 
-            // colCommentRepDate
-            // 
-            this.colCommentRepDate.Text = "Ngày";
-            // 
-            // colCommentRepOwner
-            // 
-            this.colCommentRepOwner.Text = "Người gửi";
             // 
             // InitPage
             // 

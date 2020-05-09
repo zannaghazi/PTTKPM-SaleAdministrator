@@ -31,7 +31,7 @@ namespace QuanLyBanHang.Domains
             {
                 string name = "Item " + i;
                 Models.Item temp = new Models.Item(
-                    i,
+                    i + 2,
                     name,
                     "Linh kien may tinh",
                     21 - i,
