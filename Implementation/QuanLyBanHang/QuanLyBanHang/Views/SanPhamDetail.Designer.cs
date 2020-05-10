@@ -44,6 +44,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtProvider = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +54,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 23);
+            this.label1.Location = new System.Drawing.Point(15, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 0;
@@ -69,6 +71,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txtProvider);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtMinimum);
             this.panel1.Controls.Add(this.txtAmount);
             this.panel1.Controls.Add(this.txtType);
@@ -79,9 +83,9 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(13, 61);
+            this.panel1.Location = new System.Drawing.Point(13, 39);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(430, 233);
+            this.panel1.Size = new System.Drawing.Size(430, 255);
             this.panel1.TabIndex = 2;
             // 
             // txtMinimum
@@ -194,6 +198,22 @@
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(25, 220);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Nhà phân phối";
+            // 
+            // txtProvider
+            // 
+            this.txtProvider.Location = new System.Drawing.Point(149, 220);
+            this.txtProvider.Name = "txtProvider";
+            this.txtProvider.Size = new System.Drawing.Size(276, 20);
+            this.txtProvider.TabIndex = 11;
+            // 
             // SanPhamDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,5 +252,7 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtProvider;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -14,7 +14,7 @@ namespace QuanLyBanHang
     {
         /* VARIABLES */
         private int LoginStatus = Constants.LOGINSTAT_NONE; // Login status
-        private Models.User currentUser = null; // Logged user
+        public Models.User currentUser = null; // Logged user
         // TabPage
         private TabPage tabPageSanPham = null;
         private TabPage tabPageComment = null;
@@ -25,6 +25,7 @@ namespace QuanLyBanHang
         public List<Models.Item> dataSanPham = new List<Models.Item>();
         // Temporary variable
         private int selectedIndex = -1;
+        private int selectedBillIndex = -1;
         // Initial Domains
         public Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
 
@@ -106,8 +107,10 @@ namespace QuanLyBanHang
                 this.btnSPDelete.Enabled = true;
                 // Load data
                 this.quanLySanPhamDomain.LoadSanPham();
+                this.quanLySanPhamDomain.LoadSanPhamOrder();
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
                 this.LoadSanPhamCallback();
+                this.LoadSPOrderCallback();
 
                 /* QUAN LY COMMENT */
                 this.tabControl.TabPages.Insert(1, this.tabPageComment);
@@ -124,8 +127,10 @@ namespace QuanLyBanHang
                 this.btnSPDelete.Enabled = false;
                 //Load data
                 this.quanLySanPhamDomain.LoadSanPham();
+                this.quanLySanPhamDomain.LoadSanPhamOrder();
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
                 this.LoadSanPhamCallback();
+                this.LoadSPOrderCallback();
             }
             else if (temp.role == Constants.USERTYPE_ADVERTISER)
             {
@@ -189,6 +194,22 @@ namespace QuanLyBanHang
                 }
 
                 this.listSanPham.Items.Add(tempItem);
+            }
+        }
+
+        public void LoadSPOrderCallback()
+        {
+            // Remove all current data
+            this.listSPBill.Items.Clear();
+
+            if (this.quanLySanPhamDomain.listSPOrder.Count > 0)
+            {
+                for (int i = 0; i < this.quanLySanPhamDomain.listSPOrder.Count; i++)
+                {
+                    ListViewItem tempItem = new ListViewItem(String.Format("{0:MM/dd/yyyy}", this.quanLySanPhamDomain.listSPOrder[i].date));
+                    tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLySanPhamDomain.listSPOrder[i].owner));
+                    this.listSPBill.Items.Add(tempItem);
+                }
             }
         }
 
@@ -293,7 +314,11 @@ namespace QuanLyBanHang
 
         private void BtnSPCreateBill_Click(object sender, EventArgs e)
         {
-
+            Views.CreateSanPhamImportOrder createSanPhamImportOrder = new Views.CreateSanPhamImportOrder(this, Views.CreateSanPhamImportOrder.MODE_CREATE_IMPORT)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            createSanPhamImportOrder.ShowDialog();
         }
 
         private void BtnSPAdd_Click(object sender, EventArgs e)
@@ -330,6 +355,28 @@ namespace QuanLyBanHang
             {
                 return;
             }
+        }
+
+        private void ListSPBill_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.listSPBill.FocusedItem.Index;
+            if (index == this.selectedIndex)
+            {
+                return;
+            }
+            this.selectedBillIndex = index;
+
+            Views.CreateSanPhamImportOrder orderForm = new Views.CreateSanPhamImportOrder(this, Views.CreateSanPhamImportOrder.MODE_APPROVE, this.quanLySanPhamDomain.listSPOrder[index])
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            orderForm.ShowDialog();
+        }
+
+        private void ListSPBill_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        {
+            e.NewWidth = this.listSPBill.Columns[e.ColumnIndex].Width;
+            e.Cancel = true;
         }
     }
 }

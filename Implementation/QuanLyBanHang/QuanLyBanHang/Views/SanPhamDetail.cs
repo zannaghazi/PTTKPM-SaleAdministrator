@@ -46,6 +46,7 @@ namespace QuanLyBanHang.Views
             this.txtType.Text = item.type;
             this.txtAmount.Text = item.amount.ToString();
             this.txtMinimum.Text = item.minimum.ToString();
+            this.txtProvider.Text = item.provider;
 
             if (user.role == Constants.USERTYPE_MANAGER)
             {
@@ -55,6 +56,7 @@ namespace QuanLyBanHang.Views
                 this.txtMinimum.Enabled = true;
                 this.txtName.Enabled = true;
                 this.txtType.Enabled = true;
+                this.txtProvider.Enabled = true;
             }
             else
             {
@@ -64,6 +66,7 @@ namespace QuanLyBanHang.Views
                 this.txtMinimum.Enabled = false;
                 this.txtName.Enabled = false;
                 this.txtType.Enabled = false;
+                this.txtProvider.Enabled = false;
             }
         }
 
@@ -87,7 +90,8 @@ namespace QuanLyBanHang.Views
                     this.txtName.Text.Trim(),
                     this.txtType.Text.Trim(),
                     Int32.Parse(this.txtAmount.Text.Trim()),
-                    Int32.Parse(this.txtMinimum.Text.Trim()));
+                    Int32.Parse(this.txtMinimum.Text.Trim()),
+                    this.txtProvider.Text.Trim());
             }catch (Exception ex)
             {
                 MessageBox.Show(

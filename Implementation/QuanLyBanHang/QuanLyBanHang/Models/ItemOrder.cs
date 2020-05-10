@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace QuanLyBanHang.Models
+{
+    public class ItemOrder
+    {
+        public static readonly int IMPORT = 0;
+        public static readonly int RETURN = 1;
+
+        public int ID;
+        public DateTime date;
+        public string owner;
+        public int type;
+        public List<Item> listSP;
+        public bool isApproved;
+
+        /// <summary>
+        /// Constructor create default Item Order
+        /// </summary>
+        public ItemOrder()
+        {
+            this.ID = -1;
+            this.date = DateTime.Now;
+            this.owner = null;
+            this.type = IMPORT;
+            this.listSP = new List<Item>();
+            this.isApproved = false;
+        }
+
+        /// <summary>
+        /// Constructor create Item Order with params
+        /// </summary>
+        /// <param name="id">The ID.</param>
+        /// <param name="date">Date that create the order</param>
+        /// <param name="owner">Who create the order</param>
+        /// <param name="type">Type of order</param>
+        /// <param name="listSP">List of SanPham in order</param>
+        /// <param name="isApproved">Order is approved by QuanLy or not</param>
+        public ItemOrder(int id, DateTime date, string owner, int type, List<Item> listSP, bool isApproved)
+        {
+            this.ID = id;
+            this.date = date;
+            this.owner = owner;
+            this.type = type;
+            this.listSP = listSP;
+            this.isApproved = isApproved;
+        }
+    }
+}

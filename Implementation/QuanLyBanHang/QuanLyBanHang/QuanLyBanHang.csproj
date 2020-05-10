@@ -49,12 +49,19 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Domains\QuanLySanPhamDomain.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemOrder.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Views\CommentReportDetail.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\CommentReportDetail.Designer.cs">
       <DependentUpon>CommentReportDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateSanPhamImportOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CreateSanPhamImportOrder.Designer.cs">
+      <DependentUpon>CreateSanPhamImportOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\InitPage.cs">
       <SubType>Form</SubType>
@@ -78,6 +85,9 @@
     </Compile>
     <EmbeddedResource Include="Views\CommentReportDetail.resx">
       <DependentUpon>CommentReportDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CreateSanPhamImportOrder.resx">
+      <DependentUpon>CreateSanPhamImportOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\InitPage.resx">
       <DependentUpon>InitPage.cs</DependentUpon>

@@ -13,6 +13,7 @@ namespace QuanLyBanHang.Models
         public string type;
         public long amount;
         public long minimum;
+        public string provider;
 
         /// <summary>
         /// Constructor without parameter
@@ -34,13 +35,14 @@ namespace QuanLyBanHang.Models
         /// <param name="type">Type of item</param>
         /// <param name="amount">Storage item</param>
         /// <param name="minimum">Limit of item</param>
-        public Item(int id, string name, string type, long amount, long minimum)
+        public Item(int id, string name, string type, long amount, long minimum, string provider)
         {
             this.ID = id;
             this.name = name;
             this.type = type;
             this.amount = amount;
             this.minimum = minimum;
+            this.provider = provider;
         }
     }
 }
