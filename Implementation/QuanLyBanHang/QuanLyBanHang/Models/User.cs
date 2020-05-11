@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,24 +54,39 @@ namespace QuanLyBanHang.Models
         /// <param name="password"></param>
         /// <returns>user's data if user exist</returns>
         /// <returns>null user if user doesn't exist</returns>
-        public User checkLogin(string username, string password)
+        public User checkLogin(Repository.Repository repository, string username, string password)
         {
             // Using username to query from DB
+            string queryString = "select* from User where username='" + username +
+                "' and isDeleted=false";
+            repository.cmd.CommandText = queryString;
 
-            // DUMMY DATA:
-            User quanly = new User(1, "admin", "admin", "Quan Ly", 0);
-            User banhang = new User(2, "banhang", "banhang", "Nhan Vien Ban Hang", 1);
-
-            // Check username and password is correct or not
-
-            if (username == quanly.userName && password == quanly.password)
+            using (DbDataReader reader = repository.cmd.ExecuteReader())
             {
-                return quanly;
-            }else if (username == banhang.userName && password == banhang.password)
-            {
-                return banhang;
+                if (!reader.HasRows)
+                {
+                    return new User();
+                }
+                else
+                {
+                    User temp = new User();
+                    while (reader.Read())
+                    {
+                        temp = new User(
+                            reader.GetInt32(0),
+                            reader.GetString(1),
+                            reader.GetString(2),
+                            reader.GetString(3),
+                            reader.GetInt32(4));
+                        break;
+                    }
+                    if (temp.password != password)
+                    {
+                        return new User();
+                    }
+                    return temp;
+                }
             }
-            return new User();
         }
     }
 }

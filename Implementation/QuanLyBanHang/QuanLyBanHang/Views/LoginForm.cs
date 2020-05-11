@@ -58,6 +58,7 @@ namespace QuanLyBanHang.Views
             }
 
             this.currentUser = this.currentUser.checkLogin(
+                this.parent.repository,
                 this.txtUserName.Text.Trim(),
                 this.txtPassword.Text.Trim());
             if (this.currentUser.name != null) {
