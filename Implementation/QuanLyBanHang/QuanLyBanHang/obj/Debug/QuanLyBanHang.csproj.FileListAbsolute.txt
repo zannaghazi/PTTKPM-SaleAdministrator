@@ -12,3 +12,16 @@ G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTK
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CommentReportDetail.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.SanPhamDetail.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CreateSanPhamImportOrder.resources
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\MySql.Data.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\Google.Protobuf.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\Zstandard.Net.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\K4os.Compression.LZ4.Streams.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\BouncyCastle.Crypto.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\Ubiety.Dns.Core.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\Renci.SshNet.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\System.Buffers.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\K4os.Compression.LZ4.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\K4os.Hash.xxHash.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\MySql.Data.xml
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.csproj.CopyComplete

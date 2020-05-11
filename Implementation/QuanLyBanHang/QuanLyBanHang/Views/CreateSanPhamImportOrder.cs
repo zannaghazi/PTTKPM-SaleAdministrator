@@ -89,7 +89,7 @@ namespace QuanLyBanHang.Views
         /// </summary>
         private void LoadData()
         {
-            if (this.data.Count == 0)
+            if (this.data.Count == 0 || this.data == null)
             {
                 if (this.mode == MODE_CREATE_IMPORT)
                 {
@@ -195,7 +195,41 @@ namespace QuanLyBanHang.Views
         /// <param name="e"></param>
         private void BtnOK_Click(object sender, EventArgs e)
         {
+            if (this.mode == MODE_CREATE_IMPORT)
+            {
+                if (MessageBox.Show(
+                    "Bạn có chắc muốn lập đơn nhập hàng này?",
+                    "Xác nhận",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    // Get all selected Item
+                    List<Models.Item> selectedItem = new List<Models.Item>();
+                    for (int i = 0; i < this.listSP.Items.Count; i++)
+                    {
+                        if (this.listSP.Items[i].Checked)
+                        {
+                            selectedItem.Add(this.data[i]);
+                        }
+                    }
 
+                    Models.ItemOrder temp = new Models.ItemOrder(
+                        DateTime.Now,
+                        this.parent.currentUser.name,
+                        Models.ItemOrder.IMPORT,
+                        selectedItem,
+                        false);
+                    this.parent.quanLySanPhamDomain.AddSanPhamImportOrder(this.parent.repository, temp);
+                }
+            }
+            else if (this.mode == MODE_CREATE_RETURN)
+            {
+
+            }
+            else if (this.mode == MODE_APPROVE)
+            {
+
+            }
         }
     }
 }

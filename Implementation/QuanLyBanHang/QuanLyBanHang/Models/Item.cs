@@ -14,6 +14,7 @@ namespace QuanLyBanHang.Models
         public long amount;
         public long minimum;
         public string provider;
+        public bool isImportOrder;
 
         /// <summary>
         /// Constructor without parameter
@@ -25,6 +26,7 @@ namespace QuanLyBanHang.Models
             this.type = null;
             this.amount = -1;
             this.minimum = -1;
+            this.isImportOrder = false;
         }
 
         /// <summary>
@@ -43,6 +45,28 @@ namespace QuanLyBanHang.Models
             this.amount = amount;
             this.minimum = minimum;
             this.provider = provider;
+            this.isImportOrder = false;
+        }
+
+        /// <summary>
+        /// Constructor with full parameters
+        /// </summary>
+        /// <param name="id">The item's ID</param>
+        /// <param name="name">The item's name</param>
+        /// <param name="type">Type of item</param>
+        /// <param name="amount">Storage item</param>
+        /// <param name="minimum">Limit of item</param>
+        /// <param name="provider">Item provider</param>
+        /// <param name="isImportOrder"> Item is import order or not</param>
+        public Item(int id, string name, string type, long amount, long minimum, string provider, bool isImportOrder)
+        {
+            this.ID = id;
+            this.name = name;
+            this.type = type;
+            this.amount = amount;
+            this.minimum = minimum;
+            this.provider = provider;
+            this.isImportOrder = isImportOrder;
         }
     }
 }

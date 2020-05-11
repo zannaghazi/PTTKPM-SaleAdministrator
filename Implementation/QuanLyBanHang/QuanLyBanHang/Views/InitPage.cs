@@ -28,6 +28,8 @@ namespace QuanLyBanHang
         private int selectedBillIndex = -1;
         // Initial Domains
         public Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
+        // Repository
+        public Repository.Repository repository = new Repository.Repository();
 
 
 
@@ -37,6 +39,7 @@ namespace QuanLyBanHang
         public InitPage()
         {
             this.InitializeComponent();
+            this.repository.InitDBConnection();
             this.InitFormSetting();
         }
 
@@ -106,8 +109,8 @@ namespace QuanLyBanHang
                 this.btnSPAdd.Enabled = true;
                 this.btnSPDelete.Enabled = true;
                 // Load data
-                this.quanLySanPhamDomain.LoadSanPham();
-                this.quanLySanPhamDomain.LoadSanPhamOrder();
+                this.quanLySanPhamDomain.LoadSanPham(this.repository);
+                this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
@@ -126,8 +129,8 @@ namespace QuanLyBanHang
                 this.btnSPAdd.Enabled = false;
                 this.btnSPDelete.Enabled = false;
                 //Load data
-                this.quanLySanPhamDomain.LoadSanPham();
-                this.quanLySanPhamDomain.LoadSanPhamOrder();
+                this.quanLySanPhamDomain.LoadSanPham(this.repository);
+                this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();

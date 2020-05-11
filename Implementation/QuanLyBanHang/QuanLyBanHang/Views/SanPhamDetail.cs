@@ -105,12 +105,12 @@ namespace QuanLyBanHang.Views
             {
                 if (this.OpenMode == MODE_EDIT)
                 {
-                    this.parent.quanLySanPhamDomain.UpdateSanPham(this.itemIndex, temp);
+                    this.parent.quanLySanPhamDomain.UpdateSanPham(this.parent.repository, temp);
                     this.parent.dataSanPham = this.parent.quanLySanPhamDomain.listSanPham;
                     this.parent.LoadSanPhamCallback();
                 }else
                 {
-                    this.parent.quanLySanPhamDomain.AddSanPham(temp);
+                    this.parent.quanLySanPhamDomain.AddSanPham(this.parent.repository, temp);
                     this.parent.dataSanPham = this.parent.quanLySanPhamDomain.listSanPham;
                     this.parent.LoadSanPhamCallback();
                 }

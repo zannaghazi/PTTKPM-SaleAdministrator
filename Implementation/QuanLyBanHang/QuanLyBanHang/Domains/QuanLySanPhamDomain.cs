@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Common;
+using System.Windows.Forms;
 
 namespace QuanLyBanHang.Domains
 {
@@ -25,74 +27,171 @@ namespace QuanLyBanHang.Domains
         /// <summary>
         /// Load data of SanPham from Database
         /// </summary>
-        public void LoadSanPham()
+        public void LoadSanPham(Repository.Repository repository)
         {
             this.listSanPham = new List<Models.Item>();
-            /* DUMMY DATA */
-            for (int i = 0; i < 20; i++)
+
+            string queryString = "select* from Item where isDeleted = false and isRequestImport = false";
+            repository.cmd.CommandText = queryString;
+
+            using (DbDataReader reader = repository.cmd.ExecuteReader())
             {
-                string name = "Item " + i;
-                Models.Item temp = new Models.Item(
-                    i + 1,
-                    name,
-                    "Linh kien may tinh",
-                    21 - i,
-                    10,
-                    "Viễn Sơn");
-                this.listSanPham.Add(temp);
+                if (!reader.HasRows)
+                {
+                    MessageBox.Show(
+                        "Data chưa có dữ liệu",
+                        "Lỗi",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }else
+                {
+                    while (reader.Read())
+                    {
+                        Models.Item temp = new Models.Item(
+                            reader.GetInt32(0),
+                            reader.GetString(1),
+                            reader.GetString(2),
+                            reader.GetInt64(3),
+                            reader.GetInt64(4),
+                            reader.GetString(5),
+                            reader.GetBoolean(6));
+                        this.listSanPham.Add(temp);
+                    }
+
+                }
             }
         }
 
-        public void LoadSanPhamOrder()
+        public void LoadSanPhamOrder(Repository.Repository repository)
         {
             this.listSPOrder = new List<Models.ItemOrder>();
 
-            /* DUMMY DATA */
-            List<Models.Item> item = new List<Models.Item>();
-            for (int i = 0; i < 5; i++)
-            {
-                string name = "Item " + i;
-                Models.Item temp = new Models.Item(
-                    i + 1,
-                    name,
-                    "Linh kien may tinh",
-                    21 - i,
-                    10,
-                    "Viễn Sơn");
-                item.Add(temp);
-            }
-            Models.ItemOrder temp1 = new Models.ItemOrder(
-                1,
-                DateTime.Now,
-                "Tổng giám đốc",
-                Models.ItemOrder.IMPORT,
-                item,
-                false);
-            Models.ItemOrder temp2 = new Models.ItemOrder(
-                2,
-                DateTime.Now,
-                "Quản lý",
-                Models.ItemOrder.RETURN,
-                item,
-                false);
+            string queryString = "select* from ItemOrder where isApproved = false";
+            repository.cmd.CommandText = queryString;
 
-            this.listSPOrder.Add(temp1);
-            this.listSPOrder.Add(temp2);
+            using (DbDataReader reader = repository.cmd.ExecuteReader())
+            {
+                if (!reader.HasRows)
+                {
+                    return;
+                }
+                else
+                {
+                    while (reader.Read())
+                    {
+                        Models.ItemOrder temp = new Models.ItemOrder(
+                            reader.GetDateTime(1),
+                            reader.GetString(2),
+                            reader.GetInt32(3),
+                            reader.GetString(4),
+                            reader.GetBoolean(5));
+                        this.listSPOrder.Add(temp);
+                    }
+
+                }
+            }
+            for (int i = 0; i < this.listSPOrder.Count; i++)
+            {
+                string[] listSPID = this.listSPOrder[i].listItemID.Split(' ');
+                List<Models.Item> listOrderItem = new List<Models.Item>();
+                for (int j = 0; j < listSPID.Length; j++)
+                {
+                    if (this.GetItemByID(repository, Convert.ToInt32(listSPID[j])).ID != -1)
+                    {
+                        listOrderItem.Add(this.GetItemByID(repository, Convert.ToInt32(listSPID[j])));
+                    }
+                }
+                this.listSPOrder[i].listSP = listOrderItem;
+            }
+        }
+
+        public Models.Item GetItemByID(Repository.Repository repository, int id)
+        {
+            string queryString = "select* from Item where id=" + id;
+            repository.cmd.CommandText = queryString;
+
+            using (DbDataReader reader = repository.cmd.ExecuteReader())
+            {
+                if (!reader.HasRows)
+                {
+                    return new Models.Item();
+                }
+                else
+                {
+                    Models.Item temp = new Models.Item();
+                    while (reader.Read())
+                    {
+                        temp = new Models.Item(
+                            reader.GetInt32(0),
+                            reader.GetString(1),
+                            reader.GetString(2),
+                            reader.GetInt64(3),
+                            reader.GetInt64(4),
+                            reader.GetString(5),
+                            reader.GetBoolean(6));
+                        break;
+                    }
+                    return temp;
+                }
+            }
         }
 
         /// <summary>
         /// Add new SanPham to Database
         /// </summary>
         /// <param name="sp"></param>
-        public void AddSanPham(Models.Item sp)
+        public void AddSanPham(Repository.Repository repository, Models.Item sp)
         {
-            // TODO: Get last id
-            int lastID = this.listSanPham.Count + 1;
-            sp.ID = lastID;
+            string queryString = "insert into Item(name, type, amount, minimum, provider, isRequestImport, isDeleted) " +
+                "values('" + sp.name +
+                "', '" + sp.type +
+                "', " + sp.amount +
+                ", " + sp.minimum +
+                ", '" + sp.provider +
+                "', false, false)";
+            repository.cmd.CommandText = queryString;
+            try
+            {
+                repository.cmd.ExecuteNonQuery();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(
+                    "Có lỗi xảy ra trong quá trình thêm dữ liệu, vui lòng thử lại!\nChi tiết: " + ex.StackTrace,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
 
-            this.listSanPham.Add(sp);
-            // TODO: Save item to DB
-
+            queryString = "select* from Item order by id desc limit 1";
+            repository.cmd.CommandText = queryString;
+            using (DbDataReader reader = repository.cmd.ExecuteReader())
+            {
+                if (!reader.HasRows)
+                {
+                    MessageBox.Show(
+                        "Data chưa có dữ liệu",
+                        "Lỗi",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    while (reader.Read())
+                    {
+                        Models.Item temp = new Models.Item(
+                            reader.GetInt32(0),
+                            reader.GetString(1),
+                            reader.GetString(2),
+                            reader.GetInt64(3),
+                            reader.GetInt64(4),
+                            reader.GetString(5),
+                            reader.GetBoolean(6));
+                        this.listSanPham.Add(temp);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -100,10 +199,29 @@ namespace QuanLyBanHang.Domains
         /// </summary>
         /// <param name="index"></param>
         /// <param name="sp"></param>
-        public void UpdateSanPham(int index, Models.Item sp)
+        public void UpdateSanPham(Repository.Repository repository, Models.Item sp)
         {
-            this.listSanPham[index] = sp;
-            // TODO: Save Sanpham to DB
+            string queryString = "update Item set name='" + sp.name +
+                "',type='" + sp.type +
+                "',amount=" + sp.amount +
+                ",minimum=" + sp.minimum +
+                ",provider='" + sp.provider +
+                "',isRequestImport=" + sp.isImportOrder.ToString() +
+                " where id=" + sp.ID;
+            repository.cmd.CommandText = queryString;
+            try
+            {
+                repository.cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!\nChi tiết: " + ex.StackTrace,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            this.LoadSanPham(repository);
         }
 
         /// <summary>
@@ -133,6 +251,71 @@ namespace QuanLyBanHang.Domains
             }
 
             return temp;
+        }
+
+        /// <summary>
+        /// Add SanPham's Import Order to DB
+        /// </summary>
+        /// <param name="repository"></param>
+        public void AddSanPhamImportOrder(Repository.Repository repository, Models.ItemOrder data)
+        {
+            string queryString = "";
+            for (int i = 0; i < data.listSP.Count; i++)
+            {
+                data.listSP[i].isImportOrder = true;
+                this.UpdateSanPham(repository, data.listSP[i]);
+            }
+        //    queryString = "insert into ItemOrder(createddate, owner, type, listItem, isApproved) " +
+        //        "values('" + sp.name +
+        //        "', '" + sp.type +
+        //        "', " + sp.amount +
+        //        ", " + sp.minimum +
+        //        ", '" + sp.provider +
+        //        "', false, false)";
+        //    repository.cmd.CommandText = queryString;
+        //    try
+        //    {
+        //        repository.cmd.ExecuteNonQuery();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(
+        //            "Có lỗi xảy ra trong quá trình thêm dữ liệu, vui lòng thử lại!\nChi tiết: " + ex.StackTrace,
+        //            "Lỗi",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Error);
+        //    }
+
+        //    queryString = "select* from Item order by id desc limit 1";
+        //    repository.cmd.CommandText = queryString;
+        //    using (DbDataReader reader = repository.cmd.ExecuteReader())
+        //    {
+        //        if (!reader.HasRows)
+        //        {
+        //            MessageBox.Show(
+        //                "Data chưa có dữ liệu",
+        //                "Lỗi",
+        //                MessageBoxButtons.OK,
+        //                MessageBoxIcon.Error);
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                Models.Item temp = new Models.Item(
+        //                    reader.GetInt32(0),
+        //                    reader.GetString(1),
+        //                    reader.GetString(2),
+        //                    reader.GetInt64(3),
+        //                    reader.GetInt64(4),
+        //                    reader.GetString(5),
+        //                    reader.GetBoolean(6));
+        //                this.listSanPham.Add(temp);
+        //            }
+
+        //        }
+        //    }
         }
     }
 }
