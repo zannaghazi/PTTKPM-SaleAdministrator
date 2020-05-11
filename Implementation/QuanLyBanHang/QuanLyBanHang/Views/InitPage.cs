@@ -23,11 +23,13 @@ namespace QuanLyBanHang
         private TabPage tabPageThanhToan = null;
         // Storage core data
         public List<Models.Item> dataSanPham = new List<Models.Item>();
+        public List<Models.Comment> dataBinhLuan = new List<Models.Comment>();
         // Temporary variable
         private int selectedIndex = -1;
         private int selectedBillIndex = -1;
         // Initial Domains
         public Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
+        public Domains.QuanLyBinhLuanDomain quanLyBinhLuanDomain = new Domains.QuanLyBinhLuanDomain();
         // Repository
         public Repository.Repository repository = new Repository.Repository();
 
@@ -111,9 +113,12 @@ namespace QuanLyBanHang
                 // Load data
                 this.quanLySanPhamDomain.LoadSanPham(this.repository);
                 this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
+                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository);
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
+                this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
+                this.LoadBinhLuanCallback();
 
                 /* QUAN LY COMMENT */
                 this.tabControl.TabPages.Insert(1, this.tabPageComment);
@@ -131,9 +136,12 @@ namespace QuanLyBanHang
                 //Load data
                 this.quanLySanPhamDomain.LoadSanPham(this.repository);
                 this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
+                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository);
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
+                this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
+                this.LoadBinhLuanCallback();
             }
             else if (temp.role == Constants.USERTYPE_ADVERTISER)
             {
@@ -197,6 +205,24 @@ namespace QuanLyBanHang
                 }
 
                 this.listSanPham.Items.Add(tempItem);
+            }
+        }
+
+        public void LoadBinhLuanCallback()
+        {
+            // Remove all current data
+            this.listComment.Items.Clear();
+
+            // Add data to list
+            for (int i = 0; i < this.dataBinhLuan.Count; i++)
+            {
+                ListViewItem tempItem = new ListViewItem(this.dataBinhLuan[i].ID.ToString());
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, ""));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataBinhLuan[i].email));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataBinhLuan[i].status.ToString()));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataBinhLuan[i].detail));
+
+                this.listComment.Items.Add(tempItem);
             }
         }
 
@@ -380,6 +406,11 @@ namespace QuanLyBanHang
         {
             e.NewWidth = this.listSPBill.Columns[e.ColumnIndex].Width;
             e.Cancel = true;
+        }
+
+        private void listComment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

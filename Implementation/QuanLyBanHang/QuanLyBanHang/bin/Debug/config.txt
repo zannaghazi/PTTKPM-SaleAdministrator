@@ -1,1 +1,1 @@
-﻿Server=localhost;Database=QuanLyBanHang;port=3306;User Id=root;password=1234
+﻿Server=localhost;Database=QuanLyBanHang;port=3306;UserId=root;password=

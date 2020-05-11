@@ -66,6 +66,27 @@
             this.listComment.TabIndex = 1;
             this.listComment.UseCompatibleStateImageBehavior = false;
             this.listComment.View = System.Windows.Forms.View.Details;
+            this.listComment.SelectedIndexChanged += new System.EventHandler(this.listComment_SelectedIndexChanged);
+            // 
+            // colID
+            // 
+            this.colID.Text = "ID";
+            // 
+            // colSanPham
+            // 
+            this.colSanPham.Text = "Tên sản phẩm";
+            // 
+            // colEmail
+            // 
+            this.colName.Text = "Email khách hàng";
+            // 
+            // colStatus
+            // 
+            this.colStatus.Text = "Trạng thái";
+            // 
+            // colDetail
+            // 
+            this.colDetail.Text = "Chi tiết";
             // 
             // btnOK
             // 
@@ -104,26 +125,6 @@
             this.btnCancel.Text = "Cancle";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
-            // 
-            // colID
-            // 
-            this.colID.Text = "ID";
-            // 
-            // colSanPham
-            // 
-            this.colSanPham.Text = "Tên sản phẩm";
-            // 
-            // colName
-            // 
-            this.colName.Text = "Tên khách hàng";
-            // 
-            // colStatus
-            // 
-            this.colStatus.Text = "Trạng thái";
-            // 
-            // colDetail
-            // 
-            this.colDetail.Text = "Chi tiết";
             // 
             // CommentReportDetail
             // 
