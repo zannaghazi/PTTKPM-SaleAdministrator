@@ -38,12 +38,12 @@ namespace QuanLyBanHang.Domains
         /// </summary>
         /// <param name="id">Id to find name of customer</param>
         /// <returns></returns>
-        public string findNameCustomerByID(int id)
+        public Models.Customer findCustomerByID(int id)
         {
             foreach (Customer customer in this.listKhachHang)
             {
                 if (customer.ID == id)
-                    return customer.name;
+                    return customer;
             }
             return null;
         }

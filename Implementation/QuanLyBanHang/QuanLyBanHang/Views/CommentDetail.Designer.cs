@@ -39,10 +39,14 @@
             this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.cbStatus = new System.Windows.Forms.ComboBox();
             this.txtComment = new System.Windows.Forms.RichTextBox();
-            this.btnSPDetail = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
+            this.btnScore = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxAddress = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -85,7 +89,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 170);
+            this.label5.Location = new System.Drawing.Point(12, 243);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 13);
             this.label5.TabIndex = 4;
@@ -94,7 +98,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 210);
+            this.label6.Location = new System.Drawing.Point(12, 279);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 13);
             this.label6.TabIndex = 5;
@@ -113,7 +117,7 @@
             this.txtSPName.Enabled = false;
             this.txtSPName.Location = new System.Drawing.Point(114, 90);
             this.txtSPName.Name = "txtSPName";
-            this.txtSPName.Size = new System.Drawing.Size(381, 20);
+            this.txtSPName.Size = new System.Drawing.Size(441, 20);
             this.txtSPName.TabIndex = 7;
             // 
             // txtCustomerName
@@ -133,7 +137,7 @@
             "Xấu",
             "Bình thường",
             "Chưa phân loại"});
-            this.cbStatus.Location = new System.Drawing.Point(114, 170);
+            this.cbStatus.Location = new System.Drawing.Point(114, 243);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(441, 21);
             this.cbStatus.TabIndex = 9;
@@ -142,33 +146,24 @@
             // 
             this.txtComment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtComment.Enabled = false;
-            this.txtComment.Location = new System.Drawing.Point(114, 210);
+            this.txtComment.Location = new System.Drawing.Point(114, 279);
             this.txtComment.Name = "txtComment";
             this.txtComment.Size = new System.Drawing.Size(441, 172);
             this.txtComment.TabIndex = 10;
             this.txtComment.Text = "";
             // 
-            // btnSPDetail
+            // btnScore
             // 
-            this.btnSPDetail.Location = new System.Drawing.Point(502, 90);
-            this.btnSPDetail.Name = "btnSPDetail";
-            this.btnSPDetail.Size = new System.Drawing.Size(53, 20);
-            this.btnSPDetail.TabIndex = 11;
-            this.btnSPDetail.Text = "...";
-            this.btnSPDetail.UseVisualStyleBackColor = true;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(12, 388);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(86, 50);
-            this.btnOK.TabIndex = 12;
-            this.btnOK.Text = "Tặng điểm";
-            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnScore.Location = new System.Drawing.Point(152, 457);
+            this.btnScore.Name = "btnScore";
+            this.btnScore.Size = new System.Drawing.Size(86, 50);
+            this.btnScore.TabIndex = 12;
+            this.btnScore.Text = "Tặng điểm";
+            this.btnScore.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(104, 388);
+            this.btnDelete.Location = new System.Drawing.Point(244, 457);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(86, 50);
             this.btnDelete.TabIndex = 13;
@@ -177,7 +172,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(428, 388);
+            this.btnCancel.Location = new System.Drawing.Point(428, 457);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(127, 50);
             this.btnCancel.TabIndex = 15;
@@ -185,15 +180,62 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 168);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Email";
+            // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.Enabled = false;
+            this.textBoxEmail.Location = new System.Drawing.Point(114, 168);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(441, 20);
+            this.textBoxEmail.TabIndex = 17;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 206);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Địa chỉ";
+            // 
+            // textBoxAddress
+            // 
+            this.textBoxAddress.Enabled = false;
+            this.textBoxAddress.Location = new System.Drawing.Point(114, 206);
+            this.textBoxAddress.Name = "textBoxAddress";
+            this.textBoxAddress.Size = new System.Drawing.Size(441, 20);
+            this.textBoxAddress.TabIndex = 19;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(336, 457);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(86, 50);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Xác nhận";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // CommentDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 450);
+            this.ClientSize = new System.Drawing.Size(567, 523);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBoxAddress);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.textBoxEmail);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.btnSPDetail);
+            this.Controls.Add(this.btnScore);
             this.Controls.Add(this.txtComment);
             this.Controls.Add(this.cbStatus);
             this.Controls.Add(this.txtCustomerName);
@@ -226,9 +268,13 @@
         private System.Windows.Forms.TextBox txtCustomerName;
         private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.RichTextBox txtComment;
-        private System.Windows.Forms.Button btnSPDetail;
-        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Button btnScore;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxEmail;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxAddress;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -226,9 +226,8 @@ namespace QuanLyBanHang
             for (int i = 0; i < this.dataBinhLuan.Count; i++)
             {
                 ListViewItem tempItem = new ListViewItem(this.dataBinhLuan[i].ID.ToString());
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLySanPhamDomain.findNameProductByID(this.dataBinhLuan[i].productID)));
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLyKhachHangDomain.findNameCustomerByID(this.dataBinhLuan[i].customerID)));
-                string typeName = Enum.GetName(typeof(MyEnum.MyEnum.TypeComment), this.dataBinhLuan[i].status);
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLySanPhamDomain.findProductByID(this.dataBinhLuan[i].productID).name));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLyKhachHangDomain.findCustomerByID(this.dataBinhLuan[i].customerID).name));
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, MyEnum.EnumHelper.StringValueOf((MyEnum.MyEnum.TypeComment)this.dataBinhLuan[i].status)));
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataBinhLuan[i].detail));
 
@@ -427,7 +426,9 @@ namespace QuanLyBanHang
             }
             this.selectedCommentIndex = index;
 
-            Views.CommentDetail commentDetailForm = new Views.CommentDetail
+            Models.Customer customer = this.quanLyKhachHangDomain.findCustomerByID(this.dataBinhLuan[index].customerID);
+            Models.Item product = this.quanLySanPhamDomain.findProductByID(this.dataBinhLuan[index].productID);
+            Views.CommentDetail commentDetailForm = new Views.CommentDetail(index, this.dataBinhLuan[index], this.currentUser, customer, product, this)
             {
                 StartPosition = FormStartPosition.CenterParent
             };

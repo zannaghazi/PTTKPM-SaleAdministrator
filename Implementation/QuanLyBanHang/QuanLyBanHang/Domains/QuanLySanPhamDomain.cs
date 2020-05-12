@@ -29,12 +29,12 @@ namespace QuanLyBanHang.Domains
         /// </summary>
         /// <param name="id">Id to find name of product</param>
         /// <returns></returns>
-        public string findNameProductByID(int id)
+        public Models.Item findProductByID(int id)
         {
             foreach (Models.Item product in this.listSanPham)
             {
                 if (product.ID == id)
-                    return product.name;
+                    return product;
             }
             return null;
         }
