@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace QuanLyBanHang.Domains
 {
     /// <summary>
-    /// Domain layer for feature "QuanLyBimhLuan"
+    /// Domain layer for feature "QuanLyBinhLuan"
     /// </summary>
     public class QuanLyBinhLuanDomain
     {
@@ -61,7 +61,7 @@ namespace QuanLyBanHang.Domains
                         Models.Comment temp = new Models.Comment(
                             reader.GetInt32(0),
                             reader.GetInt32(1),
-                            reader.GetString(2),
+                            reader.GetInt32(2),
                             reader.GetInt32(3),
                             reader.GetString(4));
                         this.listBinhLuan.Add(temp);

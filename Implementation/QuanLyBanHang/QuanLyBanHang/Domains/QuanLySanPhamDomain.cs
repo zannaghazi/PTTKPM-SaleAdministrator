@@ -25,6 +25,21 @@ namespace QuanLyBanHang.Domains
         }
 
         /// <summary>
+        /// find name in list product by id
+        /// </summary>
+        /// <param name="id">Id to find name of product</param>
+        /// <returns></returns>
+        public string findNameProductByID(int id)
+        {
+            foreach (Models.Item product in this.listSanPham)
+            {
+                if (product.ID == id)
+                    return product.name;
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Load data of SanPham from Database
         /// </summary>
         public void LoadSanPham(Repository.Repository repository)

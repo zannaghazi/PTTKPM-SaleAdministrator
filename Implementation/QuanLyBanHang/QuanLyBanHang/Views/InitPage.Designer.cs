@@ -380,7 +380,7 @@
             // 
             // colCommentOwner
             // 
-            this.colCommentOwner.Text = "Email khách hàng";
+            this.colCommentOwner.Text = "Tên khách hàng";
             // 
             // colCommentStat
             // 

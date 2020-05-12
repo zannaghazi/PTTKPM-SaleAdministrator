@@ -1,9 +1,11 @@
-﻿using System;
+﻿using QuanLyBanHang.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,12 +26,14 @@ namespace QuanLyBanHang
         // Storage core data
         public List<Models.Item> dataSanPham = new List<Models.Item>();
         public List<Models.Comment> dataBinhLuan = new List<Models.Comment>();
+        public List<Models.Customer> dataKhachHang = new List<Models.Customer>();
         // Temporary variable
         private int selectedIndex = -1;
         private int selectedBillIndex = -1;
         // Initial Domains
         public Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
         public Domains.QuanLyBinhLuanDomain quanLyBinhLuanDomain = new Domains.QuanLyBinhLuanDomain();
+        public Domains.QuanLyKhachHangDomain quanLyKhachHangDomain = new Domains.QuanLyKhachHangDomain();
         // Repository
         public Repository.Repository repository = new Repository.Repository();
 
@@ -114,8 +118,10 @@ namespace QuanLyBanHang
                 this.quanLySanPhamDomain.LoadSanPham(this.repository);
                 this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
                 this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository);
+                this.quanLyKhachHangDomain.LoadKhachHang(this.repository);
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
                 this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
+                this.dataKhachHang = this.quanLyKhachHangDomain.listKhachHang;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
                 this.LoadBinhLuanCallback();
@@ -137,8 +143,10 @@ namespace QuanLyBanHang
                 this.quanLySanPhamDomain.LoadSanPham(this.repository);
                 this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
                 this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository);
+                this.quanLyKhachHangDomain.LoadKhachHang(this.repository);
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
                 this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
+                this.dataKhachHang = this.quanLyKhachHangDomain.listKhachHang;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
                 this.LoadBinhLuanCallback();
@@ -217,9 +225,10 @@ namespace QuanLyBanHang
             for (int i = 0; i < this.dataBinhLuan.Count; i++)
             {
                 ListViewItem tempItem = new ListViewItem(this.dataBinhLuan[i].ID.ToString());
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, ""));
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataBinhLuan[i].email));
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataBinhLuan[i].status.ToString()));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLySanPhamDomain.findNameProductByID(this.dataBinhLuan[i].productID)));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLyKhachHangDomain.findNameCustomerByID(this.dataBinhLuan[i].customerID)));
+                string typeName = Enum.GetName(typeof(MyEnum.MyEnum.TypeComment), this.dataBinhLuan[i].status);
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, MyEnum.EnumHelper.StringValueOf((MyEnum.MyEnum.TypeComment)this.dataBinhLuan[i].status)));
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataBinhLuan[i].detail));
 
                 this.listComment.Items.Add(tempItem);

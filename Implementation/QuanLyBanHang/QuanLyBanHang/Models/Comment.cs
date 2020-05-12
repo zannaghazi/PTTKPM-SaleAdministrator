@@ -6,19 +6,30 @@ using System.Threading.Tasks;
 
 namespace QuanLyBanHang.Models
 {
+    /// <summary>
+    /// Model for Comment
+    /// </summary>
     public class Comment
     {
         public int ID;
         public int productID;
-        public string email;
+        public int customerID;
         public int status;
         public string detail;
 
-        public Comment(int iD, int productID, string email, int status, string detail)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="iD">id of comment</param>
+        /// <param name="productID">id of product has comment</param>
+        /// <param name="customerID">id of customer comment</param>
+        /// <param name="status">status of comment</param>
+        /// <param name="detail">detail of comment</param>
+        public Comment(int iD, int productID, int customerID, int status, string detail)
         {
             ID = iD;
             this.productID = productID;
-            this.email = email;
+            this.customerID = customerID;
             this.status = status;
             this.detail = detail;
         }

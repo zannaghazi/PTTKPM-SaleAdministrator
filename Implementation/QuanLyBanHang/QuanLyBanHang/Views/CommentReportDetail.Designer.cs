@@ -66,7 +66,7 @@
             this.listComment.TabIndex = 1;
             this.listComment.UseCompatibleStateImageBehavior = false;
             this.listComment.View = System.Windows.Forms.View.Details;
-            this.listComment.SelectedIndexChanged += new System.EventHandler(this.listComment_SelectedIndexChanged);
+            //this.listComment.SelectedIndexChanged += new System.EventHandler(this.listComment_SelectedIndexChanged);
             // 
             // colID
             // 
@@ -78,7 +78,7 @@
             // 
             // colEmail
             // 
-            this.colName.Text = "Email khách hàng";
+            this.colName.Text = "Tên khách hàng";
             // 
             // colStatus
             // 
