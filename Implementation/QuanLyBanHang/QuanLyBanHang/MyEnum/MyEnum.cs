@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace QuanLyBanHang.MyEnum
 {
+    /// <summary>
+    /// Enum storage
+    /// </summary>
     public class MyEnum
     {
+        /// <summary>
+        /// Enum storage type of comment
+        /// </summary>
         public enum TypeComment
         {
             [Description("Chưa phân loại")]

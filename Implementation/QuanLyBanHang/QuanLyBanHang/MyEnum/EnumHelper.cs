@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace QuanLyBanHang.MyEnum
 {
+    /// <summary>
+    /// Helper class to handle Enum
+    /// </summary>
     public class EnumHelper
     {
+        /// <summary>
+        /// Get description of enum
+        /// </summary>
+        /// <param name="value">Enum value</param>
+        /// <returns></returns>
         public static string StringValueOf(Enum value)
         {
             FieldInfo fi = value.GetType().GetField(value.ToString());
