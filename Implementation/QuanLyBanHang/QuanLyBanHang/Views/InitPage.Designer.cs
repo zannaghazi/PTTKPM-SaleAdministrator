@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "08/05/2020",
             "Tổng giám đốc"}, -1);
             this.label1 = new System.Windows.Forms.Label();
@@ -288,7 +288,7 @@
             this.listCommentRep.FullRowSelect = true;
             this.listCommentRep.HideSelection = false;
             this.listCommentRep.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem3});
             this.listCommentRep.Location = new System.Drawing.Point(900, 30);
             this.listCommentRep.Name = "listCommentRep";
             this.listCommentRep.Size = new System.Drawing.Size(208, 249);
@@ -369,6 +369,7 @@
             this.listComment.TabIndex = 0;
             this.listComment.UseCompatibleStateImageBehavior = false;
             this.listComment.View = System.Windows.Forms.View.Details;
+            this.listComment.SelectedIndexChanged += new System.EventHandler(this.listComment_SelectedIndexChanged);
             // 
             // colCommentID
             // 

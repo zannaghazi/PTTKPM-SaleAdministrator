@@ -30,6 +30,7 @@ namespace QuanLyBanHang
         // Temporary variable
         private int selectedIndex = -1;
         private int selectedBillIndex = -1;
+        private int selectedCommentIndex = -1;
         // Initial Domains
         public Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
         public Domains.QuanLyBinhLuanDomain quanLyBinhLuanDomain = new Domains.QuanLyBinhLuanDomain();
@@ -419,7 +420,18 @@ namespace QuanLyBanHang
 
         private void listComment_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int index = this.listComment.FocusedItem.Index;
+            if (index == this.selectedCommentIndex)
+            {
+                return;
+            }
+            this.selectedCommentIndex = index;
 
+            Views.CommentDetail commentDetailForm = new Views.CommentDetail
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            commentDetailForm.ShowDialog();
         }
     }
 }
