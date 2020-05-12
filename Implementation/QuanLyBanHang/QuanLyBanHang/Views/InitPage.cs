@@ -73,9 +73,6 @@ namespace QuanLyBanHang
             this.listComment.Columns[2].Width = listCMTSize * 3 / 11;
             this.listComment.Columns[3].Width = listCMTSize * 2 / 11;
             this.listComment.Columns[4].Width = listCMTSize * 2 / 11;
-            listCMTSize = this.listCommentRep.Width;
-            this.listCommentRep.Columns[0].Width = listCMTSize / 3;
-            this.listCommentRep.Columns[1].Width = listCMTSize * 2 / 3;
 
             // Backup tabPage data
             this.tabPageSanPham = this.tabSanPham;
@@ -118,7 +115,7 @@ namespace QuanLyBanHang
                 // Load data
                 this.quanLySanPhamDomain.LoadSanPham(this.repository);
                 this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
-                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository);
+                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository, temp.role);
                 this.quanLyKhachHangDomain.LoadKhachHang(this.repository);
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
                 this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
@@ -129,7 +126,6 @@ namespace QuanLyBanHang
 
                 /* QUAN LY COMMENT */
                 this.tabControl.TabPages.Insert(1, this.tabPageComment);
-                this.listCommentRep.Enabled = true;
 
             }else if (temp.role == Constants.USERTYPE_SALE)
             {
@@ -143,7 +139,7 @@ namespace QuanLyBanHang
                 //Load data
                 this.quanLySanPhamDomain.LoadSanPham(this.repository);
                 this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
-                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository);
+                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository, temp.role);
                 this.quanLyKhachHangDomain.LoadKhachHang(this.repository);
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
                 this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
@@ -151,6 +147,9 @@ namespace QuanLyBanHang
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
                 this.LoadBinhLuanCallback();
+
+                /* QUAN LY COMMENT */
+                this.tabControl.TabPages.Insert(1, this.tabPageComment);
             }
             else if (temp.role == Constants.USERTYPE_ADVERTISER)
             {
@@ -313,23 +312,7 @@ namespace QuanLyBanHang
             e.NewWidth = this.listSanPham.Columns[e.ColumnIndex].Width;
             e.Cancel = true;
         }
-
-        /// <summary>
-        /// Handle event select a report
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ListCommentRep_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int selectedIndex = this.listCommentRep.FocusedItem.Index;
-            // Monitor to list data and get Report ID
-            Views.CommentReportDetail dialog = new Views.CommentReportDetail
-            {
-                StartPosition = FormStartPosition.CenterParent
-            };
-            dialog.ShowDialog();
-        }
-
+   
         /// <summary>
         /// Handle event select SanPham from list Sanpham
         /// </summary>

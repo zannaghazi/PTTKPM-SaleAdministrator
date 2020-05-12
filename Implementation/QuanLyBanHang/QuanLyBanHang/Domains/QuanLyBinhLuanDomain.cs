@@ -36,11 +36,18 @@ namespace QuanLyBanHang.Domains
         /// <summary>
         /// Load data of Binh Luan from Database
         /// </summary>
-        public void LoadBinhLuan(Repository.Repository repository)
+        public void LoadBinhLuan(Repository.Repository repository, int role)
         {
             this.listBinhLuan = new List<Models.Comment>();
-
             string queryString = "select * from comment";
+            if (role == Constants.USERTYPE_MANAGER)
+            {
+                queryString += " order by time_update DESC ";
+            }
+            else if(role == Constants.USERTYPE_SALE)
+            {
+                queryString += " order by status ASC ";
+            }
             repository.cmd.CommandText = queryString;
 
             using (DbDataReader reader = repository.cmd.ExecuteReader())
@@ -69,6 +76,32 @@ namespace QuanLyBanHang.Domains
 
                 }
             }
+        }
+
+        /// <summary>
+        /// Phan loai binh luan
+        /// </summary>
+        /// <param name="repository">my repository</param>
+        /// <param name="cmt">cmt phan loai</param>
+        public void UpdateBinhluan(Repository.Repository repository, int status, int id, int role)
+        {
+            DateTime serverTime = DateTime.Now;
+            string queryString = $"update comment set status = {status}," +
+                $"time_update = '{serverTime.ToString("yyyy-MM-dd H:mm:ss")}' where id = {id}";
+            repository.cmd.CommandText = queryString;
+            try
+            {
+                repository.cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!\nChi tiết: " + ex.StackTrace,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            this.LoadBinhLuan(repository, role);
         }
     }
 }

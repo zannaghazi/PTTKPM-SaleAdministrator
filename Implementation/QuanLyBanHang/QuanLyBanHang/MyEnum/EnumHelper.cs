@@ -31,5 +31,34 @@ namespace QuanLyBanHang.MyEnum
                 return value.ToString();
             }
         }
+
+        /// <summary>
+        /// Get Enum value from description
+        /// </summary>
+        /// <typeparam name="T">Type Enum return value</typeparam>
+        /// <param name="description">description of enum</param>
+        /// <returns>Enum value</returns>
+        public static T GetValueFromDescription<T>(string description)
+        {
+            var type = typeof(T);
+            if (!type.IsEnum) throw new InvalidOperationException();
+            foreach (var field in type.GetFields())
+            {
+                var attribute = Attribute.GetCustomAttribute(field,
+                    typeof(DescriptionAttribute)) as DescriptionAttribute;
+                if (attribute != null)
+                {
+                    if (attribute.Description == description)
+                        return (T)field.GetValue(null);
+                }
+                else
+                {
+                    if (field.Name == description)
+                        return (T)field.GetValue(null);
+                }
+            }
+            throw new ArgumentException("Not found.", nameof(description));
+            // or return default(T);
+        }
     }
 }

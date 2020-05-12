@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "08/05/2020",
-            "Tổng giám đốc"}, -1);
             this.label1 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
@@ -52,15 +49,7 @@
             this.colNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colMinNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabComment = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.listCommentRep = new System.Windows.Forms.ListView();
-            this.colCommentRepDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colCommentRepOwner = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panel2 = new System.Windows.Forms.Panel();
             this.btnCommentViewStatistic = new System.Windows.Forms.Button();
-            this.btnCommentViewClassify = new System.Windows.Forms.Button();
-            this.btnCommentSave = new System.Windows.Forms.Button();
-            this.btnCommentSubmit = new System.Windows.Forms.Button();
             this.listComment = new System.Windows.Forms.ListView();
             this.colCommentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentSP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -75,7 +64,6 @@
             this.tabSanPham.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabComment.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -259,9 +247,7 @@
             // 
             // tabComment
             // 
-            this.tabComment.Controls.Add(this.label2);
-            this.tabComment.Controls.Add(this.listCommentRep);
-            this.tabComment.Controls.Add(this.panel2);
+            this.tabComment.Controls.Add(this.btnCommentViewStatistic);
             this.tabComment.Controls.Add(this.listComment);
             this.tabComment.Location = new System.Drawing.Point(4, 22);
             this.tabComment.Name = "tabComment";
@@ -271,87 +257,14 @@
             this.tabComment.Text = "COMMENT";
             this.tabComment.UseVisualStyleBackColor = true;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(900, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Báo cáo phân loại";
-            // 
-            // listCommentRep
-            // 
-            this.listCommentRep.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colCommentRepDate,
-            this.colCommentRepOwner});
-            this.listCommentRep.FullRowSelect = true;
-            this.listCommentRep.HideSelection = false;
-            this.listCommentRep.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
-            this.listCommentRep.Location = new System.Drawing.Point(900, 30);
-            this.listCommentRep.Name = "listCommentRep";
-            this.listCommentRep.Size = new System.Drawing.Size(208, 249);
-            this.listCommentRep.TabIndex = 2;
-            this.listCommentRep.UseCompatibleStateImageBehavior = false;
-            this.listCommentRep.View = System.Windows.Forms.View.Details;
-            this.listCommentRep.SelectedIndexChanged += new System.EventHandler(this.ListCommentRep_SelectedIndexChanged);
-            // 
-            // colCommentRepDate
-            // 
-            this.colCommentRepDate.Text = "Ngày";
-            // 
-            // colCommentRepOwner
-            // 
-            this.colCommentRepOwner.Text = "Người gửi";
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.btnCommentViewStatistic);
-            this.panel2.Controls.Add(this.btnCommentViewClassify);
-            this.panel2.Controls.Add(this.btnCommentSave);
-            this.panel2.Controls.Add(this.btnCommentSubmit);
-            this.panel2.Location = new System.Drawing.Point(900, 285);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(212, 269);
-            this.panel2.TabIndex = 1;
-            // 
             // btnCommentViewStatistic
             // 
-            this.btnCommentViewStatistic.Location = new System.Drawing.Point(3, 3);
+            this.btnCommentViewStatistic.Location = new System.Drawing.Point(908, 477);
             this.btnCommentViewStatistic.Name = "btnCommentViewStatistic";
             this.btnCommentViewStatistic.Size = new System.Drawing.Size(204, 60);
             this.btnCommentViewStatistic.TabIndex = 3;
-            this.btnCommentViewStatistic.Text = "Xem thống kê đã lưu";
+            this.btnCommentViewStatistic.Text = "Xem thống kê";
             this.btnCommentViewStatistic.UseVisualStyleBackColor = true;
-            // 
-            // btnCommentViewClassify
-            // 
-            this.btnCommentViewClassify.Location = new System.Drawing.Point(3, 69);
-            this.btnCommentViewClassify.Name = "btnCommentViewClassify";
-            this.btnCommentViewClassify.Size = new System.Drawing.Size(204, 60);
-            this.btnCommentViewClassify.TabIndex = 2;
-            this.btnCommentViewClassify.Text = "Xem phân loại đã lưu";
-            this.btnCommentViewClassify.UseVisualStyleBackColor = true;
-            // 
-            // btnCommentSave
-            // 
-            this.btnCommentSave.Location = new System.Drawing.Point(3, 135);
-            this.btnCommentSave.Name = "btnCommentSave";
-            this.btnCommentSave.Size = new System.Drawing.Size(204, 60);
-            this.btnCommentSave.TabIndex = 1;
-            this.btnCommentSave.Text = "Xác nhận lưu phân loại";
-            this.btnCommentSave.UseVisualStyleBackColor = true;
-            // 
-            // btnCommentSubmit
-            // 
-            this.btnCommentSubmit.Location = new System.Drawing.Point(3, 201);
-            this.btnCommentSubmit.Name = "btnCommentSubmit";
-            this.btnCommentSubmit.Size = new System.Drawing.Size(204, 60);
-            this.btnCommentSubmit.TabIndex = 0;
-            this.btnCommentSubmit.Text = "Lập bản thống kê";
-            this.btnCommentSubmit.UseVisualStyleBackColor = true;
             // 
             // listComment
             // 
@@ -365,7 +278,7 @@
             this.listComment.HideSelection = false;
             this.listComment.Location = new System.Drawing.Point(7, 7);
             this.listComment.Name = "listComment";
-            this.listComment.Size = new System.Drawing.Size(886, 550);
+            this.listComment.Size = new System.Drawing.Size(1105, 464);
             this.listComment.TabIndex = 0;
             this.listComment.UseCompatibleStateImageBehavior = false;
             this.listComment.View = System.Windows.Forms.View.Details;
@@ -446,8 +359,6 @@
             this.tabSanPham.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.tabComment.ResumeLayout(false);
-            this.tabComment.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -472,21 +383,12 @@
         private System.Windows.Forms.ColumnHeader colType;
         private System.Windows.Forms.ColumnHeader colNum;
         private System.Windows.Forms.ColumnHeader colMinNum;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ListView listComment;
         private System.Windows.Forms.ColumnHeader colCommentID;
         private System.Windows.Forms.ColumnHeader colCommentSP;
         private System.Windows.Forms.ColumnHeader colCommentOwner;
         private System.Windows.Forms.ColumnHeader colCommentStat;
         private System.Windows.Forms.ColumnHeader colCommentDetail;
-        private System.Windows.Forms.Button btnCommentSave;
-        private System.Windows.Forms.Button btnCommentSubmit;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListView listCommentRep;
-        private System.Windows.Forms.ColumnHeader colCommentRepDate;
-        private System.Windows.Forms.ColumnHeader colCommentRepOwner;
-        private System.Windows.Forms.Button btnCommentViewStatistic;
-        private System.Windows.Forms.Button btnCommentViewClassify;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListView listSPBill;
         private System.Windows.Forms.ColumnHeader colSPBillDate;
@@ -495,6 +397,7 @@
         private System.Windows.Forms.Button btnSPAdd;
         private System.Windows.Forms.Button btnSPBillBack;
         private System.Windows.Forms.Button btnSPCreateBill;
+        private System.Windows.Forms.Button btnCommentViewStatistic;
     }
 }
 

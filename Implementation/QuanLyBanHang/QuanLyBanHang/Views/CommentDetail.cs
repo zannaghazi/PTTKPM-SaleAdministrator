@@ -58,5 +58,15 @@ namespace QuanLyBanHang.Views
         {
             this.Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string status = this.cbStatus.Text;
+            int id = Int32.Parse(this.txtID.Text);
+            this.parent.quanLyBinhLuanDomain.UpdateBinhluan(this.parent.repository, (int)MyEnum.EnumHelper.GetValueFromDescription<MyEnum.MyEnum.TypeComment>(status),id, this.parent.currentUser.role);
+            this.parent.dataBinhLuan = this.parent.quanLyBinhLuanDomain.listBinhLuan;
+            this.parent.LoadBinhLuanCallback();
+            this.Close();
+        }
     }
 }
