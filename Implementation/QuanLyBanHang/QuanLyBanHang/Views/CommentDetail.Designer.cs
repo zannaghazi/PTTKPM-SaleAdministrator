@@ -46,7 +46,7 @@
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxAddress = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonConfirm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -141,6 +141,7 @@
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(441, 21);
             this.cbStatus.TabIndex = 9;
+            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.cbStatus_SelectedIndexChanged);
             // 
             // txtComment
             // 
@@ -160,6 +161,7 @@
             this.btnScore.TabIndex = 12;
             this.btnScore.Text = "Tặng điểm";
             this.btnScore.UseVisualStyleBackColor = true;
+            this.btnScore.Click += new System.EventHandler(this.btnScore_Click);
             // 
             // btnDelete
             // 
@@ -214,22 +216,22 @@
             this.textBoxAddress.Size = new System.Drawing.Size(441, 20);
             this.textBoxAddress.TabIndex = 19;
             // 
-            // button1
+            // buttonConfirm
             // 
-            this.button1.Location = new System.Drawing.Point(336, 457);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 50);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "Xác nhận";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonConfirm.Location = new System.Drawing.Point(336, 457);
+            this.buttonConfirm.Name = "buttonConfirm";
+            this.buttonConfirm.Size = new System.Drawing.Size(86, 50);
+            this.buttonConfirm.TabIndex = 20;
+            this.buttonConfirm.Text = "Xác nhận";
+            this.buttonConfirm.UseVisualStyleBackColor = true;
+            this.buttonConfirm.Click += new System.EventHandler(this.button1_Click);
             // 
             // CommentDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 523);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonConfirm);
             this.Controls.Add(this.textBoxAddress);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBoxEmail);
@@ -276,6 +278,6 @@
         private System.Windows.Forms.TextBox textBoxEmail;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxAddress;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonConfirm;
     }
 }

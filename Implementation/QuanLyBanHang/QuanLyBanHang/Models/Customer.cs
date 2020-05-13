@@ -15,6 +15,7 @@ namespace QuanLyBanHang.Models
         public string name;
         public string email;
         public string address;
+        public int point;
         public bool isBanned;
         
         /// <summary>
@@ -25,12 +26,13 @@ namespace QuanLyBanHang.Models
         /// <param name="email">email of customer</param>
         /// <param name="address">address of customer</param>
         /// <param name="isBanned">is banned or not</param>
-        public Customer(int iD, string name, string email, string address, bool isBanned)
+        public Customer(int iD, string name, string email, string address, int point, bool isBanned)
         {
             ID = iD;
             this.name = name;
             this.email = email;
             this.address = address;
+            this.point = point;
             this.isBanned = isBanned;
         }
     }

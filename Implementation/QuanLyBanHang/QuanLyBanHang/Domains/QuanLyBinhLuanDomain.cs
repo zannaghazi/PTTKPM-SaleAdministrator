@@ -70,7 +70,9 @@ namespace QuanLyBanHang.Domains
                             reader.GetInt32(1),
                             reader.GetInt32(2),
                             reader.GetInt32(3),
-                            reader.GetString(4));
+                            reader.GetString(4),
+                            reader.GetDateTime(5).ToString(),
+                            reader.GetInt32(6));
                         this.listBinhLuan.Add(temp);
                     }
 
@@ -88,6 +90,29 @@ namespace QuanLyBanHang.Domains
             DateTime serverTime = DateTime.Now;
             string queryString = $"update comment set status = {status}," +
                 $"time_update = '{serverTime.ToString("yyyy-MM-dd H:mm:ss")}' where id = {id}";
+            repository.cmd.CommandText = queryString;
+            try
+            {
+                repository.cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!\nChi tiết: " + ex.StackTrace,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            this.LoadBinhLuan(repository, role);
+        }
+
+        /// <summary>
+        /// Đánh dấu bình luận đã xử lý
+        /// </summary>
+        /// <param name="repository">my repository</param>
+        public void handleMark(Repository.Repository repository, int type, int id, int role)
+        {
+            string queryString = $"update comment set handle_type = {type} where id = {id}";
             repository.cmd.CommandText = queryString;
             try
             {

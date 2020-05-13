@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyBanHang.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,8 @@ namespace QuanLyBanHang.Views
     {
         private InitPage parent = new InitPage();
         private int itemIndex = -1;
+        private int statusBefore = -1;
+        Customer currentCustomer = null;
 
         /// <summary>
         /// Default constructor
@@ -23,6 +26,15 @@ namespace QuanLyBanHang.Views
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="index">index of comment</param>
+        /// <param name="comment">comment</param>
+        /// <param name="currentUser">current user</param>
+        /// <param name="customer">person comment</param>
+        /// <param name="item">product comment</param>
+        /// <param name="parent">parent layout</param>
         public CommentDetail(int index, Models.Comment comment, Models.User currentUser, Models.Customer customer, Models.Item item,  InitPage parent)
         {
             this.parent = parent;
@@ -35,6 +47,8 @@ namespace QuanLyBanHang.Views
             this.textBoxAddress.Text = customer.address;
             this.cbStatus.Text = MyEnum.EnumHelper.StringValueOf((MyEnum.MyEnum.TypeComment)comment.status);
             this.txtComment.Text = comment.detail;
+            statusBefore = comment.status;
+            currentCustomer = customer;
 
             if (currentUser.role == Constants.USERTYPE_MANAGER)
             {
@@ -46,7 +60,7 @@ namespace QuanLyBanHang.Views
                 this.btnScore.Visible = false;
                 this.btnDelete.Visible = false;
             }
-
+            this.buttonConfirm.Enabled = false;
         }
 
         /// <summary>
@@ -67,6 +81,27 @@ namespace QuanLyBanHang.Views
             this.parent.dataBinhLuan = this.parent.quanLyBinhLuanDomain.listBinhLuan;
             this.parent.LoadBinhLuanCallback();
             this.Close();
+        }
+
+        private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string status = this.cbStatus.Text;
+            int value = (int)MyEnum.EnumHelper.GetValueFromDescription<MyEnum.MyEnum.TypeComment>(status);
+            if (value != statusBefore && value != 0)
+            {
+                this.buttonConfirm.Enabled = true;
+            }
+            else
+            {
+                this.buttonConfirm.Enabled = false;
+            }
+        }
+
+        private void btnScore_Click(object sender, EventArgs e)
+        {
+            int id = Int32.Parse(this.txtID.Text);
+            this.parent.quanLyKhachHangDomain.tangDiem(this.parent.repository, currentCustomer.ID);
+            this.parent.quanLyBinhLuanDomain.handleMark(this.parent.repository, 1, id, this.parent.currentUser.role);
         }
     }
 }

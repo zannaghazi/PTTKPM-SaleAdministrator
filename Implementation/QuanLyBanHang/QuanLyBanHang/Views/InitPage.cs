@@ -209,7 +209,7 @@ namespace QuanLyBanHang
                 
                 if (this.dataSanPham[i].amount < this.dataSanPham[i].minimum)
                 {
-                    tempItem.BackColor = Color.Red;
+                    tempItem.BackColor = ColorTranslator.FromHtml("#f24444"); ;
                 }
 
                 this.listSanPham.Items.Add(tempItem);
@@ -229,6 +229,17 @@ namespace QuanLyBanHang
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLyKhachHangDomain.findCustomerByID(this.dataBinhLuan[i].customerID).name));
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, MyEnum.EnumHelper.StringValueOf((MyEnum.MyEnum.TypeComment)this.dataBinhLuan[i].status)));
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataBinhLuan[i].detail));
+                switch (this.dataBinhLuan[i].status)
+                {
+                    case 1: tempItem.BackColor = ColorTranslator.FromHtml("#baffb0");
+                        break;
+                    case 2:
+                        tempItem.BackColor = ColorTranslator.FromHtml("#f24444");
+                        break;
+                    case 3:
+                        tempItem.BackColor = ColorTranslator.FromHtml("#b0fff7");
+                        break;
+                }
 
                 this.listComment.Items.Add(tempItem);
             }

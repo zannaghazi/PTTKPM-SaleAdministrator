@@ -27,5 +27,18 @@ namespace QuanLyBanHang.MyEnum
             [Description("Bình thường")]
             Normal
         }
+
+        /// <summary>
+        /// Enum storage type handle
+        /// </summary>
+        public enum HandleType
+        {
+            [Description("Chưa xử lý")]
+            None,
+            [Description("Đã cộng điểm")]
+            Good,
+            [Description("Đã xóa")]
+            Bad,
+        }
     }
 }
