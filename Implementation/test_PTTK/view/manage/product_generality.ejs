@@ -30,6 +30,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th>Chọn</th>
                       <th>ID</th>
                       <th>Tên Mặt Hàng</th>
                       <th>Loại Hàng</th>
@@ -38,19 +39,10 @@
                       <th>Chức Năng</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>ID</th>
-                      <th>Tên Mặt Hàng</th>
-                      <th>Loại Hàng</th>
-                      <th>Số Lượng Còn Lại</th>
-                      <th>Số Lượng Quy Định</th>
-                      <th>Chức Năng</th>
-                    </tr>
-                  </tfoot>
                   <tbody>
                     <%list.forEach(function(item){%>
                     <tr>
+                      <td> <input type="checkbox"/></td>
                       <td> <%=item.id%></td>
                       <td> <%=item.name%></td>
                       <td> <%=item.type%></td>
