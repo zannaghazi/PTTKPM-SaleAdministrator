@@ -1,34 +1,35 @@
 var express = require('express');
-// var moment = require('moment');
-// var userModel = require('../models/user.model');
+var userModel = require('../model/user.model');
 
 var router = express.Router();
-
-// router.post('/register', (req, res, next) => {
-//   var saltRounds = 10;
-//   var hash = req.body.password
-//   var dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
-
-//   var entity = {
-//     f_Username: req.body.username,
-//     f_Password: hash,
-//     f_Name: req.body.name,
-//     f_Email: req.body.email,
-//     f_DOB: dob,
-//     f_Permission: 0
-//   }
-
-//   userModel.add(entity).then(id => {
-//     res.redirect('/account/login');
-//   })
-// })
 
 router.get('/', (req, res, next) => {
   res.render('account/login');
 })
 
 router.get('/register', (req, res, next) => {
-    res.render('account/register');
-  })
+    res.render('account/register',{message:true});
+})
+
+router.post('/register',async (req, res, next) => {
+  var entity = {
+    username: req.body.username,
+    password: req.body.password,
+    name: req.body.FirstName+req.body.LastName,
+    role: 0
+  }
+  let user =await userModel.validate(req.body.username);
+  if(user.length===0){
+    await userModel.add(entity);
+    res.redirect('/');
+  }else{
+    res.render('account/register',{message:false});
+  }
+
+  router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+});
+})
 
 module.exports = router;
