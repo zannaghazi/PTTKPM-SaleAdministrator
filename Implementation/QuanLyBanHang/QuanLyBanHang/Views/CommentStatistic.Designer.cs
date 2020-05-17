@@ -35,14 +35,21 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.pbGood = new System.Windows.Forms.ProgressBar();
-            this.pbBad = new System.Windows.Forms.ProgressBar();
-            this.pbClassifed = new System.Windows.Forms.ProgressBar();
+            this.labelValueNone = new System.Windows.Forms.Label();
+            this.labelValueClasscified = new System.Windows.Forms.Label();
+            this.labelValueNormal = new System.Windows.Forms.Label();
+            this.lableValueBad = new System.Windows.Forms.Label();
+            this.labelValueGood = new System.Windows.Forms.Label();
+            this.pbNormal = new System.Windows.Forms.ProgressBar();
+            this.label8 = new System.Windows.Forms.Label();
             this.pbNone = new System.Windows.Forms.ProgressBar();
+            this.pbClassifed = new System.Windows.Forms.ProgressBar();
+            this.pbBad = new System.Windows.Forms.ProgressBar();
+            this.pbGood = new System.Windows.Forms.ProgressBar();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,15 +57,17 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(159, 50);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(325, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(235, 20);
             this.dateTimePicker1.TabIndex = 0;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Location = new System.Drawing.Point(159, 100);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(325, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(235, 20);
             this.dateTimePicker2.TabIndex = 1;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // label1
             // 
@@ -90,7 +99,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(372, 13);
+            this.btnCancel.Location = new System.Drawing.Point(425, 6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 23);
             this.btnCancel.TabIndex = 5;
@@ -101,6 +110,13 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.labelValueNone);
+            this.panel1.Controls.Add(this.labelValueClasscified);
+            this.panel1.Controls.Add(this.labelValueNormal);
+            this.panel1.Controls.Add(this.lableValueBad);
+            this.panel1.Controls.Add(this.labelValueGood);
+            this.panel1.Controls.Add(this.pbNormal);
+            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.pbNone);
             this.panel1.Controls.Add(this.pbClassifed);
             this.panel1.Controls.Add(this.pbBad);
@@ -111,44 +127,89 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(15, 149);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(469, 118);
+            this.panel1.Size = new System.Drawing.Size(522, 157);
             this.panel1.TabIndex = 6;
             // 
-            // label4
+            // labelValueNone
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Bình luận tốt";
+            this.labelValueNone.AutoSize = true;
+            this.labelValueNone.Location = new System.Drawing.Point(470, 129);
+            this.labelValueNone.Name = "labelValueNone";
+            this.labelValueNone.Size = new System.Drawing.Size(0, 13);
+            this.labelValueNone.TabIndex = 14;
             // 
-            // label5
+            // labelValueClasscified
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 35);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Bình luận xấu";
+            this.labelValueClasscified.AutoSize = true;
+            this.labelValueClasscified.Location = new System.Drawing.Point(470, 96);
+            this.labelValueClasscified.Name = "labelValueClasscified";
+            this.labelValueClasscified.Size = new System.Drawing.Size(0, 13);
+            this.labelValueClasscified.TabIndex = 13;
             // 
-            // label6
+            // labelValueNormal
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 60);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Bình luận đã phân loại";
+            this.labelValueNormal.AutoSize = true;
+            this.labelValueNormal.Location = new System.Drawing.Point(470, 65);
+            this.labelValueNormal.Name = "labelValueNormal";
+            this.labelValueNormal.Size = new System.Drawing.Size(0, 13);
+            this.labelValueNormal.TabIndex = 12;
             // 
-            // label7
+            // lableValueBad
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 85);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(124, 13);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Bình luận chưa phân loại";
+            this.lableValueBad.AutoSize = true;
+            this.lableValueBad.Location = new System.Drawing.Point(470, 34);
+            this.lableValueBad.Name = "lableValueBad";
+            this.lableValueBad.Size = new System.Drawing.Size(0, 13);
+            this.lableValueBad.TabIndex = 11;
+            // 
+            // labelValueGood
+            // 
+            this.labelValueGood.AutoSize = true;
+            this.labelValueGood.Location = new System.Drawing.Point(470, 5);
+            this.labelValueGood.Name = "labelValueGood";
+            this.labelValueGood.Size = new System.Drawing.Size(0, 13);
+            this.labelValueGood.TabIndex = 10;
+            // 
+            // pbNormal
+            // 
+            this.pbNormal.ForeColor = System.Drawing.Color.Lime;
+            this.pbNormal.Location = new System.Drawing.Point(143, 65);
+            this.pbNormal.Name = "pbNormal";
+            this.pbNormal.Size = new System.Drawing.Size(321, 23);
+            this.pbNormal.TabIndex = 9;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 65);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(110, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Bình luận bình thường";
+            // 
+            // pbNone
+            // 
+            this.pbNone.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.pbNone.Location = new System.Drawing.Point(143, 129);
+            this.pbNone.Name = "pbNone";
+            this.pbNone.Size = new System.Drawing.Size(321, 23);
+            this.pbNone.TabIndex = 7;
+            // 
+            // pbClassifed
+            // 
+            this.pbClassifed.ForeColor = System.Drawing.Color.Aqua;
+            this.pbClassifed.Location = new System.Drawing.Point(143, 96);
+            this.pbClassifed.Name = "pbClassifed";
+            this.pbClassifed.Size = new System.Drawing.Size(321, 23);
+            this.pbClassifed.TabIndex = 6;
+            // 
+            // pbBad
+            // 
+            this.pbBad.ForeColor = System.Drawing.Color.Red;
+            this.pbBad.Location = new System.Drawing.Point(143, 34);
+            this.pbBad.Name = "pbBad";
+            this.pbBad.Size = new System.Drawing.Size(321, 23);
+            this.pbBad.TabIndex = 5;
             // 
             // pbGood
             // 
@@ -158,35 +219,47 @@
             this.pbGood.Size = new System.Drawing.Size(321, 23);
             this.pbGood.TabIndex = 4;
             // 
-            // pbBad
+            // label7
             // 
-            this.pbBad.ForeColor = System.Drawing.Color.Red;
-            this.pbBad.Location = new System.Drawing.Point(143, 30);
-            this.pbBad.Name = "pbBad";
-            this.pbBad.Size = new System.Drawing.Size(321, 23);
-            this.pbBad.TabIndex = 5;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 129);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(124, 13);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Bình luận chưa phân loại";
             // 
-            // pbClassifed
+            // label6
             // 
-            this.pbClassifed.ForeColor = System.Drawing.Color.Aqua;
-            this.pbClassifed.Location = new System.Drawing.Point(143, 55);
-            this.pbClassifed.Name = "pbClassifed";
-            this.pbClassifed.Size = new System.Drawing.Size(321, 23);
-            this.pbClassifed.TabIndex = 6;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 96);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(113, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Bình luận đã phân loại";
             // 
-            // pbNone
+            // label5
             // 
-            this.pbNone.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.pbNone.Location = new System.Drawing.Point(143, 80);
-            this.pbNone.Name = "pbNone";
-            this.pbNone.Size = new System.Drawing.Size(321, 23);
-            this.pbNone.TabIndex = 7;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Bình luận xấu";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Bình luận tốt";
             // 
             // CommentStatistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(496, 279);
+            this.ClientSize = new System.Drawing.Size(549, 320);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label3);
@@ -221,5 +294,12 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ProgressBar pbNormal;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelValueNone;
+        private System.Windows.Forms.Label labelValueClasscified;
+        private System.Windows.Forms.Label labelValueNormal;
+        private System.Windows.Forms.Label lableValueBad;
+        private System.Windows.Forms.Label labelValueGood;
     }
 }

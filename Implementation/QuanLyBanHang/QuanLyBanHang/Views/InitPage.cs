@@ -225,8 +225,10 @@ namespace QuanLyBanHang
             for (int i = 0; i < this.dataBinhLuan.Count; i++)
             {
                 ListViewItem tempItem = new ListViewItem(this.dataBinhLuan[i].ID.ToString());
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLySanPhamDomain.findProductByID(this.dataBinhLuan[i].productID).name));
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLyKhachHangDomain.findCustomerByID(this.dataBinhLuan[i].customerID).name));
+                Models.Item item = quanLySanPhamDomain.GetItemByID(repository, dataBinhLuan[i].productID);
+                Models.Customer customer = quanLyKhachHangDomain.GetCustomerByID(repository, dataBinhLuan[i].customerID);
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, item.name));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, customer.name));
                 string status = MyEnum.EnumHelper.StringValueOf((MyEnum.MyEnum.TypeComment)this.dataBinhLuan[i].status);
                 if(this.dataBinhLuan[i].handle_type == 1 && currentUser.role == Constants.USERTYPE_MANAGER)
                 {
@@ -429,9 +431,7 @@ namespace QuanLyBanHang
             }
             this.selectedCommentIndex = index;
 
-            Models.Customer customer = this.quanLyKhachHangDomain.findCustomerByID(this.dataBinhLuan[index].customerID);
-            Models.Item product = this.quanLySanPhamDomain.findProductByID(this.dataBinhLuan[index].productID);
-            Views.CommentDetail commentDetailForm = new Views.CommentDetail(index, this.dataBinhLuan[index], this.currentUser, customer, product, this)
+            Views.CommentDetail commentDetailForm = new Views.CommentDetail(index, this.dataBinhLuan[index], this.currentUser, this, repository)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
@@ -445,7 +445,7 @@ namespace QuanLyBanHang
         /// <param name="e"></param>
         private void BtnCommentViewStatistic_Click(object sender, EventArgs e)
         {
-            Views.CommentStatistic commentStatistic = new Views.CommentStatistic()
+            Views.CommentStatistic commentStatistic = new Views.CommentStatistic(repository)
             {
                 StartPosition = FormStartPosition.CenterParent
             };

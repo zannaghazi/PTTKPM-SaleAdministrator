@@ -17,7 +17,14 @@ namespace QuanLyBanHang.Models
         public string address;
         public int point;
         public bool isBanned;
-        
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Customer()
+        {
+        }
+
         /// <summary>
         /// Constructor
         /// </summary>

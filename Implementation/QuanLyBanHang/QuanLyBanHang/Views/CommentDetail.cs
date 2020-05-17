@@ -1,4 +1,5 @@
-﻿using QuanLyBanHang.Models;
+﻿using QuanLyBanHang.Domains;
+using QuanLyBanHang.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,8 +36,10 @@ namespace QuanLyBanHang.Views
         /// <param name="customer">person comment</param>
         /// <param name="item">product comment</param>
         /// <param name="parent">parent layout</param>
-        public CommentDetail(int index, Models.Comment comment, Models.User currentUser, Models.Customer customer, Models.Item item,  InitPage parent)
+        public CommentDetail(int index, Models.Comment comment, Models.User currentUser, InitPage parent, Repository.Repository repository)
         {
+            Models.Item item = new QuanLySanPhamDomain().GetItemByID(repository, comment.productID);
+            Models.Customer customer = new QuanLyKhachHangDomain().GetCustomerByID(repository, comment.customerID);
             this.parent = parent;
             this.itemIndex = index;
             this.InitializeComponent();
@@ -64,6 +67,11 @@ namespace QuanLyBanHang.Views
             {
                 this.btnScore.Visible = false;
                 this.btnDelete.Visible = false;
+            }
+
+            if(comment.status > 0)
+            {
+                this.cbStatus.Enabled = false;
             }
             this.buttonConfirm.Enabled = false;
         }

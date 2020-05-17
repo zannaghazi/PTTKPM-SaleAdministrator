@@ -42,11 +42,11 @@ namespace QuanLyBanHang.Domains
             string queryString = "select * from comment";
             if (role == Constants.USERTYPE_MANAGER)
             {
-                queryString += " order by time_update DESC ";
+                queryString += " where status > 0 order by time_update DESC ";
             }
             else if(role == Constants.USERTYPE_SALE)
             {
-                queryString += " order by status ASC ";
+                queryString += " where status = 0 order by status ASC ";
             }
             repository.cmd.CommandText = queryString;
 
@@ -75,6 +75,49 @@ namespace QuanLyBanHang.Domains
                             reader.GetInt32(6));
                         this.listBinhLuan.Add(temp);
                     }
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Load comment in a period time
+        /// </summary>
+        /// <param name="repository">my repository</param>
+        /// <param name="startTime">startime</param>
+        /// <param name="endTime">endtime</param>
+        public List<Comment> LoadBinhLuanInPeriod(Repository.Repository repository, string startTime, string endTime)
+        {
+            this.listBinhLuan = new List<Models.Comment>();
+            string queryString = $"select * from comment where time_update between '{startTime}' and '{endTime}'";
+            repository.cmd.CommandText = queryString;
+
+            using (DbDataReader reader = repository.cmd.ExecuteReader())
+            {
+                if (!reader.HasRows)
+                {
+                    MessageBox.Show(
+                        "Data chưa có dữ liệu",
+                        "Lỗi",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return null;
+                }
+                else
+                {
+                    while (reader.Read())
+                    {
+                        Models.Comment temp = new Models.Comment(
+                            reader.GetInt32(0),
+                            reader.GetInt32(1),
+                            reader.GetInt32(2),
+                            reader.GetInt32(3),
+                            reader.GetString(4),
+                            reader.GetDateTime(5).ToString(),
+                            reader.GetInt32(6));
+                        this.listBinhLuan.Add(temp);
+                    }
+                    return this.listBinhLuan;
 
                 }
             }

@@ -87,6 +87,36 @@ namespace QuanLyBanHang.Domains
             }
         }
 
+        public Models.Customer GetCustomerByID(Repository.Repository repository, int id)
+        {
+            string queryString = "select* from customer where id=" + id;
+            repository.cmd.CommandText = queryString;
+
+            using (DbDataReader reader = repository.cmd.ExecuteReader())
+            {
+                if (!reader.HasRows)
+                {
+                    return new Models.Customer();
+                }
+                else
+                {
+                    Models.Customer temp = new Models.Customer();
+                    while (reader.Read())
+                    {
+                        temp = new Models.Customer(
+                            reader.GetInt32(0),
+                            reader.GetString(1),
+                            reader.GetString(2),
+                            reader.GetString(3),
+                            reader.GetInt32(4),
+                            reader.GetBoolean(5));
+                        break;
+                    }
+                    return temp;
+                }
+            }
+        }
+
         public Models.Customer LoadKhachHangByID(Repository.Repository repository, int id)
         {
             string queryString = $"select * from customer where id = {id}";

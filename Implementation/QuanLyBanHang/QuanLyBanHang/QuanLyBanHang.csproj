@@ -54,6 +54,7 @@
     <Compile Include="Domains\QuanLyBinhLuanDomain.cs" />
     <Compile Include="Domains\QuanLyKhachHangDomain.cs" />
     <Compile Include="Domains\QuanLySanPhamDomain.cs" />
+    <Compile Include="Models\CommentStatistic.cs" />
     <Compile Include="MyEnum\EnumHelper.cs" />
     <Compile Include="MyEnum\MyEnum.cs" />
     <Compile Include="Models\Comment.cs" />
