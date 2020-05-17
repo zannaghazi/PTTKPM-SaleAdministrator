@@ -54,6 +54,11 @@ namespace QuanLyBanHang.Views
             {
                 this.btnScore.Visible = true;
                 this.btnDelete.Visible = true;
+                if (comment.handle_type != 0)
+                {
+                    this.btnScore.Enabled = false;
+                    this.btnDelete.Enabled = false;
+                }
             }
             else
             {

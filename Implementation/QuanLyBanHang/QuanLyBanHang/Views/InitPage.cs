@@ -227,7 +227,16 @@ namespace QuanLyBanHang
                 ListViewItem tempItem = new ListViewItem(this.dataBinhLuan[i].ID.ToString());
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLySanPhamDomain.findProductByID(this.dataBinhLuan[i].productID).name));
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLyKhachHangDomain.findCustomerByID(this.dataBinhLuan[i].customerID).name));
-                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, MyEnum.EnumHelper.StringValueOf((MyEnum.MyEnum.TypeComment)this.dataBinhLuan[i].status)));
+                string status = MyEnum.EnumHelper.StringValueOf((MyEnum.MyEnum.TypeComment)this.dataBinhLuan[i].status);
+                if(this.dataBinhLuan[i].handle_type == 1 && currentUser.role == Constants.USERTYPE_MANAGER)
+                {
+                    status += " (Đã cộng điểm)";
+                }
+                else if(this.dataBinhLuan[i].handle_type == 2 && currentUser.role == Constants.USERTYPE_MANAGER)
+                {
+                    status += " (Đã xóa)";
+                }
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, status));
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataBinhLuan[i].detail));
                 switch (this.dataBinhLuan[i].status)
                 {
