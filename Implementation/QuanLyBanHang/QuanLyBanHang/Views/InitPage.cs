@@ -379,7 +379,7 @@ namespace QuanLyBanHang
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                this.quanLySanPhamDomain.DeleteSanPham(this.dataSanPham[this.selectedIndex]);
+                this.quanLySanPhamDomain.DeleteSanPham(this.repository, this.dataSanPham[this.selectedIndex]);
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
                 this.LoadSanPhamCallback();
             }
@@ -427,6 +427,20 @@ namespace QuanLyBanHang
                 StartPosition = FormStartPosition.CenterParent
             };
             commentDetailForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Handle event btn View Statistic
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnCommentViewStatistic_Click(object sender, EventArgs e)
+        {
+            Views.CommentStatistic commentStatistic = new Views.CommentStatistic()
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            commentStatistic.ShowDialog();
         }
     }
 }

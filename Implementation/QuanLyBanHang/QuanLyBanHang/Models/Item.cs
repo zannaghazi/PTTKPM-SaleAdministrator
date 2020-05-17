@@ -15,6 +15,7 @@ namespace QuanLyBanHang.Models
         public long minimum;
         public string provider;
         public bool isImportOrder;
+        public bool isDeleted;
 
         /// <summary>
         /// Constructor without parameter
@@ -27,6 +28,7 @@ namespace QuanLyBanHang.Models
             this.amount = -1;
             this.minimum = -1;
             this.isImportOrder = false;
+            this.isDeleted = false;
         }
 
         /// <summary>
@@ -46,6 +48,7 @@ namespace QuanLyBanHang.Models
             this.minimum = minimum;
             this.provider = provider;
             this.isImportOrder = false;
+            this.isDeleted = false;
         }
 
         /// <summary>
@@ -67,6 +70,7 @@ namespace QuanLyBanHang.Models
             this.minimum = minimum;
             this.provider = provider;
             this.isImportOrder = isImportOrder;
+            this.isDeleted = false;
         }
     }
 }

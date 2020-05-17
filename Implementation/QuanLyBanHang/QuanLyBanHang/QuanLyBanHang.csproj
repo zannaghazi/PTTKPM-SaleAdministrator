@@ -74,6 +74,12 @@
     <Compile Include="Views\CommentReportDetail.Designer.cs">
       <DependentUpon>CommentReportDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CommentStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CommentStatistic.Designer.cs">
+      <DependentUpon>CommentStatistic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateSanPhamImportOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CommentReportDetail.resx">
       <DependentUpon>CommentReportDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommentStatistic.resx">
+      <DependentUpon>CommentStatistic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CreateSanPhamImportOrder.resx">
       <DependentUpon>CreateSanPhamImportOrder.cs</DependentUpon>

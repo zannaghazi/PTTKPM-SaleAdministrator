@@ -218,7 +218,7 @@
             this.listSanPham.HideSelection = false;
             this.listSanPham.Location = new System.Drawing.Point(6, 6);
             this.listSanPham.Name = "listSanPham";
-            this.listSanPham.Size = new System.Drawing.Size(848, 545);
+            this.listSanPham.Size = new System.Drawing.Size(847, 545);
             this.listSanPham.TabIndex = 0;
             this.listSanPham.UseCompatibleStateImageBehavior = false;
             this.listSanPham.View = System.Windows.Forms.View.Details;
@@ -265,6 +265,7 @@
             this.btnCommentViewStatistic.TabIndex = 3;
             this.btnCommentViewStatistic.Text = "Xem thống kê";
             this.btnCommentViewStatistic.UseVisualStyleBackColor = true;
+            this.btnCommentViewStatistic.Click += new System.EventHandler(this.BtnCommentViewStatistic_Click);
             // 
             // listComment
             // 

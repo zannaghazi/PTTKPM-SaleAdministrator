@@ -243,10 +243,22 @@ namespace QuanLyBanHang.Domains
         /// Delete SanPham from database
         /// </summary>
         /// <param name="sp"></param>
-        public void DeleteSanPham(Models.Item sp)
+        public void DeleteSanPham(Repository.Repository repository, Models.Item sp)
         {
-            this.listSanPham.Remove(sp);
-            // TODO: Change flat remove in DB
+            string queryString = "update Item set isDeleted=true where id=" + sp.ID;
+            repository.cmd.CommandText = queryString;
+            try
+            {
+                repository.cmd.ExecuteNonQuery();
+                this.listSanPham.Remove(sp);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(
+                    "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!\nChi tiết: " + ex.StackTrace,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>

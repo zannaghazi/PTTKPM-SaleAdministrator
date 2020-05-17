@@ -57,3 +57,4 @@ E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHa
 E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.csproj.CopyComplete
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CommentDetail.resources
 E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CommentDetail.resources
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CommentStatistic.resources
