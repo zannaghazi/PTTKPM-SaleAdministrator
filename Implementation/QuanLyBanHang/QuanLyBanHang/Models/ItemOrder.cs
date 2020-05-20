@@ -69,5 +69,15 @@ namespace QuanLyBanHang.Models
             this.listItemID = listItemID;
             this.isApproved = isApproved;
         }
+
+        public ItemOrder(int id, DateTime date, string owner, int type, string listItemID, bool isApproved)
+        {
+            this.ID = id;
+            this.date = date;
+            this.owner = owner;
+            this.type = type;
+            this.listItemID = listItemID;
+            this.isApproved = isApproved;
+        }
     }
 }

@@ -35,7 +35,7 @@
             this.tabSanPham = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSPDelete = new System.Windows.Forms.Button();
+            this.btnSPImport = new System.Windows.Forms.Button();
             this.btnSPAdd = new System.Windows.Forms.Button();
             this.btnSPBillBack = new System.Windows.Forms.Button();
             this.btnSPCreateBill = new System.Windows.Forms.Button();
@@ -134,7 +134,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnSPDelete);
+            this.panel1.Controls.Add(this.btnSPImport);
             this.panel1.Controls.Add(this.btnSPAdd);
             this.panel1.Controls.Add(this.btnSPBillBack);
             this.panel1.Controls.Add(this.btnSPCreateBill);
@@ -143,15 +143,15 @@
             this.panel1.Size = new System.Drawing.Size(255, 278);
             this.panel1.TabIndex = 1;
             // 
-            // btnSPDelete
+            // btnSPImport
             // 
-            this.btnSPDelete.Location = new System.Drawing.Point(2, 72);
-            this.btnSPDelete.Name = "btnSPDelete";
-            this.btnSPDelete.Size = new System.Drawing.Size(246, 63);
-            this.btnSPDelete.TabIndex = 3;
-            this.btnSPDelete.Text = "Xoá mặt hàng đang chọn";
-            this.btnSPDelete.UseVisualStyleBackColor = true;
-            this.btnSPDelete.Click += new System.EventHandler(this.BtnSPDelete_Click);
+            this.btnSPImport.Location = new System.Drawing.Point(2, 72);
+            this.btnSPImport.Name = "btnSPImport";
+            this.btnSPImport.Size = new System.Drawing.Size(246, 63);
+            this.btnSPImport.TabIndex = 3;
+            this.btnSPImport.Text = "Nhập hàng";
+            this.btnSPImport.UseVisualStyleBackColor = true;
+            this.btnSPImport.Click += new System.EventHandler(this.BtnSPImport_Click);
             // 
             // btnSPAdd
             // 
@@ -171,6 +171,7 @@
             this.btnSPBillBack.TabIndex = 1;
             this.btnSPBillBack.Text = "Lập đơn trả hàng";
             this.btnSPBillBack.UseVisualStyleBackColor = true;
+            this.btnSPBillBack.Click += new System.EventHandler(this.BtnSPBillBack_Click);
             // 
             // btnSPCreateBill
             // 
@@ -394,7 +395,7 @@
         private System.Windows.Forms.ListView listSPBill;
         private System.Windows.Forms.ColumnHeader colSPBillDate;
         private System.Windows.Forms.ColumnHeader colSPBillOwner;
-        private System.Windows.Forms.Button btnSPDelete;
+        private System.Windows.Forms.Button btnSPImport;
         private System.Windows.Forms.Button btnSPAdd;
         private System.Windows.Forms.Button btnSPBillBack;
         private System.Windows.Forms.Button btnSPCreateBill;

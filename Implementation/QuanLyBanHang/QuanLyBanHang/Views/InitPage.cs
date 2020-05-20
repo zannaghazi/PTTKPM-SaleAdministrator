@@ -29,7 +29,7 @@ namespace QuanLyBanHang
         public List<Models.Customer> dataKhachHang = new List<Models.Customer>();
         // Temporary variable
         private int selectedIndex = -1;
-        private int selectedBillIndex = -1;
+        public int selectedBillIndex = -1;
         private int selectedCommentIndex = -1;
         // Initial Domains
         public Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
@@ -111,17 +111,19 @@ namespace QuanLyBanHang
                 // Change UI
                 this.listSPBill.Enabled = true;
                 this.btnSPAdd.Enabled = true;
-                this.btnSPDelete.Enabled = true;
+                this.btnSPImport.Enabled = true;
                 // Load data
                 this.quanLySanPhamDomain.LoadSanPham(this.repository);
                 this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
-                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository, temp.role);
-                this.quanLyKhachHangDomain.LoadKhachHang(this.repository);
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
-                this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
-                this.dataKhachHang = this.quanLyKhachHangDomain.listKhachHang;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
+
+                /* QUAN LY BINH LUAN */
+                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository, temp.role);
+                this.quanLyKhachHangDomain.LoadKhachHang(this.repository);
+                this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
+                this.dataKhachHang = this.quanLyKhachHangDomain.listKhachHang;
                 this.LoadBinhLuanCallback();
 
                 /* QUAN LY COMMENT */
@@ -135,17 +137,19 @@ namespace QuanLyBanHang
                 // Change UI
                 this.listSPBill.Enabled = false;
                 this.btnSPAdd.Enabled = false;
-                this.btnSPDelete.Enabled = false;
+                this.btnSPImport.Enabled = false;
                 //Load data
                 this.quanLySanPhamDomain.LoadSanPham(this.repository);
                 this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
-                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository, temp.role);
-                this.quanLyKhachHangDomain.LoadKhachHang(this.repository);
                 this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
-                this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
-                this.dataKhachHang = this.quanLyKhachHangDomain.listKhachHang;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
+
+                /* QUAN LY BINH LUAN */
+                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository, temp.role);
+                this.quanLyKhachHangDomain.LoadKhachHang(this.repository);
+                this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
+                this.dataKhachHang = this.quanLyKhachHangDomain.listKhachHang;
                 this.LoadBinhLuanCallback();
 
                 /* QUAN LY COMMENT */
@@ -212,6 +216,11 @@ namespace QuanLyBanHang
                     tempItem.BackColor = ColorTranslator.FromHtml("#f24444"); ;
                 }
 
+                if (this.dataSanPham[i].isImportOrder)
+                {
+                    tempItem.BackColor = ColorTranslator.FromHtml("#cccccc");
+                }
+
                 this.listSanPham.Items.Add(tempItem);
             }
         }
@@ -225,7 +234,7 @@ namespace QuanLyBanHang
             for (int i = 0; i < this.dataBinhLuan.Count; i++)
             {
                 ListViewItem tempItem = new ListViewItem(this.dataBinhLuan[i].ID.ToString());
-                Models.Item item = quanLySanPhamDomain.GetItemByID(repository, dataBinhLuan[i].productID);
+                Models.Item item = this.quanLySanPhamDomain.GetItemByID(repository, dataBinhLuan[i].productID);
                 Models.Customer customer = quanLyKhachHangDomain.GetCustomerByID(repository, dataBinhLuan[i].customerID);
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, item.name));
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, customer.name));
@@ -355,15 +364,25 @@ namespace QuanLyBanHang
             detailForm.ShowDialog();
         }
 
+        /// <summary>
+        /// Handle event click on Create new import order for SanPham
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSPCreateBill_Click(object sender, EventArgs e)
         {
-            Views.CreateSanPhamImportOrder createSanPhamImportOrder = new Views.CreateSanPhamImportOrder(this, Views.CreateSanPhamImportOrder.MODE_CREATE_IMPORT)
+            Views.CreateSanPhamImportOrder createSanPhamImportOrder = new Views.CreateSanPhamImportOrder(this, Views.CreateSanPhamImportOrder.MODE_CREATE_IMPORT, 0)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
             createSanPhamImportOrder.ShowDialog();
         }
 
+        /// <summary>
+        /// Create new SanPham
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSPAdd_Click(object sender, EventArgs e)
         {
             Views.SanPhamDetail detailForm = new Views.SanPhamDetail(this)
@@ -373,43 +392,18 @@ namespace QuanLyBanHang
             detailForm.ShowDialog();
         }
 
-        private void BtnSPDelete_Click(object sender, EventArgs e)
-        {
-            if (this.selectedIndex < 0)
-            {
-                MessageBox.Show(
-                        "Bạn chưa chọn sản phẩm nào cả",
-                        "Lỗi",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                return;
-            }
-            if (MessageBox.Show(
-                "Bạn có chắc muốn xoá sản phẩm này?",
-                "Xác nhận",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.quanLySanPhamDomain.DeleteSanPham(this.repository, this.dataSanPham[this.selectedIndex]);
-                this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
-                this.LoadSanPhamCallback();
-            }
-            else
-            {
-                return;
-            }
-        }
+
 
         private void ListSPBill_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = this.listSPBill.FocusedItem.Index;
-            if (index == this.selectedIndex)
+            if (index == this.selectedBillIndex)
             {
                 return;
             }
             this.selectedBillIndex = index;
 
-            Views.CreateSanPhamImportOrder orderForm = new Views.CreateSanPhamImportOrder(this, Views.CreateSanPhamImportOrder.MODE_APPROVE, this.quanLySanPhamDomain.listSPOrder[index])
+            Views.CreateSanPhamImportOrder orderForm = new Views.CreateSanPhamImportOrder(this, Views.CreateSanPhamImportOrder.MODE_APPROVE, this.quanLySanPhamDomain.listSPOrder[index], index)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
@@ -431,7 +425,7 @@ namespace QuanLyBanHang
             }
             this.selectedCommentIndex = index;
 
-            Views.CommentDetail commentDetailForm = new Views.CommentDetail(index, this.dataBinhLuan[index], this.currentUser, this, repository)
+            Views.CommentDetail commentDetailForm = new Views.CommentDetail(index, this.dataBinhLuan[index], this.currentUser, this, this.repository)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
@@ -445,11 +439,30 @@ namespace QuanLyBanHang
         /// <param name="e"></param>
         private void BtnCommentViewStatistic_Click(object sender, EventArgs e)
         {
-            Views.CommentStatistic commentStatistic = new Views.CommentStatistic(repository)
+            Views.CommentStatistic commentStatistic = new Views.CommentStatistic(this.repository)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
             commentStatistic.ShowDialog();
+        }
+
+        private void BtnSPBillBack_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Handle event when click Import SP button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSPImport_Click(object sender, EventArgs e)
+        {
+            Views.SanPhamImport sanPhamImport = new Views.SanPhamImport(this)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            sanPhamImport.ShowDialog();
         }
     }
 }

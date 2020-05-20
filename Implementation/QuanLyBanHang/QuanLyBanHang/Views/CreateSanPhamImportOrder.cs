@@ -18,6 +18,7 @@ namespace QuanLyBanHang.Views
 
         private InitPage parent = new InitPage();
         private List<Models.Item> data = new List<Models.Item>();
+        private int selectedIndex;
         private int mode = 0;
 
         /// <summary>
@@ -32,20 +33,22 @@ namespace QuanLyBanHang.Views
         /// Constructor with fill data to fields
         /// </summary>
         /// <param name="parent"></param>
-        public CreateSanPhamImportOrder(InitPage parent, int mode)
+        public CreateSanPhamImportOrder(InitPage parent, int mode, int itemOrder)
         {
             this.InitializeComponent();
             this.parent = parent;
+            this.selectedIndex = itemOrder;
             this.mode = mode;
-            this.data = parent.quanLySanPhamDomain.GetLowAmountItem();
+            this.data = parent.quanLySanPhamDomain.GetLowAmountItem(parent.repository);
             this.InitFormSetting();
             this.LoadData();
         }
 
-        public CreateSanPhamImportOrder(InitPage parent, int mode, Models.ItemOrder order)
+        public CreateSanPhamImportOrder(InitPage parent, int mode, Models.ItemOrder order, int itemOrder)
         {
             this.InitializeComponent();
             this.parent = parent;
+            this.selectedIndex = itemOrder;
             this.mode = mode;
             this.InitFormSetting();
             this.LoadOrderData(order);
@@ -79,8 +82,11 @@ namespace QuanLyBanHang.Views
             }
             else
             {
-                this.btnOK.Text = "Phê duyệt";
+                this.btnOK.Visible = false;
                 this.lbTitle.Text = "Phê duyệt đơn hàng";
+                this.listSP.Enabled = false;
+                this.btnSelectAll.Text = "Phê duyệt";
+                this.btnDeselectAll.Text = "Từ chối";
             }
         }
 
@@ -169,9 +175,26 @@ namespace QuanLyBanHang.Views
         /// <param name="e"></param>
         private void BtnSelectAll_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < this.listSP.Items.Count; i++)
+            if (this.mode == MODE_APPROVE)
             {
-                this.listSP.Items[i].Checked = true;
+                if (MessageBox.Show(
+                    "Bạn có chắc chắn muốn phê duyệt đơn nhập hàng này?",
+                    "Xác nhận",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Models.ItemOrder temp = this.parent.quanLySanPhamDomain.listSPOrder[this.selectedIndex];
+                    temp.isApproved = true;
+                    this.parent.quanLySanPhamDomain.UpdateItemOrder(
+                        this.parent.repository,
+                        temp,
+                        this.parent);
+                }
+            } else {
+                for (int i = 0; i < this.listSP.Items.Count; i++)
+                {
+                    this.listSP.Items[i].Checked = true;
+                }
             }
         }
 
@@ -182,9 +205,26 @@ namespace QuanLyBanHang.Views
         /// <param name="e"></param>
         private void BtnDeselectAll_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < this.listSP.Items.Count; i++)
+            if (this.mode == MODE_APPROVE)
             {
-                this.listSP.Items[i].Checked = false;
+                if (MessageBox.Show(
+                    "Bạn có chắc chắn muốn từ chối đơn nhập hàng này?",
+                    "Xác nhận",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    this.parent.quanLySanPhamDomain.DeleteItemOrder(
+                        this.parent.repository,
+                        this.parent.quanLySanPhamDomain.listSPOrder[this.selectedIndex],
+                        this.parent);
+                    this.Close();
+                }
+            }
+            else {
+                for (int i = 0; i < this.listSP.Items.Count; i++)
+                {
+                    this.listSP.Items[i].Checked = false;
+                }
             }
         }
 
@@ -219,8 +259,9 @@ namespace QuanLyBanHang.Views
                         Models.ItemOrder.IMPORT,
                         selectedItem,
                         false);
-                    this.parent.quanLySanPhamDomain.AddSanPhamImportOrder(this.parent.repository, temp);
+                    this.parent.quanLySanPhamDomain.AddSanPhamImportOrder(this.parent.repository, temp, this.parent);
                 }
+                this.Close();
             }
             else if (this.mode == MODE_CREATE_RETURN)
             {
@@ -228,7 +269,7 @@ namespace QuanLyBanHang.Views
             }
             else if (this.mode == MODE_APPROVE)
             {
-
+                
             }
         }
     }
