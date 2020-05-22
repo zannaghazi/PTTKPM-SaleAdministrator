@@ -54,7 +54,8 @@ create table ItemOrder
     owner varchar(100) not null,
     type int not null,
     listItem text,
-    isApproved boolean
+    isApproved boolean,
+	isDeleted boolean default false
 );
 insert into ItemOrder(createddate, owner, type, listItem, isApproved)
 values('2020-05-11', 'Tổng giám đốc', 0, '1 2 3', false);
