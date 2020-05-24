@@ -79,7 +79,8 @@ namespace QuanLyBanHang.Domains
                             reader.GetString(2),
                             reader.GetString(3),
                             reader.GetInt32(4),
-                            reader.GetBoolean(5));
+                            reader.GetBoolean(5),
+                            reader.GetString(6));
                         this.listKhachHang.Add(temp);
                     }
 
@@ -109,7 +110,8 @@ namespace QuanLyBanHang.Domains
                             reader.GetString(2),
                             reader.GetString(3),
                             reader.GetInt32(4),
-                            reader.GetBoolean(5));
+                            reader.GetBoolean(5),
+                            reader.GetString(6));
                         break;
                     }
                     return temp;
@@ -143,7 +145,8 @@ namespace QuanLyBanHang.Domains
                             reader.GetString(2),
                             reader.GetString(3),
                             reader.GetInt32(4),
-                            reader.GetBoolean(5));
+                            reader.GetBoolean(5),
+                            reader.GetString(6));
                         return temp;
                     }
 

@@ -27,14 +27,19 @@ namespace QuanLyBanHang
         public List<Models.Item> dataSanPham = new List<Models.Item>();
         public List<Models.Comment> dataBinhLuan = new List<Models.Comment>();
         public List<Models.Customer> dataKhachHang = new List<Models.Customer>();
+        public List<Models.Partner> dataPartner = new List<Models.Partner>();
+        public List<Models.QangCaoSDT> dataQangCaoSDT = new List<Models.QangCaoSDT>();
         // Temporary variable
         private int selectedIndex = -1;
         public int selectedBillIndex = -1;
         private int selectedCommentIndex = -1;
+        private int selectedPartnerIndex = -1;
+        private int selectedQangCaoSDTIndex = -1;
         // Initial Domains
         public Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
         public Domains.QuanLyBinhLuanDomain quanLyBinhLuanDomain = new Domains.QuanLyBinhLuanDomain();
         public Domains.QuanLyKhachHangDomain quanLyKhachHangDomain = new Domains.QuanLyKhachHangDomain();
+        public Domains.QuanLyQuangCaoDomain quanLyQuangCaoDomain = new Domains.QuanLyQuangCaoDomain();
         // Repository
         public Repository.Repository repository = new Repository.Repository();
 
@@ -73,6 +78,19 @@ namespace QuanLyBanHang
             this.listComment.Columns[2].Width = listCMTSize * 3 / 11;
             this.listComment.Columns[3].Width = listCMTSize * 2 / 11;
             this.listComment.Columns[4].Width = listCMTSize * 2 / 11;
+
+            //Fix column size for table of Partner
+            int listPNSize = this.listPartner.Width;
+            this.listPartner.Columns[0].Width = listCMTSize / 11;
+            this.listPartner.Columns[1].Width = listCMTSize * 3 / 11;
+            this.listPartner.Columns[2].Width = listCMTSize * 3 / 11;
+
+            //Fix column size for table of QCSDT
+            int listSDTSize = this.listQCSDT.Width;
+            this.listQCSDT.Columns[0].Width = listCMTSize / 11;
+            this.listQCSDT.Columns[1].Width = listCMTSize * 3 / 11;
+            this.listQCSDT.Columns[2].Width = listCMTSize * 3 / 11;
+
 
             // Backup tabPage data
             this.tabPageSanPham = this.tabSanPham;
@@ -126,10 +144,22 @@ namespace QuanLyBanHang
                 this.dataKhachHang = this.quanLyKhachHangDomain.listKhachHang;
                 this.LoadBinhLuanCallback();
 
+                /* LOAD QUANG CAO */
+                this.quanLyQuangCaoDomain.LoadPartner(this.repository);
+                this.quanLyQuangCaoDomain.LoadQCSDT(this.repository);
+                this.dataPartner = this.quanLyQuangCaoDomain.listPartner;
+                this.dataQangCaoSDT = this.quanLyQuangCaoDomain.listQCSDT;
+                this.LoadPartnerCallback();
+                this.LoadQangCaoSDTCallback();
+
                 /* QUAN LY COMMENT */
                 this.tabControl.TabPages.Insert(1, this.tabPageComment);
 
-            }else if (temp.role == Constants.USERTYPE_SALE)
+                /* QUAN LY QUẢNG CÁO */
+                this.tabControl.TabPages.Insert(2, this.tabPageQuangCao);
+
+            }
+            else if (temp.role == Constants.USERTYPE_SALE)
             {
                 /* QUAN LY SAN PHAM */
                 // Load available TabPage
@@ -280,6 +310,35 @@ namespace QuanLyBanHang
                 }
             }
         }
+
+
+        public void LoadPartnerCallback()
+        {
+            // Remove all current data
+            this.listPartner.Items.Clear();
+            // Add data to list
+            for (int i = 0; i < this.dataPartner.Count; i++)
+            {
+                ListViewItem tempItem = new ListViewItem(this.dataPartner[i].ID.ToString());
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataPartner[i].partner_name));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataPartner[i].deadline.ToString("yyyy-MM-dd H:mm:ss")));
+                this.listPartner.Items.Add(tempItem);
+            }
+        }
+
+        public void LoadQangCaoSDTCallback()
+        {
+            this.listQCSDT.Items.Clear();
+            for (int i = 0; i < this.dataQangCaoSDT.Count; i++)
+            {
+                ListViewItem tempItem = new ListViewItem(this.dataQangCaoSDT[i].ID.ToString());
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataQangCaoSDT[i].sdt_customer));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataQangCaoSDT[i].dateqc.ToString("yyyy-MM-dd H:mm:ss")));
+                this.listQCSDT.Items.Add(tempItem);
+            }
+        }
+
+
 
         /// <summary>
         /// Handle event click Exit button
@@ -463,6 +522,41 @@ namespace QuanLyBanHang
                 StartPosition = FormStartPosition.CenterParent
             };
             sanPhamImport.ShowDialog();
+        }
+
+
+
+        private void listPartner_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.listPartner.FocusedItem.Index;
+            if (index == this.selectedPartnerIndex)
+            {
+                return;
+            }
+            this.selectedPartnerIndex = index;
+            Views.InfoParter detailForm = new Views.InfoParter(index, this.dataPartner[index], this)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            detailForm.ShowDialog();
+        }
+
+        private void AddPartner_Click(object sender, EventArgs e)
+        {
+            Views.InfoParter detailForm = new Views.InfoParter(this)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            detailForm.ShowDialog();
+        }
+
+        private void btnQCSDT_Click(object sender, EventArgs e)
+        {
+            Views.AddQcmoble detailForm = new Views.AddQcmoble(this)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            detailForm.ShowDialog();
         }
     }
 }

@@ -53,5 +53,10 @@ namespace QuanLyBanHang.Views
         {
             this.Close();
         }
+
+        private void cbOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
