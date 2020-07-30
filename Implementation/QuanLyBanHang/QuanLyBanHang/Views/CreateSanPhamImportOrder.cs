@@ -185,12 +185,18 @@ namespace QuanLyBanHang.Views
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    ItemOrderDTO temp = this.parent.quanLySanPhamDomain.listSPOrder[this.selectedIndex];
+                    ItemOrderDTO temp = this.parent.quanLySanPhamBUS.listSPOrder[this.selectedIndex];
                     temp.isApproved = true;
-                    this.parent.quanLySanPhamDomain.UpdateItemOrder(
-                        this.parent.repository,
-                        temp,
-                        this.parent);
+                    this.parent.quanLySanPhamBUS.UpdateItemOrder(
+                        this.parent.conn,
+                        temp);
+                    this.parent.quanLySanPhamBUS.AddSanPhamAfterApproveOrder(this.parent.conn, temp.listSP);
+                    this.parent.LoadSPOrderCallback();
+                    this.parent.quanLySanPhamBUS.LoadSanPham(this.parent.conn);
+                    this.parent.dataSanPham = this.parent.quanLySanPhamBUS.listSanPham;
+                    this.parent.LoadSanPhamCallback();
+                    this.parent.selectedBillIndex = -1;
+                    this.Close();
                 }
             } else {
                 for (int i = 0; i < this.listSP.Items.Count; i++)
@@ -215,10 +221,15 @@ namespace QuanLyBanHang.Views
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    this.parent.quanLySanPhamDomain.DeleteItemOrder(
-                        this.parent.repository,
-                        this.parent.quanLySanPhamDomain.listSPOrder[this.selectedIndex],
-                        this.parent);
+                    this.parent.quanLySanPhamBUS.DeleteItemOrder(
+                        this.parent.conn,
+                        this.parent.quanLySanPhamBUS.listSPOrder[this.selectedIndex]);
+                    parent.LoadSPOrderCallback();
+
+                    this.parent.quanLySanPhamBUS.LoadSanPham(this.parent.conn);
+                    parent.dataSanPham = this.parent.quanLySanPhamBUS.listSanPham;
+                    parent.LoadSanPhamCallback();
+                    parent.selectedBillIndex = -1;
                     this.Close();
                 }
             }
@@ -258,10 +269,15 @@ namespace QuanLyBanHang.Views
                     ItemOrderDTO temp = new ItemOrderDTO(
                         DateTime.Now,
                         this.parent.currentUser.name,
-                        Models.ItemOrder.IMPORT,
+                        ItemOrderDTO.IMPORT,
                         selectedItem,
                         false);
-                    this.parent.quanLySanPhamDomain.AddSanPhamImportOrder(this.parent.repository, temp, this.parent);
+                    this.parent.quanLySanPhamBUS.AddSanPhamImportOrder(this.parent.conn, temp);
+                    this.parent.LoadSPOrderCallback();
+
+                    this.parent.quanLySanPhamBUS.LoadSanPham(this.parent.conn);
+                    this.parent.dataSanPham = this.parent.quanLySanPhamBUS.listSanPham;
+                    this.parent.LoadSanPhamCallback();
                 }
                 this.Close();
             }

@@ -123,5 +123,43 @@ namespace DAO
             }
             return result;
         }
+
+        public bool UpdateItem(Connection conn, ItemDTO sp)
+        {
+            string queryString = "update Item set name='" + sp.name +
+                "',type='" + sp.type +
+                "',amount=" + sp.amount +
+                ",minimum=" + sp.minimum +
+                ",provider='" + sp.provider +
+                "',isRequestImport=" + sp.isImportOrder.ToString() +
+                " where id=" + sp.ID;
+            conn.cmd.CommandText = queryString;
+            try
+            {
+                conn.cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                return false;
+            }
+            return true;
+        }
+
+        public bool DeleteItem(Connection conn, ItemDTO sp)
+        {
+            string queryString = "update Item set isDeleted=true where id=" + sp.ID;
+            conn.cmd.CommandText = queryString;
+            try
+            {
+                conn.cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                return false;
+            }
+            return true;
+        }
     }
 }

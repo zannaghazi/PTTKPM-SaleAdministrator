@@ -24,3 +24,15 @@ G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTK
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\obj\Debug\netstandard2.0\BUS.csproj.CopyComplete
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\obj\Debug\netstandard2.0\BUS.dll
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\obj\Debug\netstandard2.0\BUS.pdb
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Windows.Forms.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Security.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Configuration.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\Accessibility.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Deployment.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Runtime.Serialization.Formatters.Soap.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Windows.Forms.xml
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Security.xml
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Configuration.xml
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\Accessibility.xml
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Deployment.xml
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Runtime.Serialization.Formatters.Soap.xml

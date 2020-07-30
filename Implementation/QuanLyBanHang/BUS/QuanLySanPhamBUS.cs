@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Text;
+using System.Windows.Forms;
 using DAO;
 using DTO;
 
@@ -28,6 +29,7 @@ namespace BUS
         /// </summary>
         public void LoadSanPham(Connection conn)
         {
+            this.listSanPham = new List<ItemDTO>();
             this.listSanPham = itemDAO.getAllItem(conn);
         }
 
@@ -48,136 +50,106 @@ namespace BUS
         public void AddSanPham(Connection conn, ItemDTO sp)
         {
             this.listSanPham = this.itemDAO.AddItem(conn, sp);
+            if (this.listSanPham == null)
+            {
+                MessageBox.Show(
+                   "Có lỗi xảy ra trong quá trình thêm dữ liệu, vui lòng thử lại!",
+                   "Lỗi",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+            }else
+            {
+                this.LoadSanPham(conn);
+            }
         }
 
-        //    /// <summary>
-        //    /// Edit SanPham
-        //    /// </summary>
-        //    /// <param name="index"></param>
-        //    /// <param name="sp"></param>
-        //    public void UpdateSanPham(Repository.Repository repository, Models.Item sp)
-        //    {
-        //        string queryString = "update Item set name='" + sp.name +
-        //            "',type='" + sp.type +
-        //            "',amount=" + sp.amount +
-        //            ",minimum=" + sp.minimum +
-        //            ",provider='" + sp.provider +
-        //            "',isRequestImport=" + sp.isImportOrder.ToString() +
-        //            " where id=" + sp.ID;
-        //        repository.cmd.CommandText = queryString;
-        //        try
-        //        {
-        //            repository.cmd.ExecuteNonQuery();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(
-        //                "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!\nChi tiết: " + ex.StackTrace,
-        //                "Lỗi",
-        //                MessageBoxButtons.OK,
-        //                MessageBoxIcon.Error);
-        //        }
-        //        this.LoadSanPham(repository);
-        //    }
+        /// <summary>
+        /// Edit SanPham
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="sp"></param>
+        public void UpdateSanPham(Connection conn, ItemDTO sp)
+        {
+            if (this.itemDAO.UpdateItem(conn, sp))
+            {
+                this.LoadSanPham(conn);
+            }else
+            {
+                MessageBox.Show(
+                    "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
 
-        //    /// <summary>
-        //    /// Delete SanPham from database
-        //    /// </summary>
-        //    /// <param name="sp"></param>
-        //    public void DeleteSanPham(Repository.Repository repository, Models.Item sp)
-        //    {
-        //        string queryString = "update Item set isDeleted=true where id=" + sp.ID;
-        //        repository.cmd.CommandText = queryString;
-        //        try
-        //        {
-        //            repository.cmd.ExecuteNonQuery();
-        //            this.listSanPham.Remove(sp);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(
-        //                "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!\nChi tiết: " + ex.StackTrace,
-        //                "Lỗi",
-        //                MessageBoxButtons.OK,
-        //                MessageBoxIcon.Error);
-        //        }
-        //    }
+        /// <summary>
+        /// Delete SanPham from database
+        /// </summary>
+        /// <param name="sp"></param>
+        public void DeleteSanPham(Connection conn, ItemDTO sp)
+        {
+            if (this.itemDAO.DeleteItem(conn, sp))
+            {
+                this.listSanPham.Remove(sp);
+            }else
+            {
+                MessageBox.Show(
+                    "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
 
-        //    /// <summary>
-        //    /// Update import order
-        //    /// </summary>
-        //    /// <param name="repository"></param>
-        //    /// <param name="data"></param>
-        //    public void UpdateItemOrder(Repository.Repository repository, Models.ItemOrder data, InitPage parent)
-        //    {
-        //        string queryString = "update ItemOrder set owner='" + data.owner +
-        //            "',type=" + data.type +
-        //            ",listItem='" + data.listItemID +
-        //            "',isApproved=" + data.isApproved.ToString() +
-        //            " where id=" + data.ID;
-        //        Console.WriteLine(queryString);
-        //        repository.cmd.CommandText = queryString;
-        //        try
-        //        {
-        //            repository.cmd.ExecuteNonQuery();
-        //            for (int i = 0; i < data.listSP.Count; i++)
-        //            {
-        //                data.listSP[i].isImportOrder = false;
-        //                this.UpdateSanPham(repository, data.listSP[i]);
-        //            }
-        //            this.LoadSanPhamOrder(repository);
-        //            parent.LoadSPOrderCallback();
+        public void AddSanPhamAfterApproveOrder(Connection conn, List<ItemDTO> sp)
+        {
+            for (int i = 0; i < sp.Count; i++)
+            {
+                sp[i].amount += sp[i].minimum;
+                itemDAO.UpdateItem(conn, sp[i]);
+            }
+        }
 
-        //            this.LoadSanPham(repository);
-        //            parent.dataSanPham = this.listSanPham;
-        //            parent.LoadSanPhamCallback();
-        //            parent.selectedBillIndex = -1;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(
-        //                "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!\nChi tiết: " + ex.StackTrace,
-        //                "Lỗi",
-        //                MessageBoxButtons.OK,
-        //                MessageBoxIcon.Error);
-        //        }
-        //    }
+        /// <summary>
+        /// Update import order
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <param name="data"></param>
+        public void UpdateItemOrder(Connection conn, ItemOrderDTO data)
+        {
+           if (this.itemOrderDAO.UpdateItemOrder(conn, data))
+           {
+                this.LoadSanPhamOrder(conn);
+           }else
+           {
+                MessageBox.Show(
+                    "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+           }
+        }
 
-        //    /// <summary>
-        //    /// Delete the order
-        //    /// </summary>
-        //    /// <param name="repository"></param>
-        //    /// <param name="data"></param>
-        //    public void DeleteItemOrder(Repository.Repository repository, Models.ItemOrder data, InitPage parent)
-        //    {
-        //        string queryString = "update ItemOrder set isDeleted=true where id=" + data.ID;
-        //        Console.WriteLine(queryString);
-        //        repository.cmd.CommandText = queryString;
-        //        try
-        //        {
-        //            repository.cmd.ExecuteNonQuery();
-        //            for (int i = 0; i < data.listSP.Count; i++)
-        //            {
-        //                data.listSP[i].isImportOrder = false;
-        //                this.UpdateSanPham(repository, data.listSP[i]);
-        //            }
-        //            this.LoadSanPhamOrder(repository);
-        //            parent.LoadSPOrderCallback();
-
-        //            this.LoadSanPham(repository);
-        //            parent.dataSanPham = this.listSanPham;
-        //            parent.LoadSanPhamCallback();
-        //            parent.selectedBillIndex = -1;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(
-        //                "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!\nChi tiết: " + ex.StackTrace,
-        //                "Lỗi",
-        //                MessageBoxButtons.OK,
-        //                MessageBoxIcon.Error);
-        //        }
-        //    }
+        /// <summary>
+        /// Delete the order
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <param name="data"></param>
+        public void DeleteItemOrder(Connection conn, ItemOrderDTO data)
+        {
+            if (this.itemOrderDAO.DeleteItemOrder(conn, data))
+            {
+                this.LoadSanPhamOrder(conn);
+            }else
+            {
+                MessageBox.Show(
+                    "Có lỗi xảy ra trong quá trình cập nhật dữ liệu, vui lòng thử lại!",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
 
         //    /// <summary>
         //    /// Get all Item that Amount lower than Minimum
@@ -225,61 +197,24 @@ namespace BUS
         //        return list;
         //    }
 
-        //    /// <summary>
-        //    /// Build string id from list SanPham
-        //    /// </summary>
-        //    /// <param name="data"></param>
-        //    /// <returns></returns>
-        //    public string BuildListIDString(List<Models.Item> data)
-        //    {
-        //        string temp = "";
-        //        for (int i = 0; i < data.Count; i++)
-        //        {
-        //            temp += data[i].ID + " ";
-        //        }
-        //        return temp;
-        //    }
-
-        //    /// <summary>
-        //    /// Add SanPham's Import Order to DB
-        //    /// </summary>
-        //    /// <param name="repository"></param>
-        //    public void AddSanPhamImportOrder(Repository.Repository repository, Models.ItemOrder data, InitPage parent)
-        //    {
-        //        string queryString = "";
-        //        for (int i = 0; i < data.listSP.Count; i++)
-        //        {
-        //            data.listSP[i].isImportOrder = true;
-        //            this.UpdateSanPham(repository, data.listSP[i]);
-        //        }
-        //        queryString = "insert into ItemOrder(createddate, owner, type, listItem, isApproved) " +
-        //            "values('" + String.Format("{0:yyyy/MM/dd}", DateTime.Now) + "'," +
-        //            "'" + data.owner + "'," +
-        //            data.type + "," +
-        //            "'" + this.BuildListIDString(data.listSP) + "'" +
-        //            ", false)";
-        //        Console.WriteLine(queryString);
-        //        repository.cmd.CommandText = queryString;
-        //        try
-        //        {
-        //            repository.cmd.ExecuteNonQuery();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(
-        //                "Có lỗi xảy ra trong quá trình thêm dữ liệu, vui lòng thử lại!\nChi tiết: " + ex.StackTrace,
-        //                "Lỗi",
-        //                MessageBoxButtons.OK,
-        //                MessageBoxIcon.Error);
-        //        }
-
-        //        this.LoadSanPhamOrder(repository);
-        //        parent.LoadSPOrderCallback();
-
-        //        this.LoadSanPham(repository);
-        //        parent.dataSanPham = this.listSanPham;
-        //        parent.LoadSanPhamCallback();
-        //    }
+        /// <summary>
+        /// Add SanPham's Import Order to DB
+        /// </summary>
+        /// <param name="repository"></param>
+        public void AddSanPhamImportOrder(Connection conn, ItemOrderDTO data)
+        {
+            if (this.itemOrderDAO.AddItemOrder(conn, data))
+            {
+                this.LoadSanPhamOrder(conn);
+            }
+            else {
+                MessageBox.Show(
+                    "Có lỗi xảy ra trong quá trình thêm dữ liệu, vui lòng thử lại!",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
 
         //    /*  NHAP HANG */
         //    public List<Models.ItemOrder> LoadApprovedImport(Repository.Repository repository)

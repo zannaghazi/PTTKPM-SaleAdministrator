@@ -18,7 +18,7 @@ namespace DAO
             {
                 if (!reader.HasRows)
                 {
-                    return null;
+                    return new List<ItemOrderDTO>();
                 }
                 else
                 {
@@ -52,6 +52,95 @@ namespace DAO
             }
 
             return result;
+        }
+
+        public bool UpdateItemOrder(Connection conn, ItemOrderDTO data)
+        {
+            string queryString = "update ItemOrder set owner='" + data.owner +
+                    "',type=" + data.type +
+                    ",listItem='" + data.listItemID +
+                    "',isApproved=" + data.isApproved.ToString() +
+                    " where id=" + data.ID;
+            Console.WriteLine(queryString);
+            conn.cmd.CommandText = queryString;
+            try
+            {
+                conn.cmd.ExecuteNonQuery();
+                for (int i = 0; i < data.listSP.Count; i++)
+                {
+                    ItemDAO itemDAO = new ItemDAO();
+                    data.listSP[i].isImportOrder = false;
+                    itemDAO.UpdateItem(conn, data.listSP[i]);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                return false;
+            }
+            return true;
+        }
+
+        public bool DeleteItemOrder(Connection conn, ItemOrderDTO data)
+        {
+            string queryString = "update ItemOrder set isDeleted=true where id=" + data.ID;
+            Console.WriteLine(queryString);
+            conn.cmd.CommandText = queryString;
+            try
+            {
+                conn.cmd.ExecuteNonQuery();
+                for (int i = 0; i < data.listSP.Count; i++)
+                {
+                    ItemDAO itemDAO = new ItemDAO();
+                    data.listSP[i].isImportOrder = false;
+                    itemDAO.UpdateItem(conn, data.listSP[i]);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                return false;
+            }
+            return true;
+        }
+
+        public bool AddItemOrder(Connection conn, ItemOrderDTO data)
+        {
+            string queryString = "";
+            for (int i = 0; i < data.listSP.Count; i++)
+            {
+                ItemDAO itemDAO = new ItemDAO();
+                data.listSP[i].isImportOrder = true;
+                itemDAO.UpdateItem(conn, data.listSP[i]);
+            }
+            queryString = "insert into ItemOrder(createddate, owner, type, listItem, isApproved) " +
+                "values('" + String.Format("{0:yyyy/MM/dd}", DateTime.Now) + "'," +
+                "'" + data.owner + "'," +
+                data.type + "," +
+                "'" + this.BuildListIDString(data.listSP) + "'" +
+                ", false)";
+            Console.WriteLine(queryString);
+            conn.cmd.CommandText = queryString;
+            try
+            {
+                conn.cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                return false;
+            }
+            return true;
+        }
+
+        public string BuildListIDString(List<ItemDTO> data)
+        {
+            string temp = "";
+            for (int i = 0; i < data.Count; i++)
+            {
+                temp += data[i].ID + " ";
+            }
+            return temp;
         }
     }
 }
