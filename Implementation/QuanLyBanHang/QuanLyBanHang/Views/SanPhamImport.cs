@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO;
 
 namespace QuanLyBanHang.Views
 {
     public partial class SanPhamImport : Form
     {
-        private List<Models.ItemOrder> data = new List<Models.ItemOrder>();
+        private List<ItemOrderDTO> data = new List<ItemOrderDTO>();
         private InitPage parent;
         public SanPhamImport()
         {

@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO;
+using BUS;
+using DAO;
 
 namespace QuanLyBanHang.Views
 {
@@ -36,9 +39,9 @@ namespace QuanLyBanHang.Views
         /// <param name="customer">person comment</param>
         /// <param name="item">product comment</param>
         /// <param name="parent">parent layout</param>
-        public CommentDetail(int index, Models.Comment comment, Models.User currentUser, InitPage parent, Repository.Repository repository)
+        public CommentDetail(int index, Models.Comment comment, UserDTO currentUser, InitPage parent, Connection conn, Repository.Repository repository)
         {
-            Models.Item item = new QuanLySanPhamDomain().GetItemByID(repository, comment.productID);
+            ItemDTO item = new QuanLySanPhamBUS().GetItemByID(conn, comment.productID);
             Models.Customer customer = new QuanLyKhachHangDomain().GetCustomerByID(repository, comment.customerID);
             this.parent = parent;
             this.itemIndex = index;

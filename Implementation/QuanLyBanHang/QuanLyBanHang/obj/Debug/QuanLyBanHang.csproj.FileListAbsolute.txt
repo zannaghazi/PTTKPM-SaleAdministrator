@@ -59,3 +59,12 @@ G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTK
 E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CommentDetail.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CommentStatistic.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.SanPhamImport.resources
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.exe.config
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\BUS.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\DAO.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\DTO.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\System.Memory.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\System.Numerics.Vectors.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\BUS.pdb
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\DAO.pdb
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\DTO.pdb

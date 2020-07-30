@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO;
+using BUS;
 
 namespace QuanLyBanHang.Views
 {
@@ -17,7 +19,7 @@ namespace QuanLyBanHang.Views
         public static readonly int MODE_APPROVE = 2;
 
         private InitPage parent = new InitPage();
-        private List<Models.Item> data = new List<Models.Item>();
+        private List<ItemDTO> data = new List<ItemDTO>();
         private int selectedIndex;
         private int mode = 0;
 
@@ -44,7 +46,7 @@ namespace QuanLyBanHang.Views
             this.LoadData();
         }
 
-        public CreateSanPhamImportOrder(InitPage parent, int mode, Models.ItemOrder order, int itemOrder)
+        public CreateSanPhamImportOrder(InitPage parent, int mode, ItemOrderDTO order, int itemOrder)
         {
             this.InitializeComponent();
             this.parent = parent;
@@ -150,7 +152,7 @@ namespace QuanLyBanHang.Views
         /// Load current order data
         /// </summary>
         /// <param name="order"></param>
-        private void LoadOrderData(Models.ItemOrder order)
+        private void LoadOrderData(ItemOrderDTO order)
         {
             this.data = order.listSP;
             this.txtDate.Text = String.Format("{0:MM/dd/yyyy}", order.date);
@@ -183,7 +185,7 @@ namespace QuanLyBanHang.Views
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    Models.ItemOrder temp = this.parent.quanLySanPhamDomain.listSPOrder[this.selectedIndex];
+                    ItemOrderDTO temp = this.parent.quanLySanPhamDomain.listSPOrder[this.selectedIndex];
                     temp.isApproved = true;
                     this.parent.quanLySanPhamDomain.UpdateItemOrder(
                         this.parent.repository,
@@ -244,7 +246,7 @@ namespace QuanLyBanHang.Views
                     MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     // Get all selected Item
-                    List<Models.Item> selectedItem = new List<Models.Item>();
+                    List<ItemDTO> selectedItem = new List<ItemDTO>();
                     for (int i = 0; i < this.listSP.Items.Count; i++)
                     {
                         if (this.listSP.Items[i].Checked)
@@ -253,7 +255,7 @@ namespace QuanLyBanHang.Views
                         }
                     }
 
-                    Models.ItemOrder temp = new Models.ItemOrder(
+                    ItemOrderDTO temp = new ItemOrderDTO(
                         DateTime.Now,
                         this.parent.currentUser.name,
                         Models.ItemOrder.IMPORT,

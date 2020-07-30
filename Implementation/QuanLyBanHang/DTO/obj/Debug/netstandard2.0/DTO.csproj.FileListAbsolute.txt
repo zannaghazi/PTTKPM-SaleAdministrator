@@ -1,0 +1,9 @@
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DTO\bin\Debug\netstandard2.0\DTO.deps.json
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DTO\bin\Debug\netstandard2.0\DTO.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DTO\bin\Debug\netstandard2.0\DTO.pdb
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DTO\obj\Debug\netstandard2.0\DTO.csprojAssemblyReference.cache
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DTO\obj\Debug\netstandard2.0\DTO.AssemblyInfoInputs.cache
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DTO\obj\Debug\netstandard2.0\DTO.AssemblyInfo.cs
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DTO\obj\Debug\netstandard2.0\DTO.csproj.CoreCompileInputs.cache
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DTO\obj\Debug\netstandard2.0\DTO.dll
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DTO\obj\Debug\netstandard2.0\DTO.pdb

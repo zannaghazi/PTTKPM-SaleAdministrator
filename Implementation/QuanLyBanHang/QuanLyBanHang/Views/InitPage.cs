@@ -1,4 +1,7 @@
-﻿using QuanLyBanHang.Models;
+﻿using BUS;
+using DAO;
+using DTO;
+using QuanLyBanHang.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +19,7 @@ namespace QuanLyBanHang
     {
         /* VARIABLES */
         private int LoginStatus = Constants.LOGINSTAT_NONE; // Login status
-        public Models.User currentUser = null; // Logged user
+        public UserDTO currentUser = null; // Logged user
         // TabPage
         private TabPage tabPageSanPham = null;
         private TabPage tabPageComment = null;
@@ -24,7 +27,7 @@ namespace QuanLyBanHang
         private TabPage tabPageDatHang = null;
         private TabPage tabPageThanhToan = null;
         // Storage core data
-        public List<Models.Item> dataSanPham = new List<Models.Item>();
+        public List<ItemDTO> dataSanPham = new List<ItemDTO>();
         public List<Models.Comment> dataBinhLuan = new List<Models.Comment>();
         public List<Models.Customer> dataKhachHang = new List<Models.Customer>();
         // Temporary variable
@@ -38,6 +41,13 @@ namespace QuanLyBanHang
         // Repository
         public Repository.Repository repository = new Repository.Repository();
 
+        //BUS
+        public LoginBUS loginBUS = new LoginBUS();
+        public QuanLySanPhamBUS quanLySanPhamBUS = new QuanLySanPhamBUS();
+
+        //Connection
+        public Connection conn;
+
 
 
         /// <summary>
@@ -48,6 +58,7 @@ namespace QuanLyBanHang
             this.InitializeComponent();
             this.repository.InitDBConnection();
             this.InitFormSetting();
+            this.InitVariable();
         }
 
         /// <summary>
@@ -87,7 +98,22 @@ namespace QuanLyBanHang
             this.tabControl.TabPages.Remove(this.tabQuangCao);
             this.tabControl.TabPages.Remove(this.tabDatHang);
             this.tabControl.TabPages.Remove(this.tabThanhToan);
-    }
+        }
+
+        public void InitVariable()
+        {
+            try
+            {
+                this.conn = new Connection();
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra khi kết nối với cơ sở dữ liệu!\nVui lòng kiểm tra lại file config!",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Console.WriteLine(ex.StackTrace);
+            }
+        }
 
 
         /* SUPPORT FUNCTION */
@@ -95,7 +121,7 @@ namespace QuanLyBanHang
         /// Function call back for login
         /// </summary>
         /// <param name="temp">user's information</param>
-        public void LoginCallback(Models.User temp)
+        public void LoginCallback(UserDTO temp)
         {
             // Login information
             this.btnLogin.Text = "Logout: " + temp.name;
@@ -113,9 +139,9 @@ namespace QuanLyBanHang
                 this.btnSPAdd.Enabled = true;
                 this.btnSPImport.Enabled = true;
                 // Load data
-                this.quanLySanPhamDomain.LoadSanPham(this.repository);
-                this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
-                this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
+                this.quanLySanPhamBUS.LoadSanPham(this.conn);
+                this.quanLySanPhamBUS.LoadSanPhamOrder(this.conn);
+                this.dataSanPham = this.quanLySanPhamBUS.listSanPham;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
 
@@ -139,9 +165,9 @@ namespace QuanLyBanHang
                 this.btnSPAdd.Enabled = false;
                 this.btnSPImport.Enabled = false;
                 //Load data
-                this.quanLySanPhamDomain.LoadSanPham(this.repository);
-                this.quanLySanPhamDomain.LoadSanPhamOrder(this.repository);
-                this.dataSanPham = this.quanLySanPhamDomain.listSanPham;
+                this.quanLySanPhamBUS.LoadSanPham(this.conn);
+                this.quanLySanPhamBUS.LoadSanPhamOrder(this.conn);
+                this.dataSanPham = this.quanLySanPhamBUS.listSanPham;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
 
@@ -192,7 +218,7 @@ namespace QuanLyBanHang
             this.selectedIndex = -1;
 
             /* QUAN LY SAN PHAM */
-            this.dataSanPham = new List<Models.Item>();
+            this.dataSanPham = new List<ItemDTO>();
             this.listSanPham.Items.Clear();
         }
 
@@ -234,7 +260,7 @@ namespace QuanLyBanHang
             for (int i = 0; i < this.dataBinhLuan.Count; i++)
             {
                 ListViewItem tempItem = new ListViewItem(this.dataBinhLuan[i].ID.ToString());
-                Models.Item item = this.quanLySanPhamDomain.GetItemByID(repository, dataBinhLuan[i].productID);
+                ItemDTO item = this.quanLySanPhamBUS.GetItemByID(this.conn, dataBinhLuan[i].productID);
                 Models.Customer customer = quanLyKhachHangDomain.GetCustomerByID(repository, dataBinhLuan[i].customerID);
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, item.name));
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, customer.name));
@@ -270,12 +296,12 @@ namespace QuanLyBanHang
             // Remove all current data
             this.listSPBill.Items.Clear();
 
-            if (this.quanLySanPhamDomain.listSPOrder.Count > 0)
+            if (this.quanLySanPhamBUS.listSPOrder.Count > 0)
             {
-                for (int i = 0; i < this.quanLySanPhamDomain.listSPOrder.Count; i++)
+                for (int i = 0; i < this.quanLySanPhamBUS.listSPOrder.Count; i++)
                 {
-                    ListViewItem tempItem = new ListViewItem(String.Format("{0:MM/dd/yyyy}", this.quanLySanPhamDomain.listSPOrder[i].date));
-                    tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLySanPhamDomain.listSPOrder[i].owner));
+                    ListViewItem tempItem = new ListViewItem(String.Format("{0:MM/dd/yyyy}", this.quanLySanPhamBUS.listSPOrder[i].date));
+                    tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLySanPhamBUS.listSPOrder[i].owner));
                     this.listSPBill.Items.Add(tempItem);
                 }
             }
@@ -403,7 +429,7 @@ namespace QuanLyBanHang
             }
             this.selectedBillIndex = index;
 
-            Views.CreateSanPhamImportOrder orderForm = new Views.CreateSanPhamImportOrder(this, Views.CreateSanPhamImportOrder.MODE_APPROVE, this.quanLySanPhamDomain.listSPOrder[index], index)
+            Views.CreateSanPhamImportOrder orderForm = new Views.CreateSanPhamImportOrder(this, Views.CreateSanPhamImportOrder.MODE_APPROVE, this.quanLySanPhamBUS.listSPOrder[index], index)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
@@ -425,7 +451,7 @@ namespace QuanLyBanHang
             }
             this.selectedCommentIndex = index;
 
-            Views.CommentDetail commentDetailForm = new Views.CommentDetail(index, this.dataBinhLuan[index], this.currentUser, this, this.repository)
+            Views.CommentDetail commentDetailForm = new Views.CommentDetail(index, this.dataBinhLuan[index], this.currentUser, this, this.conn, this.repository)
             {
                 StartPosition = FormStartPosition.CenterParent
             };

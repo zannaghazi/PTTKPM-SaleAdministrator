@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,7 +34,7 @@ namespace QuanLyBanHang.Views
         /// Monitor SanPham information to fields and show UI as privilege
         /// </summary>
         /// <param name="item"></param>
-        public SanPhamDetail(int index, Models.Item item, Models.User user, InitPage parent)
+        public SanPhamDetail(int index, ItemDTO item, UserDTO user, InitPage parent)
         {
             this.parent = parent;
             this.itemIndex = index;
@@ -77,7 +78,7 @@ namespace QuanLyBanHang.Views
 
         private void BtnConfirm_Click(object sender, EventArgs e)
         {
-            Models.Item temp = null;
+            ItemDTO temp = null;
             try
             {
                 int id = -1;
@@ -85,7 +86,7 @@ namespace QuanLyBanHang.Views
                 {
                     id = Int32.Parse(this.txtID.Text.Trim());
                 }
-                temp = new Models.Item(
+                temp = new ItemDTO(
                     id,
                     this.txtName.Text.Trim(),
                     this.txtType.Text.Trim(),

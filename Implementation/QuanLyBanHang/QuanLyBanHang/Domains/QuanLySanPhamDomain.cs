@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Common;
 using System.Windows.Forms;
+using DTO;
 
 namespace QuanLyBanHang.Domains
 {
@@ -13,8 +14,8 @@ namespace QuanLyBanHang.Domains
     /// </summary>
     public class QuanLySanPhamDomain
     {
-        public List<Models.Item> listSanPham = new List<Models.Item>();
-        public List<Models.ItemOrder> listSPOrder = new List<Models.ItemOrder>();
+        public List<ItemDTO> listSanPham = new List<ItemDTO>();
+        public List<ItemOrderDTO> listSPOrder = new List<ItemOrderDTO>();
 
         /// <summary>
         /// Constructor
@@ -29,7 +30,7 @@ namespace QuanLyBanHang.Domains
         /// </summary>
         public void LoadSanPham(Repository.Repository repository)
         {
-            this.listSanPham = new List<Models.Item>();
+            this.listSanPham = new List<ItemDTO>();
 
             string queryString = "select* from Item where isDeleted = false";
             repository.cmd.CommandText = queryString;
@@ -48,7 +49,7 @@ namespace QuanLyBanHang.Domains
                 {
                     while (reader.Read())
                     {
-                        Models.Item temp = new Models.Item(
+                        ItemDTO temp = new ItemDTO(
                             reader.GetInt32(0),
                             reader.GetString(1),
                             reader.GetString(2),
@@ -65,7 +66,7 @@ namespace QuanLyBanHang.Domains
 
         public void LoadSanPhamOrder(Repository.Repository repository)
         {
-            this.listSPOrder = new List<Models.ItemOrder>();
+            this.listSPOrder = new List<ItemOrderDTO>();
 
             string queryString = "select* from ItemOrder where isApproved = false and isDeleted = false";
             repository.cmd.CommandText = queryString;
@@ -80,7 +81,7 @@ namespace QuanLyBanHang.Domains
                 {
                     while (reader.Read())
                     {
-                        Models.ItemOrder temp = new Models.ItemOrder(
+                        ItemOrderDTO temp = new ItemOrderDTO(
                             reader.GetInt32(0),
                             reader.GetDateTime(1),
                             reader.GetString(2),
@@ -95,7 +96,7 @@ namespace QuanLyBanHang.Domains
             for (int i = 0; i < this.listSPOrder.Count; i++)
             {
                 string[] listSPID = this.listSPOrder[i].listItemID.Trim().Split(' ');
-                List<Models.Item> listOrderItem = new List<Models.Item>();
+                List<ItemDTO> listOrderItem = new List<ItemDTO>();
                 for (int j = 0; j < listSPID.Length; j++)
                 {
                     if (this.GetItemByID(repository, Convert.ToInt32(listSPID[j])).ID != -1)
@@ -107,7 +108,7 @@ namespace QuanLyBanHang.Domains
             }
         }
 
-        public Models.Item GetItemByID(Repository.Repository repository, int id)
+        public ItemDTO GetItemByID(Repository.Repository repository, int id)
         {
             string queryString = "select* from Item where id=" + id;
             repository.cmd.CommandText = queryString;
@@ -116,14 +117,14 @@ namespace QuanLyBanHang.Domains
             {
                 if (!reader.HasRows)
                 {
-                    return new Models.Item();
+                    return new ItemDTO();
                 }
                 else
                 {
-                    Models.Item temp = new Models.Item();
+                    ItemDTO temp = new ItemDTO();
                     while (reader.Read())
                     {
-                        temp = new Models.Item(
+                        temp = new ItemDTO(
                             reader.GetInt32(0),
                             reader.GetString(1),
                             reader.GetString(2),
@@ -142,7 +143,7 @@ namespace QuanLyBanHang.Domains
         /// Add new SanPham to Database
         /// </summary>
         /// <param name="sp"></param>
-        public void AddSanPham(Repository.Repository repository, Models.Item sp)
+        public void AddSanPham(Repository.Repository repository,ItemDTO sp)
         {
             string queryString = "insert into Item(name, type, amount, minimum, provider, isRequestImport, isDeleted) " +
                 "values('" + sp.name +
@@ -181,7 +182,7 @@ namespace QuanLyBanHang.Domains
                 {
                     while (reader.Read())
                     {
-                        Models.Item temp = new Models.Item(
+                        ItemDTO temp = new ItemDTO(
                             reader.GetInt32(0),
                             reader.GetString(1),
                             reader.GetString(2),
@@ -200,7 +201,7 @@ namespace QuanLyBanHang.Domains
         /// </summary>
         /// <param name="index"></param>
         /// <param name="sp"></param>
-        public void UpdateSanPham(Repository.Repository repository, Models.Item sp)
+        public void UpdateSanPham(Repository.Repository repository, ItemDTO sp)
         {
             string queryString = "update Item set name='" + sp.name +
                 "',type='" + sp.type +
@@ -229,7 +230,7 @@ namespace QuanLyBanHang.Domains
         /// Delete SanPham from database
         /// </summary>
         /// <param name="sp"></param>
-        public void DeleteSanPham(Repository.Repository repository, Models.Item sp)
+        public void DeleteSanPham(Repository.Repository repository, ItemDTO sp)
         {
             string queryString = "update Item set isDeleted=true where id=" + sp.ID;
             repository.cmd.CommandText = queryString;
@@ -252,7 +253,7 @@ namespace QuanLyBanHang.Domains
         /// </summary>
         /// <param name="repository"></param>
         /// <param name="data"></param>
-        public void UpdateItemOrder(Repository.Repository repository, Models.ItemOrder data, InitPage parent)
+        public void UpdateItemOrder(Repository.Repository repository, ItemOrderDTO data, InitPage parent)
         {
             string queryString = "update ItemOrder set owner='" + data.owner +
                 "',type=" + data.type +
@@ -292,7 +293,7 @@ namespace QuanLyBanHang.Domains
         /// </summary>
         /// <param name="repository"></param>
         /// <param name="data"></param>
-        public void DeleteItemOrder(Repository.Repository repository, Models.ItemOrder data, InitPage parent)
+        public void DeleteItemOrder(Repository.Repository repository, ItemOrderDTO data, InitPage parent)
         {
             string queryString = "update ItemOrder set isDeleted=true where id=" + data.ID;
             Console.WriteLine(queryString);
@@ -327,9 +328,9 @@ namespace QuanLyBanHang.Domains
         /// Get all Item that Amount lower than Minimum
         /// </summary>
         /// <returns></returns>
-        public List<Models.Item> GetLowAmountItem(Repository.Repository repository)
+        public List<ItemDTO> GetLowAmountItem(Repository.Repository repository)
         {
-            List<Models.Item> list = new List<Models.Item>();
+            List<ItemDTO> list = new List<ItemDTO>();
 
             string queryString = "select* from Item where isDeleted = false and isRequestImport = false";
             repository.cmd.CommandText = queryString;
@@ -343,13 +344,13 @@ namespace QuanLyBanHang.Domains
                         "Lỗi",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    return new List<Models.Item>();
+                    return new List<ItemDTO>();
                 }
                 else
                 {
                     while (reader.Read())
                     {
-                        Models.Item temp = new Models.Item(
+                        ItemDTO temp = new ItemDTO(
                             reader.GetInt32(0),
                             reader.GetString(1),
                             reader.GetString(2),
@@ -374,7 +375,7 @@ namespace QuanLyBanHang.Domains
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public string BuildListIDString(List<Models.Item> data)
+        public string BuildListIDString(List<ItemDTO> data)
         {
             string temp = "";
             for (int i = 0; i < data.Count; i++)
@@ -388,7 +389,7 @@ namespace QuanLyBanHang.Domains
         /// Add SanPham's Import Order to DB
         /// </summary>
         /// <param name="repository"></param>
-        public void AddSanPhamImportOrder(Repository.Repository repository, Models.ItemOrder data, InitPage parent)
+        public void AddSanPhamImportOrder(Repository.Repository repository, ItemOrderDTO data, InitPage parent)
         {
             string queryString = "";
             for (int i = 0; i < data.listSP.Count; i++)
@@ -426,9 +427,9 @@ namespace QuanLyBanHang.Domains
         }
 
         /*  NHAP HANG */
-        public List<Models.ItemOrder> LoadApprovedImport(Repository.Repository repository)
+        public List<ItemOrderDTO> LoadApprovedImport(Repository.Repository repository)
         {
-            List<Models.ItemOrder> temp = new List<Models.ItemOrder>();
+            List<ItemOrderDTO> temp = new List<ItemOrderDTO>();
             string queryString = "select* from ItemOrder where isApproved = true and isDeleted = false";
             repository.cmd.CommandText = queryString;
 
@@ -436,13 +437,13 @@ namespace QuanLyBanHang.Domains
             {
                 if (!reader.HasRows)
                 {
-                    return new List<Models.ItemOrder>();
+                    return new List<ItemOrderDTO>();
                 }
                 else
                 {
                     while (reader.Read())
                     {
-                        Models.ItemOrder data = new Models.ItemOrder(
+                        ItemOrderDTO data = new ItemOrderDTO(
                             reader.GetInt32(0),
                             reader.GetDateTime(1),
                             reader.GetString(2),
@@ -457,7 +458,7 @@ namespace QuanLyBanHang.Domains
             for (int i = 0; i < this.listSPOrder.Count; i++)
             {
                 string[] listSPID = temp[i].listItemID.Trim().Split(' ');
-                List<Models.Item> listOrderItem = new List<Models.Item>();
+                List<ItemDTO> listOrderItem = new List<ItemDTO>();
                 for (int j = 0; j < listSPID.Length; j++)
                 {
                     if (this.GetItemByID(repository, Convert.ToInt32(listSPID[j])).ID != -1)

@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO;
 
 namespace QuanLyBanHang.Views
 {
     public partial class LoginForm : Form
     {
-        public Models.User currentUser = new Models.User();
+        public UserDTO currentUser = new UserDTO();
         private InitPage parent;
 
         /// <summary>
@@ -50,24 +51,20 @@ namespace QuanLyBanHang.Views
         /// <param name="e"></param>
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(this.txtUserName.Text)
-                || String.IsNullOrWhiteSpace(this.txtPassword.Text))
-            {
-                this.lbMessage.Text = "Tên đăng nhập hoặc mật khẩu đang bị bỏ trống";
-                return;
-            }
-
-            this.currentUser = this.currentUser.checkLogin(
-                this.parent.repository,
-                this.txtUserName.Text.Trim(),
-                this.txtPassword.Text.Trim());
-            if (this.currentUser.name != null) {
-                this.parent.LoginCallback(this.currentUser);
-                this.Close();
-            }else
-            {
+            UserDTO user = this.parent.loginBUS.checkLogin(
+                this.parent.conn,
+                this.txtUserName.Text,
+                this.txtPassword.Text);
+            
+            if (user == null || user.name == null) {
                 this.lbMessage.Text = "Tên đăng nhập hoặc mật khẩu không chính xác";
                 return;
+                
+            }else
+            {
+                this.currentUser = user;
+                this.parent.LoginCallback(this.currentUser);
+                this.Close();
             }
         }
 
