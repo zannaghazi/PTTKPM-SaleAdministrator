@@ -1,1 +1,1 @@
-﻿Server=localhost;Database=QuanLyBanHang;port=3306;Convert Zero Datetime=true;UserId=root;password=123456
+﻿Server=localhost;Database=QuanLyBanHang;port=3306;Convert Zero Datetime=true;UserId=root;password=

@@ -18,7 +18,7 @@ namespace QuanLyBanHang
     public partial class InitPage : Form
     {
         /* VARIABLES */
-        private int LoginStatus = Constants.LOGINSTAT_NONE; // Login status
+        private int LoginStatus = DTO.Helper.Constants.LOGINSTAT_NONE; // Login status
         public UserDTO currentUser = null; // Logged user
         // TabPage
         private TabPage tabPageSanPham = null;
@@ -28,22 +28,23 @@ namespace QuanLyBanHang
         private TabPage tabPageThanhToan = null;
         // Storage core data
         public List<ItemDTO> dataSanPham = new List<ItemDTO>();
-        public List<Models.Comment> dataBinhLuan = new List<Models.Comment>();
-        public List<Models.Customer> dataKhachHang = new List<Models.Customer>();
+        public List<CommentDTO> dataBinhLuan = new List<CommentDTO>();
+        public List<CustomerDTO> dataKhachHang = new List<CustomerDTO>();
         // Temporary variable
         private int selectedIndex = -1;
         public int selectedBillIndex = -1;
         private int selectedCommentIndex = -1;
         // Initial Domains
         public Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
-        public Domains.QuanLyBinhLuanDomain quanLyBinhLuanDomain = new Domains.QuanLyBinhLuanDomain();
-        public Domains.QuanLyKhachHangDomain quanLyKhachHangDomain = new Domains.QuanLyKhachHangDomain();
+
         // Repository
         public Repository.Repository repository = new Repository.Repository();
 
         //BUS
         public LoginBUS loginBUS = new LoginBUS();
         public QuanLySanPhamBUS quanLySanPhamBUS = new QuanLySanPhamBUS();
+        public QuanLyCommentBus quanLyCommentBus = new QuanLyCommentBus();
+        public QuanLyKhachHangBUS quanLyKhachHangBus = new QuanLyKhachHangBUS();
 
         //Connection
         public Connection conn;
@@ -125,11 +126,11 @@ namespace QuanLyBanHang
         {
             // Login information
             this.btnLogin.Text = "Logout: " + temp.name;
-            this.LoginStatus = Constants.LOGINSTAT_LOGGED;
+            this.LoginStatus = DTO.Helper.Constants.LOGINSTAT_LOGGED;
             this.currentUser = temp;
 
             // User Role change UI
-            if (temp.role == Constants.USERTYPE_MANAGER)
+            if (temp.role == DTO.Helper.Constants.USERTYPE_MANAGER)
             {
                 /* QUAN LY SAN PHAM */
                 // Load available TabPage
@@ -140,22 +141,22 @@ namespace QuanLyBanHang
                 this.btnSPImport.Enabled = true;
                 // Load data
                 this.quanLySanPhamBUS.LoadSanPham(this.conn);
+                this.quanLyCommentBus.LoadBinhLuan(this.conn, currentUser.role);
                 this.quanLySanPhamBUS.LoadSanPhamOrder(this.conn);
+                this.quanLyKhachHangBus.LoadKhachHang(this.conn);
                 this.dataSanPham = this.quanLySanPhamBUS.listSanPham;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
 
                 /* QUAN LY BINH LUAN */
-                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository, temp.role);
-                this.quanLyKhachHangDomain.LoadKhachHang(this.repository);
-                this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
-                this.dataKhachHang = this.quanLyKhachHangDomain.listKhachHang;
+                this.dataBinhLuan = this.quanLyCommentBus.listBinhLuan;
+                this.dataKhachHang = this.quanLyKhachHangBus.listKhachHang;
                 this.LoadBinhLuanCallback();
 
                 /* QUAN LY COMMENT */
                 this.tabControl.TabPages.Insert(1, this.tabPageComment);
 
-            }else if (temp.role == Constants.USERTYPE_SALE)
+            }else if (temp.role == DTO.Helper.Constants.USERTYPE_SALE)
             {
                 /* QUAN LY SAN PHAM */
                 // Load available TabPage
@@ -167,27 +168,26 @@ namespace QuanLyBanHang
                 //Load data
                 this.quanLySanPhamBUS.LoadSanPham(this.conn);
                 this.quanLySanPhamBUS.LoadSanPhamOrder(this.conn);
+                this.quanLyCommentBus.LoadBinhLuan(this.conn, currentUser.role);
                 this.dataSanPham = this.quanLySanPhamBUS.listSanPham;
                 this.LoadSanPhamCallback();
                 this.LoadSPOrderCallback();
 
                 /* QUAN LY BINH LUAN */
-                this.quanLyBinhLuanDomain.LoadBinhLuan(this.repository, temp.role);
-                this.quanLyKhachHangDomain.LoadKhachHang(this.repository);
-                this.dataBinhLuan = this.quanLyBinhLuanDomain.listBinhLuan;
-                this.dataKhachHang = this.quanLyKhachHangDomain.listKhachHang;
+                this.dataBinhLuan = this.quanLyCommentBus.listBinhLuan;
+                this.dataKhachHang = this.quanLyKhachHangBus.listKhachHang;
                 this.LoadBinhLuanCallback();
 
                 /* QUAN LY COMMENT */
                 this.tabControl.TabPages.Insert(1, this.tabPageComment);
             }
-            else if (temp.role == Constants.USERTYPE_ADVERTISER)
+            else if (temp.role == DTO.Helper.Constants.USERTYPE_ADVERTISER)
             {
 
-            }else if (temp.role == Constants.USERTYPE_SHIPPER)
+            }else if (temp.role == DTO.Helper.Constants.USERTYPE_SHIPPER)
             {
 
-            }else if (temp.role == Constants.USERTYPE_TREASURER)
+            }else if (temp.role == DTO.Helper.Constants.USERTYPE_TREASURER)
             {
 
             }else
@@ -208,7 +208,7 @@ namespace QuanLyBanHang
         {
             // Logout information
             this.btnLogin.Text = "Login";
-            this.LoginStatus = Constants.LOGINSTAT_NONE;
+            this.LoginStatus = DTO.Helper.Constants.LOGINSTAT_NONE;
             this.currentUser = null;
 
             // Clear tab
@@ -261,15 +261,15 @@ namespace QuanLyBanHang
             {
                 ListViewItem tempItem = new ListViewItem(this.dataBinhLuan[i].ID.ToString());
                 ItemDTO item = this.quanLySanPhamBUS.GetItemByID(this.conn, dataBinhLuan[i].productID);
-                Models.Customer customer = quanLyKhachHangDomain.GetCustomerByID(repository, dataBinhLuan[i].customerID);
+                CustomerDTO customer = quanLyKhachHangBus.loadKhachHangByID(conn, dataBinhLuan[i].customerID);
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, item.name));
                 tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, customer.name));
-                string status = MyEnum.EnumHelper.StringValueOf((MyEnum.MyEnum.TypeComment)this.dataBinhLuan[i].status);
-                if(this.dataBinhLuan[i].handle_type == 1 && currentUser.role == Constants.USERTYPE_MANAGER)
+                string status = DTO.Helper.EnumHelper.StringValueOf((DTO.Helper.MyEnum.TypeComment)this.dataBinhLuan[i].status);
+                if(this.dataBinhLuan[i].handle_type == 1 && currentUser.role == DTO.Helper.Constants.USERTYPE_MANAGER)
                 {
                     status += " (Đã cộng điểm)";
                 }
-                else if(this.dataBinhLuan[i].handle_type == 2 && currentUser.role == Constants.USERTYPE_MANAGER)
+                else if(this.dataBinhLuan[i].handle_type == 2 && currentUser.role == DTO.Helper.Constants.USERTYPE_MANAGER)
                 {
                     status += " (Đã xóa)";
                 }
@@ -342,7 +342,7 @@ namespace QuanLyBanHang
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             Views.LoginForm loginForm = new Views.LoginForm(this);
-            if (this.LoginStatus == Constants.LOGINSTAT_NONE)
+            if (this.LoginStatus == DTO.Helper.Constants.LOGINSTAT_NONE)
             {
                 loginForm.StartPosition = FormStartPosition.CenterParent;
                 loginForm.ShowDialog();

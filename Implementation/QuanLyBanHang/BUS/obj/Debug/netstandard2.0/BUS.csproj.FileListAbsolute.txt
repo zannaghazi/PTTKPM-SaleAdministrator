@@ -36,3 +36,41 @@ G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTK
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\Accessibility.xml
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Deployment.xml
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Runtime.Serialization.Formatters.Soap.xml
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\BUS.deps.json
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\BUS.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\BUS.pdb
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\DAO.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\DTO.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Windows.Forms.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\MySql.Data.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Security.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Configuration.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\Accessibility.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Deployment.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Runtime.Serialization.Formatters.Soap.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\Google.Protobuf.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\Zstandard.Net.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\K4os.Compression.LZ4.Streams.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\BouncyCastle.Crypto.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\Ubiety.Dns.Core.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\Renci.SshNet.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Buffers.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\K4os.Compression.LZ4.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\K4os.Hash.xxHash.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\DAO.pdb
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\DTO.pdb
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Windows.Forms.xml
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\MySql.Data.xml
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Security.xml
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Configuration.xml
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\Accessibility.xml
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Deployment.xml
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\bin\Debug\netstandard2.0\System.Runtime.Serialization.Formatters.Soap.xml
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\obj\Debug\netstandard2.0\BUS.csprojAssemblyReference.cache
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\obj\Debug\netstandard2.0\BUS.AssemblyInfoInputs.cache
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\obj\Debug\netstandard2.0\BUS.AssemblyInfo.cs
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\obj\Debug\netstandard2.0\BUS.csproj.CoreCompileInputs.cache
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\obj\Debug\netstandard2.0\BUS.csproj.CopyComplete
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\obj\Debug\netstandard2.0\BUS.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\BUS\obj\Debug\netstandard2.0\BUS.pdb

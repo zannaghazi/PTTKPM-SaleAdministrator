@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyBanHang.MyEnum
+namespace DTO.Helper
 {
     /// <summary>
     /// Enum storage

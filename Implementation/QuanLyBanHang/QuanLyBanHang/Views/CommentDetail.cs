@@ -20,7 +20,8 @@ namespace QuanLyBanHang.Views
         private InitPage parent = new InitPage();
         private int itemIndex = -1;
         private int statusBefore = -1;
-        Customer currentCustomer = null;
+        CustomerDTO currentCustomer = null;
+        private CommentDTO comment = null;
 
         /// <summary>
         /// Default constructor
@@ -39,10 +40,11 @@ namespace QuanLyBanHang.Views
         /// <param name="customer">person comment</param>
         /// <param name="item">product comment</param>
         /// <param name="parent">parent layout</param>
-        public CommentDetail(int index, Models.Comment comment, UserDTO currentUser, InitPage parent, Connection conn, Repository.Repository repository)
+        public CommentDetail(int index, CommentDTO comment, UserDTO currentUser, InitPage parent, Connection conn, Repository.Repository repository)
         {
             ItemDTO item = new QuanLySanPhamBUS().GetItemByID(conn, comment.productID);
-            Models.Customer customer = new QuanLyKhachHangDomain().GetCustomerByID(repository, comment.customerID);
+            this.comment = comment;
+            CustomerDTO customer = new QuanLyKhachHangBUS().loadKhachHangByID(conn, comment.customerID);
             this.parent = parent;
             this.itemIndex = index;
             this.InitializeComponent();
@@ -51,12 +53,19 @@ namespace QuanLyBanHang.Views
             this.txtCustomerName.Text = customer.name;
             this.textBoxEmail.Text = customer.email;
             this.textBoxAddress.Text = customer.address;
-            this.cbStatus.Text = MyEnum.EnumHelper.StringValueOf((MyEnum.MyEnum.TypeComment)comment.status);
+            this.cbStatus.Text = DTO.Helper.EnumHelper.StringValueOf((DTO.Helper.MyEnum.TypeComment)comment.status);
             this.txtComment.Text = comment.detail;
             statusBefore = comment.status;
             currentCustomer = customer;
+            verifyButton();   
+        }
 
-            if (currentUser.role == Constants.USERTYPE_MANAGER)
+        /// <summary>
+        /// verify Button
+        /// </summary>
+       public void verifyButton()
+        {
+            if (this.parent.currentUser.role == DTO.Helper.Constants.USERTYPE_MANAGER)
             {
                 this.btnScore.Visible = true;
                 this.btnDelete.Visible = true;
@@ -72,7 +81,7 @@ namespace QuanLyBanHang.Views
                 this.btnDelete.Visible = false;
             }
 
-            if(comment.status > 0)
+            if (comment.status > 0)
             {
                 this.cbStatus.Enabled = false;
             }
@@ -93,8 +102,8 @@ namespace QuanLyBanHang.Views
         {
             string status = this.cbStatus.Text;
             int id = Int32.Parse(this.txtID.Text);
-            this.parent.quanLyBinhLuanDomain.UpdateBinhluan(this.parent.repository, (int)MyEnum.EnumHelper.GetValueFromDescription<MyEnum.MyEnum.TypeComment>(status),id, this.parent.currentUser.role);
-            this.parent.dataBinhLuan = this.parent.quanLyBinhLuanDomain.listBinhLuan;
+            this.parent.quanLyCommentBus.UpdateStatus(this.parent.conn, this.comment, (int)DTO.Helper.EnumHelper.GetValueFromDescription<DTO.Helper.MyEnum.TypeComment>(status), this.parent.currentUser.role);
+            this.parent.dataBinhLuan = this.parent.quanLyCommentBus.listBinhLuan;
             this.parent.LoadBinhLuanCallback();
             this.Close();
         }
@@ -102,7 +111,7 @@ namespace QuanLyBanHang.Views
         private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             string status = this.cbStatus.Text;
-            int value = (int)MyEnum.EnumHelper.GetValueFromDescription<MyEnum.MyEnum.TypeComment>(status);
+            int value = (int)DTO.Helper.EnumHelper.GetValueFromDescription< DTO.Helper.MyEnum.TypeComment>(status);
             if (value != statusBefore && value != 0)
             {
                 this.buttonConfirm.Enabled = true;
@@ -115,9 +124,19 @@ namespace QuanLyBanHang.Views
 
         private void btnScore_Click(object sender, EventArgs e)
         {
-            int id = Int32.Parse(this.txtID.Text);
-            this.parent.quanLyKhachHangDomain.tangDiem(this.parent.repository, currentCustomer.ID);
-            this.parent.quanLyBinhLuanDomain.handleMark(this.parent.repository, 1, id, this.parent.currentUser.role);
+            this.parent.quanLyKhachHangBus.tangDiem(this.parent.conn, currentCustomer.ID);
+            this.parent.quanLyCommentBus.handleMark(this.parent.conn, this.comment, 1, this.parent.currentUser.role);
+            verifyButton();
+            this.parent.LoadBinhLuanCallback();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            this.parent.quanLyCommentBus.XoaBinhLuan(this.parent.conn, this.comment);
+            this.parent.quanLyCommentBus.handleMark(this.parent.conn, this.comment, 2, this.parent.currentUser.role);
+            this.parent.quanLyKhachHangBus.banNguoiDung(this.parent.conn, currentCustomer.ID);
+            verifyButton();
+            this.parent.LoadBinhLuanCallback();
         }
     }
 }

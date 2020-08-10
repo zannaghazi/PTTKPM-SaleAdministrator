@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyBanHang
+namespace DTO.Helper
 {
     public class Constants
     {

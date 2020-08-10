@@ -49,7 +49,7 @@ namespace QuanLyBanHang.Views
             this.txtMinimum.Text = item.minimum.ToString();
             this.txtProvider.Text = item.provider;
 
-            if (user.role == Constants.USERTYPE_MANAGER)
+            if (user.role == DTO.Helper.Constants.USERTYPE_MANAGER)
             {
                 this.btnConfirm.Visible = true;
                 this.txtAmount.Enabled = true;

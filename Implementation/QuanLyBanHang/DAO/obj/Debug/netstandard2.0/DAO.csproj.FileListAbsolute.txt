@@ -22,3 +22,27 @@ G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTK
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\obj\Debug\netstandard2.0\DAO.csproj.CopyComplete
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\obj\Debug\netstandard2.0\DAO.dll
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\obj\Debug\netstandard2.0\DAO.pdb
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\DAO.deps.json
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\DAO.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\DAO.pdb
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\DTO.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\MySql.Data.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\Google.Protobuf.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\Zstandard.Net.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\K4os.Compression.LZ4.Streams.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\BouncyCastle.Crypto.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\Ubiety.Dns.Core.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\Renci.SshNet.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\System.Buffers.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\K4os.Compression.LZ4.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\K4os.Hash.xxHash.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\DTO.pdb
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\bin\Debug\netstandard2.0\MySql.Data.xml
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\obj\Debug\netstandard2.0\DAO.csprojAssemblyReference.cache
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\obj\Debug\netstandard2.0\DAO.AssemblyInfoInputs.cache
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\obj\Debug\netstandard2.0\DAO.AssemblyInfo.cs
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\obj\Debug\netstandard2.0\DAO.csproj.CoreCompileInputs.cache
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\obj\Debug\netstandard2.0\DAO.csproj.CopyComplete
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\obj\Debug\netstandard2.0\DAO.dll
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\DAO\obj\Debug\netstandard2.0\DAO.pdb

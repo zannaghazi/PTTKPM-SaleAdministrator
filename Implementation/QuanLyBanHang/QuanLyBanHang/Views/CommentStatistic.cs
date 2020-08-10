@@ -10,30 +10,39 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO;
+using BUS;
+using DAO;
 
 namespace QuanLyBanHang.Views
 {
     public partial class CommentStatistic : Form
     {
-        Repository.Repository repository;
-        public Models.CommentStatistic commentStatistic;
+        //Connection
+        public Connection conn;
+        public CommentStatisticDTO commentStatistic;
         public string startDate;
         public string endDate;
+
+        public QuanLyCommentBus quanLyCommentBus = new QuanLyCommentBus();
+
+
 
         /// <summary>
         /// Default constructor
         /// </summary>
         public CommentStatistic(Repository.Repository repository)
         {
-            this.repository = repository;
+            this.conn = new Connection();
             DateTime serverTime = DateTime.Now;
             string startTime = serverTime.ToString("yyyy-MM-dd") + " 00:00:00";
             string endTime = serverTime.AddDays(1).ToString("yyyy-MM-dd") + " 00:00:00";
             this.startDate = startTime;
             this.endDate = endTime;
+            quanLyCommentBus.LoadBinhLuanInPeriod(conn, startTime, endTime);
             this.InitializeComponent();
-            List<Comment> listComments = new QuanLyBinhLuanDomain().LoadBinhLuanInPeriod(repository, startTime, endTime);
-            this.commentStatistic = new Models.CommentStatistic(listComments);
+            List<CommentDTO> listComments = quanLyCommentBus.listBinhLuan;
+            this.commentStatistic = new CommentStatisticDTO(listComments);
 
             handleData();
         }
@@ -44,16 +53,16 @@ namespace QuanLyBanHang.Views
         /// <param name="commentStatistic">Data from comment Statistic</param>
         public void handleData()
         {
-            this.pbGood.Value = this.commentStatistic.countGoodComment;
             this.pbGood.Maximum = this.commentStatistic.countTotal;
-            this.pbBad.Value = this.commentStatistic.countBadComment;
+            this.pbGood.Value = this.commentStatistic.countGoodComment;
             this.pbBad.Maximum = this.commentStatistic.countTotal;
-            this.pbClassifed.Value = this.commentStatistic.countClassified;
+            this.pbBad.Value = this.commentStatistic.countBadComment;
             this.pbClassifed.Maximum = this.commentStatistic.countTotal;
-            this.pbNone.Value = this.commentStatistic.countNonClassify;
+            this.pbClassifed.Value = this.commentStatistic.countClassified;
             this.pbNone.Maximum = this.commentStatistic.countTotal;
-            this.pbNormal.Value = this.commentStatistic.countNormalComment;
+            this.pbNone.Value = this.commentStatistic.countNonClassify;
             this.pbNormal.Maximum = this.commentStatistic.countTotal;
+            this.pbNormal.Value = this.commentStatistic.countNormalComment;
 
             this.labelValueGood.Text = this.commentStatistic.countGoodComment + "/" + this.commentStatistic.countTotal;
             this.lableValueBad.Text = this.commentStatistic.countBadComment + "/" + this.commentStatistic.countTotal;
@@ -84,8 +93,9 @@ namespace QuanLyBanHang.Views
             string startTime = startDay.ToString("yyyy-MM-dd") + " 00:00:00";
             if(!this.startDate.Equals(startTime))
             {
-                List<Comment> listComments = new QuanLyBinhLuanDomain().LoadBinhLuanInPeriod(this.repository, startTime, this.endDate);
-                this.commentStatistic = new Models.CommentStatistic(listComments);
+                quanLyCommentBus.LoadBinhLuanInPeriod(this.conn, startTime, this.endDate);
+                List<CommentDTO> listComments = quanLyCommentBus.listBinhLuan;
+                this.commentStatistic = new CommentStatisticDTO(listComments);
                 this.startDate = startTime;
                 handleData();
             }
@@ -97,12 +107,14 @@ namespace QuanLyBanHang.Views
             string endTime = endDay.AddDays(1).ToString("yyyy-MM-dd") + " 00:00:00";
             if (!this.endDate.Equals(endTime))
             {
-                List<Comment> listComments = new QuanLyBinhLuanDomain().LoadBinhLuanInPeriod(this.repository, this.startDate, endTime);
-                this.commentStatistic = new Models.CommentStatistic(listComments);
+                quanLyCommentBus.LoadBinhLuanInPeriod(this.conn, this.startDate, endTime);
+                List<CommentDTO> listComments = quanLyCommentBus.listBinhLuan;
+                this.commentStatistic = new CommentStatisticDTO(listComments);
                 this.endDate = endTime;
 
                 handleData();
             }
         }
+
     }
 }
