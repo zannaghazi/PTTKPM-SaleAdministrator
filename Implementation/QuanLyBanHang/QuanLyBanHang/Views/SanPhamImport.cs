@@ -37,7 +37,7 @@ namespace QuanLyBanHang.Views
             this.listSanPham.Columns[2].Width = listSPSize * 3 / 8;
             this.listSanPham.Columns[3].Width = listSPSize * 2 / 8;
 
-            this.data = this.parent.quanLySanPhamDomain.LoadApprovedImport(this.parent.repository);
+            this.data = this.parent.quanLySanPhamBUS.LoadApprovedImport(this.parent.conn);
 
             for (int i = 0; i < this.data.Count; i++)
             {

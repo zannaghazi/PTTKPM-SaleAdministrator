@@ -214,19 +214,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hoang IT\\.nuget\\packages\\": {}
+    "C:\\Users\\zanna\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\BUS\\BUS.csproj",
+      "projectUniqueName": "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\BUS\\BUS.csproj",
       "projectName": "BUS",
-      "projectPath": "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\BUS\\BUS.csproj",
-      "packagesPath": "C:\\Users\\Hoang IT\\.nuget\\packages\\",
-      "outputPath": "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\BUS\\obj\\",
+      "projectPath": "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\BUS\\BUS.csproj",
+      "packagesPath": "C:\\Users\\zanna\\.nuget\\packages\\",
+      "outputPath": "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\BUS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Hoang IT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\zanna\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -239,8 +239,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DAO\\DAO.csproj": {
-              "projectPath": "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DAO\\DAO.csproj"
+            "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DAO\\DAO.csproj": {
+              "projectPath": "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DAO\\DAO.csproj"
             }
           }
         }
@@ -271,7 +271,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

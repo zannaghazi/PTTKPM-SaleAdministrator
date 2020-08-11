@@ -41,7 +41,7 @@ namespace QuanLyBanHang.Views
             this.parent = parent;
             this.selectedIndex = itemOrder;
             this.mode = mode;
-            this.data = parent.quanLySanPhamDomain.GetLowAmountItem(parent.repository);
+            this.data = parent.quanLySanPhamBUS.GetLowAmountItem(parent.quanLySanPhamBUS.itemDAO, parent.conn);
             this.InitFormSetting();
             this.LoadData();
         }

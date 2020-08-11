@@ -151,51 +151,24 @@ namespace BUS
             }
         }
 
-        //    /// <summary>
-        //    /// Get all Item that Amount lower than Minimum
-        //    /// </summary>
-        //    /// <returns></returns>
-        //    public List<Models.Item> GetLowAmountItem(Repository.Repository repository)
-        //    {
-        //        List<Models.Item> list = new List<Models.Item>();
+        /// <summary>
+        /// Get all Item that Amount lower than Minimum
+        /// </summary>
+        /// <returns></returns>
+        public List<ItemDTO> GetLowAmountItem(ItemDAO dao, Connection conn)
+        {
+            List<ItemDTO> list = dao.getLowAmountItem(conn);
 
-        //        string queryString = "select* from Item where isDeleted = false and isRequestImport = false";
-        //        repository.cmd.CommandText = queryString;
-
-        //        using (DbDataReader reader = repository.cmd.ExecuteReader())
-        //        {
-        //            if (!reader.HasRows)
-        //            {
-        //                MessageBox.Show(
-        //                    "Data chưa có dữ liệu",
-        //                    "Lỗi",
-        //                    MessageBoxButtons.OK,
-        //                    MessageBoxIcon.Error);
-        //                return new List<Models.Item>();
-        //            }
-        //            else
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    Models.Item temp = new Models.Item(
-        //                        reader.GetInt32(0),
-        //                        reader.GetString(1),
-        //                        reader.GetString(2),
-        //                        reader.GetInt64(3),
-        //                        reader.GetInt64(4),
-        //                        reader.GetString(5),
-        //                        reader.GetBoolean(6));
-        //                    if (temp.minimum >= temp.amount)
-        //                    {
-        //                        list.Add(temp);
-        //                    }
-        //                }
-
-        //            }
-        //        }
-
-        //        return list;
-        //    }
+            if (list.Count == 0)
+            {
+                MessageBox.Show(
+                    "Data chưa có dữ liệu",
+                    "Lỗi",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+            }
+            return list;
+        }
 
         /// <summary>
         /// Add SanPham's Import Order to DB
@@ -216,49 +189,24 @@ namespace BUS
             }
         }
 
-        //    /*  NHAP HANG */
-        //    public List<Models.ItemOrder> LoadApprovedImport(Repository.Repository repository)
-        //    {
-        //        List<Models.ItemOrder> temp = new List<Models.ItemOrder>();
-        //        string queryString = "select* from ItemOrder where isApproved = true and isDeleted = false";
-        //        repository.cmd.CommandText = queryString;
-
-        //        using (DbDataReader reader = repository.cmd.ExecuteReader())
-        //        {
-        //            if (!reader.HasRows)
-        //            {
-        //                return new List<Models.ItemOrder>();
-        //            }
-        //            else
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    Models.ItemOrder data = new Models.ItemOrder(
-        //                        reader.GetInt32(0),
-        //                        reader.GetDateTime(1),
-        //                        reader.GetString(2),
-        //                        reader.GetInt32(3),
-        //                        reader.GetString(4),
-        //                        reader.GetBoolean(5));
-        //                    temp.Add(data);
-        //                }
-
-        //            }
-        //        }
-        //        for (int i = 0; i < this.listSPOrder.Count; i++)
-        //        {
-        //            string[] listSPID = temp[i].listItemID.Trim().Split(' ');
-        //            List<Models.Item> listOrderItem = new List<Models.Item>();
-        //            for (int j = 0; j < listSPID.Length; j++)
-        //            {
-        //                if (this.GetItemByID(repository, Convert.ToInt32(listSPID[j])).ID != -1)
-        //                {
-        //                    listOrderItem.Add(this.GetItemByID(repository, Convert.ToInt32(listSPID[j])));
-        //                }
-        //            }
-        //            temp[i].listSP = listOrderItem;
-        //        }
-        //        return temp;
-        //    }
+        /*  NHAP HANG */
+        public List<ItemOrderDTO> LoadApprovedImport(Connection conn)
+        {
+            List<ItemOrderDTO> temp = this.itemOrderDAO.LoadApprovedImport(conn);
+            for (int i = 0; i < this.listSPOrder.Count; i++)
+            {
+                string[] listSPID = temp[i].listItemID.Trim().Split(' ');
+                List<ItemDTO> listOrderItem = new List<ItemDTO>();
+                for (int j = 0; j < listSPID.Length; j++)
+                {
+                    if (this.GetItemByID(conn, Convert.ToInt32(listSPID[j])).ID != -1)
+                    {
+                        listOrderItem.Add(this.GetItemByID(conn, Convert.ToInt32(listSPID[j])));
+                    }
+                }
+                temp[i].listSP = listOrderItem;
+            }
+            return temp;
+        }
     }
 }

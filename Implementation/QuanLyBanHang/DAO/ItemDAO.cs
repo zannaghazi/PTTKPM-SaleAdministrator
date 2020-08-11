@@ -161,5 +161,40 @@ namespace DAO
             }
             return true;
         }
+
+        public List<ItemDTO> getLowAmountItem(Connection conn)
+        {
+            List<ItemDTO> list = new List<ItemDTO>();
+            string queryString = "select* from Item where isDeleted = false and isRequestImport = false";
+            conn.cmd.CommandText = queryString;
+
+            using (DbDataReader reader = conn.cmd.ExecuteReader())
+            {
+                if (!reader.HasRows)
+                {
+                    return new List<ItemDTO>();
+                }
+                else
+                {
+                    while (reader.Read())
+                    {
+                        ItemDTO temp = new ItemDTO(
+                            reader.GetInt32(0),
+                            reader.GetString(1),
+                            reader.GetString(2),
+                            reader.GetInt64(3),
+                            reader.GetInt64(4),
+                            reader.GetString(5),
+                            reader.GetBoolean(6));
+                        if (temp.minimum >= temp.amount)
+                        {
+                            list.Add(temp);
+                        }
+                    }
+
+                }
+            }
+            return list;
+        }
     }
 }

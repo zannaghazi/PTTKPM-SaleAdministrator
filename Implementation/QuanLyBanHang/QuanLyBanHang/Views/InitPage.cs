@@ -34,8 +34,6 @@ namespace QuanLyBanHang
         private int selectedIndex = -1;
         public int selectedBillIndex = -1;
         private int selectedCommentIndex = -1;
-        // Initial Domains
-        public Domains.QuanLySanPhamDomain quanLySanPhamDomain = new Domains.QuanLySanPhamDomain();
 
         // Repository
         public Repository.Repository repository = new Repository.Repository();
@@ -380,6 +378,7 @@ namespace QuanLyBanHang
             int index = this.listSanPham.FocusedItem.Index;
             if (index == this.selectedIndex)
             {
+                this.selectedIndex = -1;
                 return;
             }
             this.selectedIndex = index;

@@ -1,5 +1,4 @@
-﻿using QuanLyBanHang.Domains;
-using QuanLyBanHang.Models;
+﻿using QuanLyBanHang.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

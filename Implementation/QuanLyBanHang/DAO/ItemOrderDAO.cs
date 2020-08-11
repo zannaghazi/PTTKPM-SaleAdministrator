@@ -142,5 +142,36 @@ namespace DAO
             }
             return temp;
         }
+
+        public List<ItemOrderDTO>  LoadApprovedImport(Connection conn)
+        {
+            List<ItemOrderDTO> temp = new List<ItemOrderDTO>();
+            string queryString = "select* from ItemOrder where isApproved = true and isDeleted = false";
+            conn.cmd.CommandText = queryString;
+
+            using (DbDataReader reader = conn.cmd.ExecuteReader())
+            {
+                if (!reader.HasRows)
+                {
+                    return new List<ItemOrderDTO>();
+                }
+                else
+                {
+                    while (reader.Read())
+                    {
+                        ItemOrderDTO data = new ItemOrderDTO(
+                            reader.GetInt32(0),
+                            reader.GetDateTime(1),
+                            reader.GetString(2),
+                            reader.GetInt32(3),
+                            reader.GetString(4),
+                            reader.GetBoolean(5));
+                        temp.Add(data);
+                    }
+
+                }
+            }
+            return temp;
+        }
     }
 }

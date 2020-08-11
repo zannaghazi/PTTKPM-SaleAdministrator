@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "o7AWUGiFzQJ9hfdW8bRhlbk9idFtkn1iF3NaEMoD9eCqcQArH1F57Wn7vJk5FdIp9GI/ZJkyI7vkIXWAQOE2Wg==",
+  "dgSpecHash": "3MJkJ8TYOVaXNiTKqRvHlV6wjAWmCLzh8MkPoTw+U83K289eE6xsG4ehLaGZ05xznCm4/ZIW/grOYjPyBNDzdA==",
   "success": true,
-  "projectFilePath": "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DTO\\DTO.csproj",
+  "projectFilePath": "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DTO\\DTO.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Hoang IT\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\Hoang IT\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\zanna\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\zanna\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }
