@@ -25,7 +25,7 @@ namespace DTO
             countClassified = 0;
             countNonClassify = 0;
             countTotal = 0;
-            if (listComment.Count > 0)
+            //if (listComment != null && listComment.Count > 0)
             {
                 foreach (CommentDTO comment in listComment)
                 {

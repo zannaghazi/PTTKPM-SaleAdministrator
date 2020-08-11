@@ -11,6 +11,14 @@ namespace DTO
         public string detail;
         public string timeUpdate;
         public int handle_type;
+        public bool is_delete;
+
+        /// <summary>
+        /// default constructor
+        /// </summary>
+        public CommentDTO()
+        {
+        }
 
         /// <summary>
         /// Constructor
@@ -29,6 +37,7 @@ namespace DTO
             this.detail = detail;
             this.timeUpdate = updateTime;
             this.handle_type = handle_type;
+            this.is_delete = false;
         }
     }
 }
