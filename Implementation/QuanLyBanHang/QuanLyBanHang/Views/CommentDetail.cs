@@ -1,5 +1,4 @@
-﻿using QuanLyBanHang.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,7 +38,7 @@ namespace QuanLyBanHang.Views
         /// <param name="customer">person comment</param>
         /// <param name="item">product comment</param>
         /// <param name="parent">parent layout</param>
-        public CommentDetail(int index, CommentDTO comment, UserDTO currentUser, InitPage parent, Connection conn, Repository.Repository repository)
+        public CommentDetail(int index, CommentDTO comment, UserDTO currentUser, InitPage parent, Connection conn)
         {
             ItemDTO item = new QuanLySanPhamBUS().GetItemByID(conn, comment.productID);
             this.comment = comment;

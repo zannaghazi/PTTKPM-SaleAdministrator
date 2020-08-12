@@ -1,5 +1,4 @@
-﻿using QuanLyBanHang.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,7 +29,7 @@ namespace QuanLyBanHang.Views
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CommentStatistic(Repository.Repository repository)
+        public CommentStatistic()
         {
             this.conn = new Connection();
             DateTime serverTime = DateTime.Now;

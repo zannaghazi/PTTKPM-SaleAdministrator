@@ -58,7 +58,6 @@ E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHa
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CommentDetail.resources
 E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CommentDetail.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CommentStatistic.resources
-G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.SanPhamImport.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.exe.config
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\BUS.dll
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\DAO.dll
@@ -76,3 +75,5 @@ E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHa
 E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\DTO.pdb
 E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CommentStatistic.resources
 E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.SanPhamImport.resources
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.GuaranteeSanPham.resources
+G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.GuaranteeOrder.resources

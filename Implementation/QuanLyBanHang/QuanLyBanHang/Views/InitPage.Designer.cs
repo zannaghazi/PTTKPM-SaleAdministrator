@@ -149,7 +149,7 @@
             this.btnSPImport.Name = "btnSPImport";
             this.btnSPImport.Size = new System.Drawing.Size(246, 63);
             this.btnSPImport.TabIndex = 3;
-            this.btnSPImport.Text = "Nhập hàng";
+            this.btnSPImport.Text = "Ghi nhận trả hàng";
             this.btnSPImport.UseVisualStyleBackColor = true;
             this.btnSPImport.Click += new System.EventHandler(this.BtnSPImport_Click);
             // 
@@ -355,6 +355,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "InitPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.tabControl.ResumeLayout(false);
             this.tabSanPham.ResumeLayout(false);

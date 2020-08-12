@@ -1,7 +1,6 @@
 ﻿using BUS;
 using DAO;
 using DTO;
-using QuanLyBanHang.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,9 +34,6 @@ namespace QuanLyBanHang
         public int selectedBillIndex = -1;
         private int selectedCommentIndex = -1;
 
-        // Repository
-        public Repository.Repository repository = new Repository.Repository();
-
         //BUS
         public LoginBUS loginBUS = new LoginBUS();
         public QuanLySanPhamBUS quanLySanPhamBUS = new QuanLySanPhamBUS();
@@ -55,7 +51,6 @@ namespace QuanLyBanHang
         public InitPage()
         {
             this.InitializeComponent();
-            this.repository.InitDBConnection();
             this.InitFormSetting();
             this.InitVariable();
         }
@@ -424,6 +419,7 @@ namespace QuanLyBanHang
             int index = this.listSPBill.FocusedItem.Index;
             if (index == this.selectedBillIndex)
             {
+                this.selectedBillIndex = -1;
                 return;
             }
             this.selectedBillIndex = index;
@@ -446,11 +442,12 @@ namespace QuanLyBanHang
             int index = this.listComment.FocusedItem.Index;
             if (index == this.selectedCommentIndex)
             {
+                this.selectedCommentIndex = -1;
                 return;
             }
             this.selectedCommentIndex = index;
 
-            Views.CommentDetail commentDetailForm = new Views.CommentDetail(index, this.dataBinhLuan[index], this.currentUser, this, this.conn, this.repository)
+            Views.CommentDetail commentDetailForm = new Views.CommentDetail(index, this.dataBinhLuan[index], this.currentUser, this, this.conn)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
@@ -464,7 +461,7 @@ namespace QuanLyBanHang
         /// <param name="e"></param>
         private void BtnCommentViewStatistic_Click(object sender, EventArgs e)
         {
-            Views.CommentStatistic commentStatistic = new Views.CommentStatistic(this.repository)
+            Views.CommentStatistic commentStatistic = new Views.CommentStatistic()
             {
                 StartPosition = FormStartPosition.CenterParent
             };
@@ -473,7 +470,11 @@ namespace QuanLyBanHang
 
         private void BtnSPBillBack_Click(object sender, EventArgs e)
         {
-
+            Views.GuaranteeOrder guaranteeOrder = new Views.GuaranteeOrder(this)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            guaranteeOrder.ShowDialog();
         }
 
         /// <summary>
@@ -483,11 +484,11 @@ namespace QuanLyBanHang
         /// <param name="e"></param>
         private void BtnSPImport_Click(object sender, EventArgs e)
         {
-            Views.SanPhamImport sanPhamImport = new Views.SanPhamImport(this)
+            Views.GuaranteeSanPham baohanh = new Views.GuaranteeSanPham(this)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
-            sanPhamImport.ShowDialog();
+            baohanh.ShowDialog();
         }
     }
 }

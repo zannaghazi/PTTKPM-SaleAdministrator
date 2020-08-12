@@ -1,4 +1,4 @@
-drop database QuanLyBanHang;
+drop database quanlybanhang;
 create database QuanLyBanHang;
 use QuanLyBanHang;
 
@@ -59,6 +59,18 @@ create table ItemOrder
 );
 insert into ItemOrder(createddate, owner, type, listItem, isApproved)
 values('2020-05-11', 'Tổng giám đốc', 0, '1 2 3', false);
+
+create table GuaranteeItem
+(
+	id int unsigned auto_increment primary key,
+    createdUser int,
+    itemId int,
+    provider varchar(100),
+    status text,
+    reason text,
+    isApproved boolean,
+    isDeleted boolean default false
+);
 
 CREATE TABLE IF NOT EXISTS `comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -148,3 +160,4 @@ INSERT INTO `customer` (`id`, `name`, `email`, `address`, `point`, `is_banned`) 
 (22, 'Hồ Ngọc Long', 'hnlong@gmail.com', '261/1A Đồng Đen, Phường 14, Tân Bình, TP HCM', 0, 0),
 (23, 'Phan Dương Phi', 'pdphi@gmail.com', ' 96 Nguyễn Thượng Hiền, Phường 5, Gò Vấp, TP HCM', 0, 0);
 COMMIT;
+

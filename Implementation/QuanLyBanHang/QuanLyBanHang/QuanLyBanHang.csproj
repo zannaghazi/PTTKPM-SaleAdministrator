@@ -50,10 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Item.cs" />
-    <Compile Include="Models\ItemOrder.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Views\CommentDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +74,18 @@
     <Compile Include="Views\CreateSanPhamImportOrder.Designer.cs">
       <DependentUpon>CreateSanPhamImportOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\GuaranteeOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GuaranteeOrder.Designer.cs">
+      <DependentUpon>GuaranteeOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GuaranteeSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GuaranteeSanPham.Designer.cs">
+      <DependentUpon>GuaranteeSanPham.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\InitPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,12 +106,6 @@
     <Compile Include="Views\SanPhamDetail.Designer.cs">
       <DependentUpon>SanPhamDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\SanPhamImport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\SanPhamImport.Designer.cs">
-      <DependentUpon>SanPhamImport.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Views\CommentDetail.resx">
       <DependentUpon>CommentDetail.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +117,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CreateSanPhamImportOrder.resx">
       <DependentUpon>CreateSanPhamImportOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GuaranteeOrder.resx">
+      <DependentUpon>GuaranteeOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GuaranteeSanPham.resx">
+      <DependentUpon>GuaranteeSanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\InitPage.resx">
       <DependentUpon>InitPage.cs</DependentUpon>
@@ -133,9 +141,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SanPhamDetail.resx">
       <DependentUpon>SanPhamDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\SanPhamImport.resx">
-      <DependentUpon>SanPhamImport.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

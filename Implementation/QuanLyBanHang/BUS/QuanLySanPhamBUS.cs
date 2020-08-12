@@ -12,6 +12,7 @@ namespace BUS
     {
         public ItemDAO itemDAO;
         public ItemOrderDAO itemOrderDAO;
+        public GuaranteeItemDAO guaranteeItemDAO;
         public List<ItemDTO> listSanPham = new List<ItemDTO>();
         public List<ItemOrderDTO> listSPOrder = new List<ItemOrderDTO>();
 
@@ -22,6 +23,7 @@ namespace BUS
         {
             itemDAO = new ItemDAO();
             itemOrderDAO = new ItemOrderDAO();
+            guaranteeItemDAO = new GuaranteeItemDAO();
         }
 
         /// <summary>
@@ -207,6 +209,22 @@ namespace BUS
                 temp[i].listSP = listOrderItem;
             }
             return temp;
+        }
+
+        public List<GuaranteeItemDTO> getListGuaranteeItemByProvider(Connection conn, string provider)
+        {
+            Console.WriteLine("BUS");
+            return this.guaranteeItemDAO.findItemByProvider(conn, provider);
+        }
+
+        public bool ApproveGuaranteeItem(Connection conn, int id)
+        {
+            return this.guaranteeItemDAO.ApproveGuaranteeItem(conn, id);
+        }
+
+        public bool DeleteGuaranteeItem(Connection conn, int id)
+        {
+            return this.guaranteeItemDAO.DeleteGuaranteeItem(conn, id);
         }
     }
 }
