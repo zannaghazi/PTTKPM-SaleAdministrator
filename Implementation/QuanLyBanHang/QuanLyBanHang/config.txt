@@ -1,1 +1,1 @@
-﻿Server=localhost;Database=QuanLySanPham;port=3306;User Id=root;password=1234
+﻿Server=localhost;Database=QuanLySanPham;port=3306;User Id=root;password=123456
