@@ -68,6 +68,12 @@
     <Compile Include="Views\CommentStatistic.Designer.cs">
       <DependentUpon>CommentStatistic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CreateDoiTac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CreateDoiTac.Designer.cs">
+      <DependentUpon>CreateDoiTac.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateSanPhamImportOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,17 +100,35 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\LichSuQC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LichSuQC.Designer.cs">
+      <DependentUpon>LichSuQC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\QuangCaoSDT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\QuangCaoSDT.Designer.cs">
+      <DependentUpon>QuangCaoSDT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SanPhamDetail.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\SanPhamDetail.Designer.cs">
       <DependentUpon>SanPhamDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaoQuangCao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TaoQuangCao.Designer.cs">
+      <DependentUpon>TaoQuangCao.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Views\CommentDetail.resx">
       <DependentUpon>CommentDetail.cs</DependentUpon>
@@ -114,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CommentStatistic.resx">
       <DependentUpon>CommentStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CreateDoiTac.resx">
+      <DependentUpon>CreateDoiTac.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CreateSanPhamImportOrder.resx">
       <DependentUpon>CreateSanPhamImportOrder.cs</DependentUpon>
@@ -136,11 +163,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\LichSuQC.resx">
+      <DependentUpon>LichSuQC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\QuangCaoSDT.resx">
+      <DependentUpon>QuangCaoSDT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\SanPhamDetail.resx">
       <DependentUpon>SanPhamDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TaoQuangCao.resx">
+      <DependentUpon>TaoQuangCao.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

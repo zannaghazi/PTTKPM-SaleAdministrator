@@ -29,16 +29,25 @@ namespace QuanLyBanHang
         public List<ItemDTO> dataSanPham = new List<ItemDTO>();
         public List<CommentDTO> dataBinhLuan = new List<CommentDTO>();
         public List<CustomerDTO> dataKhachHang = new List<CustomerDTO>();
+        public List<QuangCaoDTO> dataQuangCao = new List<QuangCaoDTO>();
+        public List<DoiTacDTO> dataDoiTac = new List<DoiTacDTO>();
+        public List<QCsdtDTO> dataQCsdt = new List<QCsdtDTO>();
+        public List<QCsdtDTO> selectQCsdt = new List<QCsdtDTO>();
         // Temporary variable
         private int selectedIndex = -1;
         public int selectedBillIndex = -1;
         private int selectedCommentIndex = -1;
+
+        public int selectedDoiTacIndex = -1;
+        public int selectedQuangCaoIndex = -1;
+        public int selectedQuangCaoSDTIndex = -1;
 
         //BUS
         public LoginBUS loginBUS = new LoginBUS();
         public QuanLySanPhamBUS quanLySanPhamBUS = new QuanLySanPhamBUS();
         public QuanLyCommentBus quanLyCommentBus = new QuanLyCommentBus();
         public QuanLyKhachHangBUS quanLyKhachHangBus = new QuanLyKhachHangBUS();
+        public QuanLyQuangCaoBUS quanLyQuangCaoBUS = new QuanLyQuangCaoBUS();
 
         //Connection
         public Connection conn;
@@ -78,6 +87,27 @@ namespace QuanLyBanHang
             this.listComment.Columns[2].Width = listCMTSize * 3 / 11;
             this.listComment.Columns[3].Width = listCMTSize * 2 / 11;
             this.listComment.Columns[4].Width = listCMTSize * 2 / 11;
+
+            //Fix column size for table of Comment
+            int listQCSize = this.listQuangCao.Width;
+            this.listQuangCao.Columns[0].Width = listQCSize / 11;
+            this.listQuangCao.Columns[1].Width = listQCSize * 3 / 11;
+            this.listQuangCao.Columns[2].Width = listQCSize * 5 / 11;
+
+            //Fix column size for table of Comment
+            int listDTSize = this.listDoiTac.Width;
+            this.listDoiTac.Columns[0].Width = listDTSize / 11;
+            this.listDoiTac.Columns[1].Width = listDTSize * 4 / 11;
+            this.listDoiTac.Columns[2].Width = listDTSize * 3 / 11;
+            this.listDoiTac.Columns[1].Width = listDTSize * 3 / 11;
+            this.listDoiTac.Columns[2].Width = listDTSize * 3 / 11;
+
+            //Fix column size for table of Comment
+            int listQCsdtSize = this.listQCsdt.Width;
+            this.listQCsdt.Columns[0].Width = listQCsdtSize * 4 / 11;
+            this.listQCsdt.Columns[1].Width = listQCsdtSize * 3 / 11;
+            this.listQCsdt.Columns[2].Width = listQCsdtSize * 3 / 11;
+
 
             // Backup tabPage data
             this.tabPageSanPham = this.tabSanPham;
@@ -149,7 +179,23 @@ namespace QuanLyBanHang
                 /* QUAN LY COMMENT */
                 this.tabControl.TabPages.Insert(1, this.tabPageComment);
 
-            }else if (temp.role == DTO.Helper.Constants.USERTYPE_SALE)
+                /* QUAN LY Quang Cao */
+                this.tabControl.TabPages.Insert(2, this.tabQuangCao);
+
+                this.quanLyQuangCaoBUS.LoadQuangCao(this.conn);
+                this.quanLyQuangCaoBUS.LoadDoiTac(this.conn);
+                this.quanLyQuangCaoBUS.LoadQCsdt(this.conn);
+
+                this.dataQuangCao = this.quanLyQuangCaoBUS.listQuangCao;
+                this.dataDoiTac = this.quanLyQuangCaoBUS.listDoiTac;
+                this.dataQCsdt = this.quanLyQuangCaoBUS.listQCsdt;
+
+                this.LoadQuangCaoCallback();
+                this.LoadDoiTacCallback();
+                this.LoadQCsdtCallback();
+
+            }
+            else if (temp.role == DTO.Helper.Constants.USERTYPE_SALE)
             {
                 /* QUAN LY SAN PHAM */
                 // Load available TabPage
@@ -173,6 +219,9 @@ namespace QuanLyBanHang
 
                 /* QUAN LY COMMENT */
                 this.tabControl.TabPages.Insert(1, this.tabPageComment);
+
+                /* QUAN LY COMMENT */
+                this.tabControl.TabPages.Insert(2, this.tabQuangCao);
             }
             else if (temp.role == DTO.Helper.Constants.USERTYPE_ADVERTISER)
             {
@@ -297,6 +346,69 @@ namespace QuanLyBanHang
                     tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.quanLySanPhamBUS.listSPOrder[i].owner));
                     this.listSPBill.Items.Add(tempItem);
                 }
+            }
+        }
+
+        public void LoadQuangCaoCallback()
+        {
+            // Remove all current data
+            this.listQuangCao.Items.Clear();
+
+            // Add data to list
+            for (int i = 0; i < this.dataQuangCao.Count; i++)
+            {
+                ListViewItem tempItem = new ListViewItem(this.dataQuangCao[i].ID.ToString());
+
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataQuangCao[i].TieuDe));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataQuangCao[i].NoiDung));
+       
+                if (this.dataQuangCao[i].isDeleted ==1)
+                {
+                    tempItem.BackColor = ColorTranslator.FromHtml("#f24444"); ;
+                }
+                this.listQuangCao.Items.Add(tempItem);
+            }
+        }
+
+        public void LoadDoiTacCallback()
+        {
+            this.listDoiTac.Items.Clear();
+
+            // Add data to list
+            for (int i = 0; i < this.dataDoiTac.Count; i++)
+            {
+                ListViewItem tempItem = new ListViewItem(this.dataDoiTac[i].ID.ToString());
+
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataDoiTac[i].Ten));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataDoiTac[i].NgayKyHD.ToString("dd/MM/yyyy")));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataDoiTac[i].NgayHetHanHD.ToString("dd/MM/yyyy")));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataDoiTac[i].ViTriDang));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataDoiTac[i].IDBaiQC.ToString()));
+                if (DateTime.Compare(this.dataDoiTac[i].NgayHetHanHD,DateTime.Now) <0)
+                {
+                    tempItem.BackColor = ColorTranslator.FromHtml("#f24444"); ;
+                }
+                this.listDoiTac.Items.Add(tempItem);
+            }
+        }
+
+        public void LoadQCsdtCallback()
+        {
+            this.listQCsdt.Items.Clear();
+
+            // Add data to list
+            for (int i = 0; i < this.dataQCsdt.Count; i++)
+            {
+                ListViewItem tempItem = new ListViewItem(this.dataQCsdt[i].name);
+
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataQCsdt[i].sdt));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataQCsdt[i].dateqc));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataQCsdt[i].IDBaiQC.ToString()));
+                if (this.dataQCsdt[i].dateqc == null)
+                {
+                    tempItem.BackColor = ColorTranslator.FromHtml("#f24444"); ;
+                }
+                this.listQCsdt.Items.Add(tempItem);
             }
         }
 
@@ -489,6 +601,103 @@ namespace QuanLyBanHang
                 StartPosition = FormStartPosition.CenterParent
             };
             baohanh.ShowDialog();
+        }
+
+
+        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Views.TaoQuangCao TaoQuangCao = new Views.TaoQuangCao(this)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            TaoQuangCao.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int IDBaiQC = Int16.Parse(this.textID.Text);
+            Views.CreateDoiTac CreateDoiTac = new Views.CreateDoiTac(this, IDBaiQC)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            CreateDoiTac.ShowDialog();
+        }
+
+        private void listDoiTac_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.listDoiTac.FocusedItem.Index;
+            if (index == this.selectedDoiTacIndex)
+            {
+                this.selectedDoiTacIndex = -1;
+                return;
+            }
+            this.selectedDoiTacIndex = index;
+            Views.CreateDoiTac detailForm = new Views.CreateDoiTac(index, this.dataDoiTac[index], this)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            detailForm.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Views.QuangCaoSDT QuangCaoSDT = new Views.QuangCaoSDT(this)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            QuangCaoSDT.ShowDialog();
+        }
+        public int IDBaiQC=-1;
+        private void listQuangCao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.listQuangCao.FocusedItem.Index;
+            if (index == this.selectedQuangCaoIndex)
+            {
+                this.selectedQuangCaoIndex = -1;
+                return;
+            }
+            this.selectedQuangCaoIndex = index;
+            this.IDBaiQC = this.dataQuangCao[index].ID;
+            this.textID.Text = this.dataQuangCao[index].ID.ToString();
+            this.textTieuDe.Text = this.dataQuangCao[index].TieuDe;
+        }
+
+
+        private void listQCsdt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.listQCsdt.FocusedItem.Index;
+            if (index == this.selectedQuangCaoSDTIndex)
+            {
+                this.selectedQuangCaoSDTIndex = -1;
+                return;
+            }
+            if (this.dataQCsdt[index].dateqc != null)
+            {
+                this.selectedQuangCaoSDTIndex = -1;
+                return;
+            }
+            this.selectedQuangCaoSDTIndex = index;
+            if (this.listQCsdt.Items[index].BackColor == ColorTranslator.FromHtml("#fff700"))
+            {
+                this.selectQCsdt.Remove(this.dataQCsdt[index]);
+                this.listQCsdt.Items[index].BackColor = ColorTranslator.FromHtml("#f24444");
+            }
+            else
+            {
+                this.selectQCsdt.Add(this.dataQCsdt[index]);
+                this.listQCsdt.Items[index].BackColor = ColorTranslator.FromHtml("#fff700");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Views.LichSuQC LichSuQC = new Views.LichSuQC(this)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            LichSuQC.ShowDialog();
         }
     }
 }
