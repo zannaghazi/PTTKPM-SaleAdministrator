@@ -33,6 +33,9 @@ namespace QuanLyBanHang
         public List<DoiTacDTO> dataDoiTac = new List<DoiTacDTO>();
         public List<QCsdtDTO> dataQCsdt = new List<QCsdtDTO>();
         public List<QCsdtDTO> selectQCsdt = new List<QCsdtDTO>();
+
+        public List<HoaDonDTO> dataHoaDon = new List<HoaDonDTO>();
+        
         // Temporary variable
         private int selectedIndex = -1;
         public int selectedBillIndex = -1;
@@ -42,13 +45,15 @@ namespace QuanLyBanHang
         public int selectedQuangCaoIndex = -1;
         public int selectedQuangCaoSDTIndex = -1;
 
+        public int selectedHoaDonIndex = -1;
+
         //BUS
         public LoginBUS loginBUS = new LoginBUS();
         public QuanLySanPhamBUS quanLySanPhamBUS = new QuanLySanPhamBUS();
         public QuanLyCommentBus quanLyCommentBus = new QuanLyCommentBus();
         public QuanLyKhachHangBUS quanLyKhachHangBus = new QuanLyKhachHangBUS();
         public QuanLyQuangCaoBUS quanLyQuangCaoBUS = new QuanLyQuangCaoBUS();
-
+        public QuanLyThanhToanBUS QuanLyThanhToanBUS = new QuanLyThanhToanBUS();
         //Connection
         public Connection conn;
 
@@ -194,6 +199,11 @@ namespace QuanLyBanHang
                 this.LoadDoiTacCallback();
                 this.LoadQCsdtCallback();
 
+                /* QUAN LY Thanh Toán */
+                this.tabControl.TabPages.Insert(3, this.tabThanhToan);
+                this.QuanLyThanhToanBUS.LoadHoaDon(this.conn);
+                this.dataHoaDon = this.QuanLyThanhToanBUS.listHoaDon;
+                this.LoadHoaDonCallback();
             }
             else if (temp.role == DTO.Helper.Constants.USERTYPE_SALE)
             {
@@ -411,6 +421,29 @@ namespace QuanLyBanHang
                 this.listQCsdt.Items.Add(tempItem);
             }
         }
+
+        public void LoadHoaDonCallback()
+        {
+            this.listHoaDon.Items.Clear();
+
+            // Add data to list
+            for (int i = 0; i < this.dataHoaDon.Count; i++)
+            {
+                ListViewItem tempItem = new ListViewItem(this.dataHoaDon[i].ID.ToString());
+
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataHoaDon[i].TenKhach));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataHoaDon[i].TenNV));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataHoaDon[i].Ngay.ToString("dd/MM/yyyy")));
+                tempItem.SubItems.Add(new ListViewItem.ListViewSubItem(tempItem, this.dataHoaDon[i].Gia));
+                if (this.dataHoaDon[i].TrangThai == 0)
+                {
+                    tempItem.BackColor = ColorTranslator.FromHtml("#f24444"); ;
+                }
+                this.listHoaDon.Items.Add(tempItem);
+            }
+        }
+
+        
 
         /// <summary>
         /// Handle event click Exit button
@@ -698,6 +731,35 @@ namespace QuanLyBanHang
                 StartPosition = FormStartPosition.CenterParent
             };
             LichSuQC.ShowDialog();
+        }
+
+        private void listHoaDon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.listHoaDon.FocusedItem.Index;
+            if (index == this.selectedHoaDonIndex)
+            {
+                this.selectedHoaDonIndex = -1;
+                return;
+            }
+            if (this.dataHoaDon[index].TrangThai == 1)
+            {
+                this.selectedHoaDonIndex = -1;
+                return;
+            }
+            this.selectedHoaDonIndex = index;
+            this.textBoxID.Text = this.dataHoaDon[index].ID.ToString();
+            this.textBoxTenKhach.Text = this.dataHoaDon[index].TenKhach;
+            this.textBoxTenNV.Text = this.dataHoaDon[index].TenNV;
+            this.textBoxNgay.Text = this.dataHoaDon[index].Ngay.ToString("dd/MM/yyyy");
+            this.textBoxGia.Text = this.dataHoaDon[index].Gia;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            this.QuanLyThanhToanBUS.EDITHoaDon(this.conn, Int16.Parse(this.textBoxID.Text) );
+            this.dataHoaDon = this.QuanLyThanhToanBUS.listHoaDon;
+            this.LoadHoaDonCallback();
         }
     }
 }

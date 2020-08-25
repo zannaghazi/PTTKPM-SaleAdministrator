@@ -65,6 +65,7 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.listDoiTac = new System.Windows.Forms.ListView();
@@ -73,6 +74,7 @@
             this.NgayKyHD = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NgayHH = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ViTri = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -83,14 +85,32 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabDatHang = new System.Windows.Forms.TabPage();
             this.tabThanhToan = new System.Windows.Forms.TabPage();
+            this.textBoxID = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.textBoxGia = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBoxNgay = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxTenNV = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBoxTenKhach = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.listHoaDon = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label7 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl.SuspendLayout();
             this.tabSanPham.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabComment.SuspendLayout();
             this.tabQuangCao.SuspendLayout();
+            this.tabThanhToan.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -437,6 +457,10 @@
             // 
             this.columnHeader9.Text = "Ngày Quảng Cáo";
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "IDBaiQC";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -498,6 +522,10 @@
             // ViTri
             // 
             this.ViTri.Text = "Vị Trí Đăng";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "IDBaiQC";
             // 
             // label2
             // 
@@ -581,6 +609,20 @@
             // 
             // tabThanhToan
             // 
+            this.tabThanhToan.Controls.Add(this.textBoxID);
+            this.tabThanhToan.Controls.Add(this.label13);
+            this.tabThanhToan.Controls.Add(this.button5);
+            this.tabThanhToan.Controls.Add(this.textBoxGia);
+            this.tabThanhToan.Controls.Add(this.label12);
+            this.tabThanhToan.Controls.Add(this.textBoxNgay);
+            this.tabThanhToan.Controls.Add(this.label11);
+            this.tabThanhToan.Controls.Add(this.textBoxTenNV);
+            this.tabThanhToan.Controls.Add(this.label10);
+            this.tabThanhToan.Controls.Add(this.textBoxTenKhach);
+            this.tabThanhToan.Controls.Add(this.label9);
+            this.tabThanhToan.Controls.Add(this.label8);
+            this.tabThanhToan.Controls.Add(this.listHoaDon);
+            this.tabThanhToan.Controls.Add(this.label7);
             this.tabThanhToan.Location = new System.Drawing.Point(4, 25);
             this.tabThanhToan.Margin = new System.Windows.Forms.Padding(4);
             this.tabThanhToan.Name = "tabThanhToan";
@@ -588,6 +630,171 @@
             this.tabThanhToan.TabIndex = 4;
             this.tabThanhToan.Text = "THANH TOAN";
             this.tabThanhToan.UseVisualStyleBackColor = true;
+            // 
+            // textBoxID
+            // 
+            this.textBoxID.Location = new System.Drawing.Point(959, 83);
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.Size = new System.Drawing.Size(359, 22);
+            this.textBoxID.TabIndex = 32;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(956, 53);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(23, 17);
+            this.label13.TabIndex = 31;
+            this.label13.Text = "ID";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(1140, 438);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(178, 67);
+            this.button5.TabIndex = 30;
+            this.button5.Text = "Thanh Toán";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // textBoxGia
+            // 
+            this.textBoxGia.Location = new System.Drawing.Point(959, 379);
+            this.textBoxGia.Name = "textBoxGia";
+            this.textBoxGia.Size = new System.Drawing.Size(359, 22);
+            this.textBoxGia.TabIndex = 29;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(956, 349);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(70, 17);
+            this.label12.TabIndex = 28;
+            this.label12.Text = "Giá Tiền";
+            // 
+            // textBoxNgay
+            // 
+            this.textBoxNgay.Location = new System.Drawing.Point(959, 299);
+            this.textBoxNgay.Name = "textBoxNgay";
+            this.textBoxNgay.Size = new System.Drawing.Size(359, 22);
+            this.textBoxNgay.TabIndex = 27;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(956, 269);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(78, 17);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "Ngày Bán";
+            // 
+            // textBoxTenNV
+            // 
+            this.textBoxTenNV.Location = new System.Drawing.Point(959, 225);
+            this.textBoxTenNV.Name = "textBoxTenNV";
+            this.textBoxTenNV.Size = new System.Drawing.Size(359, 22);
+            this.textBoxTenNV.TabIndex = 25;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(956, 195);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(116, 17);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Tên Nhân Viên";
+            // 
+            // textBoxTenKhach
+            // 
+            this.textBoxTenKhach.Location = new System.Drawing.Point(959, 154);
+            this.textBoxTenKhach.Name = "textBoxTenKhach";
+            this.textBoxTenKhach.Size = new System.Drawing.Size(359, 22);
+            this.textBoxTenKhach.TabIndex = 23;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(956, 124);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(129, 17);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "Tên Khách Hàng";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(956, 16);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(143, 17);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Thông Tin Chi Tiết";
+            // 
+            // listHoaDon
+            // 
+            this.listHoaDon.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13});
+            this.listHoaDon.FullRowSelect = true;
+            this.listHoaDon.HideSelection = false;
+            this.listHoaDon.Location = new System.Drawing.Point(19, 53);
+            this.listHoaDon.Margin = new System.Windows.Forms.Padding(4);
+            this.listHoaDon.Name = "listHoaDon";
+            this.listHoaDon.Size = new System.Drawing.Size(829, 607);
+            this.listHoaDon.TabIndex = 19;
+            this.listHoaDon.UseCompatibleStateImageBehavior = false;
+            this.listHoaDon.View = System.Windows.Forms.View.Details;
+            this.listHoaDon.SelectedIndexChanged += new System.EventHandler(this.listHoaDon_SelectedIndexChanged);
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "ID";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Tên Khách Hàng";
+            this.columnHeader10.Width = 148;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Tên Nhân Viên";
+            this.columnHeader11.Width = 121;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Ngày Bán";
+            this.columnHeader12.Width = 120;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Giá Tiền";
+            this.columnHeader13.Width = 142;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(16, 16);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 17);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Thanh Toán";
             // 
             // btnLogin
             // 
@@ -599,14 +806,6 @@
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "IDBaiQC";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "IDBaiQC";
             // 
             // InitPage
             // 
@@ -630,6 +829,8 @@
             this.tabComment.ResumeLayout(false);
             this.tabQuangCao.ResumeLayout(false);
             this.tabQuangCao.PerformLayout();
+            this.tabThanhToan.ResumeLayout(false);
+            this.tabThanhToan.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -695,6 +896,25 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBoxGia;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBoxNgay;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBoxTenNV;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBoxTenKhach;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ListView listHoaDon;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.Label label13;
     }
 }
 
