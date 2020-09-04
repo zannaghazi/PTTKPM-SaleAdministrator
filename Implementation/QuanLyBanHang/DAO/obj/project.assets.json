@@ -196,19 +196,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zanna\\.nuget\\packages\\": {}
+    "C:\\Users\\Hoang IT\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DAO\\DAO.csproj",
+      "projectUniqueName": "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DAO\\DAO.csproj",
       "projectName": "DAO",
-      "projectPath": "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DAO\\DAO.csproj",
-      "packagesPath": "C:\\Users\\zanna\\.nuget\\packages\\",
-      "outputPath": "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DAO\\obj\\",
+      "projectPath": "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DAO\\DAO.csproj",
+      "packagesPath": "C:\\Users\\Hoang IT\\.nuget\\packages\\",
+      "outputPath": "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DAO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\zanna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Hoang IT\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -221,8 +221,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DTO\\DTO.csproj": {
-              "projectPath": "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DTO\\DTO.csproj"
+            "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DTO\\DTO.csproj": {
+              "projectPath": "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\DTO\\DTO.csproj"
             }
           }
         }

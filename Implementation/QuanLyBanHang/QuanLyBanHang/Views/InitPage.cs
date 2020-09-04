@@ -57,6 +57,9 @@ namespace QuanLyBanHang
         //Connection
         public Connection conn;
 
+        private bool isReload = false;
+        private bool isFirstLoad = true;
+
 
 
         /// <summary>
@@ -127,6 +130,10 @@ namespace QuanLyBanHang
             this.tabControl.TabPages.Remove(this.tabQuangCao);
             this.tabControl.TabPages.Remove(this.tabDatHang);
             this.tabControl.TabPages.Remove(this.tabThanhToan);
+
+            this.isFirstLoad = true;
+            this.isReload = false;
+            this.selectedCommentIndex = -1;
         }
 
         public void InitVariable()
@@ -307,6 +314,11 @@ namespace QuanLyBanHang
         {
             // Remove all current data
             this.listComment.Items.Clear();
+            if (!this.isFirstLoad)
+            {
+                this.isReload = true;
+            }
+            this.isFirstLoad = false;
 
             // Add data to list
             for (int i = 0; i < this.dataBinhLuan.Count; i++)
@@ -588,6 +600,12 @@ namespace QuanLyBanHang
             if (index == this.selectedCommentIndex)
             {
                 this.selectedCommentIndex = -1;
+                return;
+            }
+
+            if (this.isReload)
+            {
+                this.isReload = false;
                 return;
             }
             this.selectedCommentIndex = index;

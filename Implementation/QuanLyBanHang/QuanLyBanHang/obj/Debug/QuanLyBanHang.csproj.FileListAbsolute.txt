@@ -74,10 +74,15 @@ E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHa
 E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\DAO.pdb
 E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\bin\Debug\DTO.pdb
 E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CommentStatistic.resources
-E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.SanPhamImport.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.GuaranteeSanPham.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.GuaranteeOrder.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CreateDoiTac.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.LichSuQC.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.QuangCaoSDT.resources
 G:\Giáo trình online\năm 6\Phân tích thiết kế phần mềm\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.TaoQuangCao.resources
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.CreateDoiTac.resources
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.GuaranteeOrder.resources
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.GuaranteeSanPham.resources
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.LichSuQC.resources
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.QuangCaoSDT.resources
+E:\Project\PTTK HTTT\Project\PTTKPM-SaleAdministrator\Implementation\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.Views.TaoQuangCao.resources

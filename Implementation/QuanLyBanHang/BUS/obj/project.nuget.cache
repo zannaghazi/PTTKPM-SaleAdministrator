@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "U1y2sqNF5R7cXaLB+ygv9xkX91j1mbuRzY39s+zgTUqzlVZf/YlF0/YOzEsQNJ2tYzL2d3HweCXk6FwAlhIz7Q==",
+  "dgSpecHash": "uRTRd6LWk+W8pypHQXsCOv/WSqcfZsqbZzVUmnqZJBM8zYSs9+rhHDXIRbMtJ0MAXNm948Ea09vmNXfg7E1EFQ==",
   "success": true,
-  "projectFilePath": "G:\\Giáo trình online\\năm 6\\Phân tích thiết kế phần mềm\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\BUS\\BUS.csproj",
+  "projectFilePath": "E:\\Project\\PTTK HTTT\\Project\\PTTKPM-SaleAdministrator\\Implementation\\QuanLyBanHang\\BUS\\BUS.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\zanna\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\zanna\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\Hoang IT\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Hoang IT\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }
