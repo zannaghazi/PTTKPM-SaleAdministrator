@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtProvider = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtMinimum = new System.Windows.Forms.TextBox();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.txtType = new System.Windows.Forms.TextBox();
@@ -44,8 +46,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtProvider = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -87,6 +87,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(430, 255);
             this.panel1.TabIndex = 2;
+            // 
+            // txtProvider
+            // 
+            this.txtProvider.Location = new System.Drawing.Point(149, 220);
+            this.txtProvider.Name = "txtProvider";
+            this.txtProvider.Size = new System.Drawing.Size(276, 20);
+            this.txtProvider.TabIndex = 11;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(25, 220);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Nhà phân phối";
             // 
             // txtMinimum
             // 
@@ -194,25 +210,9 @@
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(177, 59);
             this.btnConfirm.TabIndex = 0;
-            this.btnConfirm.Text = "Confirm";
+            this.btnConfirm.Text = "Xác nhận";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 220);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Nhà phân phối";
-            // 
-            // txtProvider
-            // 
-            this.txtProvider.Location = new System.Drawing.Point(149, 220);
-            this.txtProvider.Name = "txtProvider";
-            this.txtProvider.Size = new System.Drawing.Size(276, 20);
-            this.txtProvider.TabIndex = 11;
             // 
             // SanPhamDetail
             // 
